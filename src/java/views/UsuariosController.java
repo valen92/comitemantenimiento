@@ -75,6 +75,7 @@ public class UsuariosController implements Serializable {
         return pagination;
     }
 
+
     public PaginationHelper getPagination(int perf) {
         final int perU = perf;
         if (pagination == null) {
@@ -167,6 +168,18 @@ public class UsuariosController implements Serializable {
         RequestContext.getCurrentInstance().showMessageInDialog(message);
         return "DirMiembros";
     }
+    
+    public String Miembros() {
+        recreatePagination();
+        recreateModel();
+        return "/usuarios/DirMiembros";
+    }
+    
+    public String Proveedores() {
+        recreatePagination();
+        recreateModel();
+        return "/usuarios/DirProveedores";
+    }
 
     public String destroyAndView() {
         performDestroy();
@@ -242,10 +255,9 @@ public class UsuariosController implements Serializable {
         return items;
     }
 
-    public DataModel getItems(int per) {
-        
+    public DataModel getItems (int per) {
         if (items == null) {
-            items = getPagination(per).createPageDataModel();
+             items = getPagination(per).createPageDataModel();
         }
         return items;
     }

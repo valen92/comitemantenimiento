@@ -30,7 +30,7 @@
                         <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
                         <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
@@ -53,7 +53,7 @@
                         <h:outputLabel value="Descripción" for="descripcionNorma" />
                         <h:inputText id="descripcionNorma" value="#{normasController.selected.descripcionNorma}" title="#{bundle.CreateNormasTitle_descripcionNorma}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_descripcionNorma}"/>
                        
-                        <h:outputLabel value="Identificación usuario" for="fkidUsuarios" />
+                        <h:outputLabel value="Usuario" for="fkidUsuarios" />
                         <h:selectOneMenu id="fkidUsuarios" value="#{normasController.selected.fkidUsuarios}" title="#{bundle.CreateNormasTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_fkidUsuarios}">
                             <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
                         </h:selectOneMenu>  
