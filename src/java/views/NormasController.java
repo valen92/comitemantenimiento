@@ -70,7 +70,7 @@ public class NormasController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findporLogin(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idU));
+                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
         }

@@ -54,7 +54,9 @@
                         <h:inputText id="descripcionNorma" value="#{normasController.selected.descripcionNorma}" title="#{bundle.CreateNormasTitle_descripcionNorma}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_descripcionNorma}"/>
                        
                         <h:outputLabel value="Identificación usuario" for="fkidUsuarios" />
-                        <h:inputText id="fkidUsuarios" value="#{normasController.selected.fkidUsuarios}" required="true"/>
+                        <h:selectOneMenu id="fkidUsuarios" value="#{normasController.selected.fkidUsuarios}" title="#{bundle.CreateNormasTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_fkidUsuarios}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>  
                         
                     </h:panelGrid>
                     
