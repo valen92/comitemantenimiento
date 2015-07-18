@@ -13,7 +13,7 @@
         <ui:define name="body">
             <h:form>
                 
-                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                    <p:tabMenu activeIndex="1">
                         <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
@@ -26,8 +26,7 @@
                         </p:menuitem>
                         <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
-                        </p:menuitem>
-                        
+                        </p:menuitem>                        
                     </p:tabMenu>
                 <p:growl id="msgs" showDetail="true" />
                 <p:panel id="empcomite" header="Mi Perfil / Información de Contacto" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">

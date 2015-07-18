@@ -13,27 +13,20 @@
         <ui:define name="body">
             <h:form>
                 
-                    <p:tabMenu activeIndex="#{tabMenuController.index}">
-                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                    <p:tabMenu activeIndex="2">
+                       <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Repuestos" url="http://localhost:8080/comitemantenimiento/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
-                            <f:param name="index" value="1" />
-                        </p:menuitem>
-                        <p:menuitem value="Herramientas" url="http://localhost:8080/comitemantenimiento/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="1" />
                         </p:menuitem>
                        
-                        <p:menuitem value="Directorio miembros" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
-                            <f:param name="index" value="2" /> 
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio proveedores" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Normas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
-                            <f:param name="index" value="3" />
-                        </p:menuitem>
-                        
                     </p:tabMenu>
                 <p:growl id="msgs" showDetail="true" />
                 <p:panel id="empcomite" header="Directorio de miembros comite" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
