@@ -172,13 +172,13 @@ public class UsuariosController implements Serializable {
     public String Miembros() {
         recreatePagination();
         recreateModel();
-        return "DirMiembros";
+        return "/usuarios/DirMiembros";
     }
     
     public String Proveedores() {
         recreatePagination();
         recreateModel();
-        return "DirProveedores";
+        return "/usuarios/DirProveedores";
     }
 
     public String destroyAndView() {
