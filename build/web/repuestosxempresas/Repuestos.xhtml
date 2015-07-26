@@ -23,10 +23,10 @@
                         <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                       <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
                         <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
@@ -37,6 +37,9 @@
                         </p:menuitem>
                     </p:tabMenu>
                 </h:panelGrid>
+                
+            </h:form>
+            <h:form>
                 <p:panel header="Repuestos">
                     <p:tabView orientation="left">
                         <p:tab title="Mecánico">
@@ -124,9 +127,9 @@
                             </p:dataTable>
                         </p:tab>
                     </p:tabView>
-                    <p:link outcome="productDetail" value="Bookmark">
+                    <!--<p:link outcome="productDetail" value="Bookmark">
                         <f:param name="productId" value="10" />
-                    </p:link>
+                    </p:link>-->
                 </p:panel>
             </h:form>
 
