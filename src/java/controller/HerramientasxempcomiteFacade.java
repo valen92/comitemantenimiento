@@ -7,9 +7,13 @@
 package controller;
 
 import entities.Herramientasxempcomite;
+import entities.Herramientas;
+import entities.Tipoherramientas;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +31,15 @@ public class HerramientasxempcomiteFacade extends AbstractFacade<Herramientasxem
 
     public HerramientasxempcomiteFacade() {
         super(Herramientasxempcomite.class);
+    }
+    
+    public List<Herramientasxempcomite> findporTipoHerramienta(int[] range, int idTH) {
+        String consulta = "SELECT n FROM Herramientasxempcomite n LEFT JOIN Herramientas h where n.fkidHerramientas.idHerramientas = h.idHerramientas and h.fkidTipoHerramientas.idTipoHerramientas = :idTipo";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idTipo", idTH); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
     }
     
 }

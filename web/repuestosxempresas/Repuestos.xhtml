@@ -43,18 +43,18 @@
                 <p:panel header="Repuestos">
                     <p:tabView orientation="left">
                         <p:tab title="Mecánico">
-                            <p:dataTable value="#{repuestosxempresasController.items}" var="item"
+                            <p:dataTable value="#{repuestosxempresasController.getItems(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Repuesto">
-                                    <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
-                                </p:column>
-
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoRepuestoempresa}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Repuesto">
+                                    <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresa">
@@ -71,18 +71,18 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctrico">
-                            <p:dataTable value="#{repuestosxempresasController.items}" var="item"
+                            <p:dataTable value="#{repuestosxempresasController.getItems(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Repuesto">
-                                    <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
-                                </p:column>
-
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoRepuestoempresa}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Repuesto">
+                                    <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresa">
@@ -99,18 +99,18 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Instrumentación">
-                            <p:dataTable value="#{repuestosxempresasController.items}" var="item"
+                            <p:dataTable value="#{repuestosxempresasController.getItems(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Repuesto">
-                                    <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
-                                </p:column>
-
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoRepuestoempresa}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Repuesto">
+                                    <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresa">

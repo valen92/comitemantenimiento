@@ -42,18 +42,18 @@
                 <p:panel header="Herramientas">
                     <p:tabView orientation="left">
                         <p:tab title="Mecánico">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{herramientasxempcomiteController.getItems(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Herramienta">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                </p:column>
-
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Herramienta">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresa">
@@ -70,18 +70,18 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctrico">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{herramientasxempcomiteController.getItems(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Repuesto">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                </p:column>
-
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Herramienta">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresa">
@@ -98,18 +98,18 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Instrumentación">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{herramientasxempcomiteController.getItems(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Repuesto">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                </p:column>
-
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Herramienta">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresa">

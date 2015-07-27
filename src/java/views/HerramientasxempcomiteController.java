@@ -61,6 +61,25 @@ public class HerramientasxempcomiteController implements Serializable {
         }
         return pagination;
     }
+    
+    public PaginationHelper getPagination(int tipoHerramienta) {
+        final int tipoH = tipoHerramienta;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporTipoHerramienta(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoH));
+                }
+            };
+        }
+        return pagination;
+    }
 
     public String prepareList() {
         recreateModel();
@@ -156,6 +175,13 @@ public class HerramientasxempcomiteController implements Serializable {
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+    
+    public DataModel getItems(int tipoHerramienta) {
+        if (items == null) {
+            items = getPagination(tipoHerramienta).createPageDataModel();
         }
         return items;
     }
