@@ -184,6 +184,7 @@ public class ServicioscontratoController implements Serializable {
         }
         return items;
     }
+    
     public DataModel getItemsS() {
         if (items == null) {
             items = getPaginationS().createPageDataModel();

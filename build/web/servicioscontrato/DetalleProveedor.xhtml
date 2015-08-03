@@ -91,11 +91,11 @@
                             </p:dataTable>
                         </h:panelGrid>
                     </p:tab>
-                    <p:tab title="Contactos">
+                    <p:tab title="Contacto proveedores">
                         <h:panelGrid columns="2" cellpadding="10">
                             <p:dataTable value="#{usuariosController.items}" var="item" 
                                          rows="5"
-                                         paginator="false"
+                                         paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
@@ -115,7 +115,7 @@
                                     <h:outputText value="#{item.movilUsuario}"/>
                                 </p:column>
 
-                                <p:column headerText="Celular">
+                                <p:column headerText="Correo electrónico">
                                     <h:outputText value="#{item.emailUsuario}"/>
                                 </p:column>
                             </p:dataTable>
