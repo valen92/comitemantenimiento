@@ -100,23 +100,23 @@
                                          rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Nombre">
-                                    <h:outputText value="#{usuariosController.selected.nombreUsuario}"/>
+                                    <h:outputText value="#{item.nombreUsuario}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresa">
-                                    <h:outputText value="#{usuariosController.selected.fkidEmpresas.nombreEmpresa}"/>
+                                    <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Teléfono">
-                                    <h:outputText value="#{usuariosController.selected.fijoUsuario}"/>
+                                    <h:outputText value="#{item.fijoUsuario}"/>
                                 </p:column>
 
                                 <p:column headerText="Celular">
-                                    <h:outputText value="#{usuariosController.selected.movilUsuario}"/>
+                                    <h:outputText value="#{item.movilUsuario}"/>
                                 </p:column>
 
                                 <p:column headerText="Celular">
-                                    <h:outputText value="#{usuariosController.selected.emailUsuario}"/>
+                                    <h:outputText value="#{item.emailUsuario}"/>
                                 </p:column>
                             </p:dataTable>
                         </h:panelGrid>
