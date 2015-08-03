@@ -1,6 +1,7 @@
 package views;
 
 import controller.ServicioscontratoFacade;
+import entities.Empresas;
 import entities.Servicioscontrato;
 import java.io.Serializable;
 import java.util.List;
@@ -29,6 +30,7 @@ public class ServicioscontratoController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private List<Servicioscontrato> getResultList;
+    private int idEmpresa;
 
     public ServicioscontratoController() {
     }
@@ -64,7 +66,26 @@ public class ServicioscontratoController implements Serializable {
         return pagination;
     }
 
-    public String prepareList() {
+    public PaginationHelper getPaginationS() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporEmpresa(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idEmpresa));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public String prepareList(Empresas id) {
+        idEmpresa=id.getIdEmpresas();
         recreateModel();
         return "/servicioscontrato/DetalleProveedor";
     }
@@ -160,6 +181,12 @@ public class ServicioscontratoController implements Serializable {
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+    public DataModel getItemsS() {
+        if (items == null) {
+            items = getPaginationS().createPageDataModel();
         }
         return items;
     }

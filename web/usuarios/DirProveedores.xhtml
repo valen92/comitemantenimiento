@@ -56,11 +56,11 @@
                             <h:outputText value="#{item.apellidoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Teléfono">
+                        <p:column headerText="Teléfono" width="100">
                             <h:outputText value="#{item.fijoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Celular">
+                   <p:column headerText="Celular" width="100">
                             <h:outputText value="#{item.movilUsuario}"/>
                         </p:column>
                         
@@ -69,7 +69,7 @@
                         </p:column>
                         
                         <p:column style="width:24px">
-                            <h:commandLink action="#{servicioscontratoController.prepareList}" styleClass="ui-icon ui-icon-search"/>
+                            <h:commandLink action="#{servicioscontratoController.prepareList(item.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
                         </p:column>    
                         <p:column style="width:24px">

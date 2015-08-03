@@ -23,7 +23,7 @@
                         <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
                         <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
@@ -45,14 +45,14 @@
                 <p:accordionPanel>
                     <p:tab title="Historial empresa proveedora">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{servicioscontratoController}" var="item" 
+                            <p:dataTable value="#{servicioscontratoController.itemsS}" var="item" 
                                          rows="5"
-                                         paginator="false"
+                                         paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Listado de empresas con las que ha trabajado">
-                                    <h:outputText value="#{empresasController.selected.nombreEmpresa}"/>
+                                    <h:outputText value="#{item.fkidServicios.descripcionServicio}"/>
                                 </p:column>
 
                                 <p:column headerText="Observaciones del servicio">
@@ -62,7 +62,7 @@
                                 </p:column>
 
                                 <p:column headerText="Servicios prestados">
-                                    <h:outputText value="#{servicioscontratoController.selected.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
+                                    <h:outputText value="#{item.fkidEmpresas}"/>
                                 </p:column>
 
                                 <p:column headerText="Actividad realizada">
@@ -72,26 +72,26 @@
                             </p:dataTable>
                         </h:panelGrid>
                     </p:tab>
-                    <p:tab title="Servicios que presta actualmente">
+                    <p:tab title="Tipo de servicios que presta actualmente">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{servicioscontratoController.items}" var="item" 
+                            <p:dataTable value="#{servicioscontratoController.itemsS}" var="item" 
                                          rows="5"
-                                         paginator="false"
+                                         paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Tipo de servicio">
-                                    <h:outputText value="#{serviciosController.selected.nombreServicio}"/>
+                                    <h:outputText value="#{item.fkidServicios.nombreServicio}"/>
                                 </p:column>
 
                                 <p:column headerText="Descripción">
-                                    <h:outputText value="#{serviciosController.selected.descripcionServicio}"/>
+                                    <h:outputText value="#{item.fkidServicios.descripcionServicio}"/>
                                 </p:column>
 
                             </p:dataTable>
                         </h:panelGrid>
                     </p:tab>
-                    <p:tab title="Servicios que presta actualmente">
+                    <p:tab title="Contactos">
                         <h:panelGrid columns="2" cellpadding="10">
                             <p:dataTable value="#{usuariosController.items}" var="item" 
                                          rows="5"

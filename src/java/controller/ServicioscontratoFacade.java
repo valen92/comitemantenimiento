@@ -37,4 +37,13 @@ public class ServicioscontratoFacade extends AbstractFacade<Servicioscontrato> {
     return q.getResultList();
     }
     
+    public List<Servicioscontrato> findporEmpresa(int[] range, int idEmpresa) {
+        String consulta = "SELECT n FROM Serviciosxempproveedoras n where n.fkidEmpresas.idEmpresas = :idEmpresa";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idEmpresa", idEmpresa); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
 }
