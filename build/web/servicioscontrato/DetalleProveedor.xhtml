@@ -40,8 +40,15 @@
                 <p:growl id="msgs" showDetail="true" />
 
                 <h3><strong>Detalle Empresa Proveedora:</strong></h3>
-                <h:outputText value="#{empresasController.selected.nombreEmpresa}"/>
-
+                <h:outputText value=""/>
+                
+                <p:dataTable value="#{servicioscontratoController.itemsS}" var="item" 
+                                         rows="1" >
+                    <p:column>
+                        <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
+                    </p:column>
+                </p:dataTable>
+                <br/>
                 <p:accordionPanel>
                     <p:tab title="Historial empresa proveedora">
                         <h:panelGrid columns="2" cellpadding="10">
@@ -122,6 +129,8 @@
                         </h:panelGrid>
                     </p:tab>
                 </p:accordionPanel>
+                <br/>
+                <p:commandButton  id="aceptar" value="Volver al menu principal"  action="#{usuariosController.Proveedores}" styleClass="ui-priority-primary" />
             </h:form>
         </ui:define>
     </ui:composition>
