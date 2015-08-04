@@ -17,6 +17,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 
 @Named("actividadesController")
 @SessionScoped
@@ -28,8 +29,14 @@ public class ActividadesController implements Serializable {
     private controller.ActividadesFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int idU;
+    private final FacesContext faceContext;
+    private final HttpServletRequest httpServletRequest;
 
     public ActividadesController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
     }
 
     public Actividades getSelected() {
@@ -70,7 +77,7 @@ public class ActividadesController implements Serializable {
     public String prepareView() {
         current = (Actividades) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "/actividades/View";
     }
 
     public String prepareCreate() {

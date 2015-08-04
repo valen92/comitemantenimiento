@@ -40,17 +40,25 @@
                 <p:panel header="Actividades vigentes">
                     
                     <p:dataTable value="#{actividadesController.items}" var="item"
-                                         rows="5">
-                                         
-                         <p:column headerText="Titulo actividad">
+                                  rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                       
+                        <p:column headerText="Empresa" >
+                            <h:outputText value="#{item.fkidServiciosContrato.fkidEmpresas.nombreEmpresa}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Actividad específica">
                             <h:outputText value="#{item.tituloActividad}"/>
-                          </p:column>
-                         <p:column headerText="Empresa">
-                            <h:outputText value="#{item.tituloActividad}"/>
-                          </p:column>
+                        </p:column>
+                                          
                         <p:column style="width:24px">
                             <h:commandLink action="#{actividadesController.prepareView}" styleClass="ui-icon ui-icon-search"/>
                             
+                        </p:column> 
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{normasController.prepareEdit}" styleClass="ui-icon ui-icon-pencil"/>
                         </p:column> 
                                      
                     </p:dataTable> 
@@ -58,10 +66,11 @@
                 <br />
                 <p:commandButton value="Agregar actividad" ajax="false" actionListener="#{actividadesController.prepareCreate}" disabled="false" />
                 
-                <p:commandButton value="Eliminar actividad" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+                <p:commandLink value="Eliminar actividad" ajax="false" action="#{actividadesController.prepareView}" disabled="false" />
                 <br />
                 <br />
-                
+            </h:form>
+            <h:form>
                 <p:panel header="Proveedores de servicios">
                     
                     <p:tabView orientation="left">

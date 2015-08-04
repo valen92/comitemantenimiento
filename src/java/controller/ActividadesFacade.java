@@ -10,6 +10,7 @@ import entities.Actividades;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,13 @@ public class ActividadesFacade extends AbstractFacade<Actividades> {
 
     public ActividadesFacade() {
         super(Actividades.class);
+    }
+    
+    public String findEmpresa(int idU) {
+        String consulta = "select n.fkidEmpresa.idEmpresa from Usuarios n where n.idUsuario = :idUsuario";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idUsuario", idU); //Variable a pasar de la sesión
+        return q.getSingleResult().toString();
     }
     
 }

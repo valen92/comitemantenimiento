@@ -3,15 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/herramientasxempcomite/HerramientasMC.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/InicioMiembroComite.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/usuarios/DirMiembrosUsuMC.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/ServicioscontratoController.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/usuarios/DirMiembros.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/usuarios/DirProveedoresUsuMC.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/normas/Create.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/Inicio.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/repuestosxempresas/RepuestosMC.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/normas/Normatividad.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/controller/ActividadesFacade.java</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/controller/UsuariosFacade.java</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/UsuariosController.java</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/controller/AbstractFacade.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/ServicioscontratoController.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/usuarios/DirMiembros.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/ActividadesController.java</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/NormasController.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/normas/Create.xhtml</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/controller/ServicioscontratoFacade.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/Inicio.xhtml</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/servicioscontrato/DetalleProveedor.xhtml</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/empresas/Create.xhtml</file>
         </group>
