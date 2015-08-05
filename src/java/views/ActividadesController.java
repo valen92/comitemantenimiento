@@ -85,7 +85,7 @@ public class ActividadesController implements Serializable {
     public String prepareCreate() {
         current = new Actividades();
         selectedItemIndex = -1;
-        return "CreateActividad";
+        return "/actividades/CrearActividad";
     }
 
     public String create() {
