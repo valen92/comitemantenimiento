@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,6 +19,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
+import org.primefaces.context.RequestContext;
 
 @Named("actividadesController")
 @SessionScoped
@@ -114,13 +116,28 @@ public class ActividadesController implements Serializable {
         }
     }
 
-    public String destroy() {
+    public void destroy() {
         current = (Actividades) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
+    }
+
+    public String destroyFinal() {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "List";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La actividad ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "/InicioMiembroComite_1";
+    }
+
+    public String destroyFinal1() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La actividad ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "/InicioMiembroComite";
     }
 
     public String destroyAndView() {
