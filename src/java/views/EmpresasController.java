@@ -220,6 +220,10 @@ public class EmpresasController implements Serializable {
         return JsfUtil.getSelectItemsEmpresas(ejbFacade.findAll(), true);
     }
 
+    public SelectItem[] getItemsAvailableSelectOneE() {
+        return JsfUtil.getSelectItemsEmpresas(ejbFacade.findAllProveedor(), true);
+    }
+
     
     
     public Empresas getEmpresas(java.lang.Integer id) {

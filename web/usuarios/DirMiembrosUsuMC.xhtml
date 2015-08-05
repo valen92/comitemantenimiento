@@ -51,31 +51,41 @@
                 </p:panel>
                 
 
-               <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+               <p:dataTable value="#{usuariosController.getItems(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
-                   <p:column headerText="Nombre">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                   <p:column headerText="Telefono">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                   <p:column headerText="Empresas">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                   <p:column headerText="Correo Electronico">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                    <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
+                                         rowsPerPageTemplate="5,10,15"
+                                          emptyMessage="No hay resultados para la busqueda" 
+                                          filteredValue="#{dtFilterView.filteredCars}">
+                   <p:column headerText="Empresa">
+                            <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{item.nombreUsuario}"/>
+                        </p:column>
+                        
+                         <p:column headerText="Apellido">
+                            <h:outputText value="#{item.apellidoUsuario}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Teléfono" style="width:100px">
+                            <h:outputText value="#{item.fijoUsuario}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Celular" style="width:100px">
+                            <h:outputText value="#{item.movilUsuario}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Correo Electrónico">
+                            <h:outputText value="#{item.emailUsuario}"/>
+                        </p:column>
+                        
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{usuariosController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
+                            <h:outputText value=" "/>
+                        </p:column>    
                     
                    
                 </p:dataTable>

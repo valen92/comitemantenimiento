@@ -7,9 +7,11 @@
 package controller;
 
 import entities.Contratos;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,12 @@ public class ContratosFacade extends AbstractFacade<Contratos> {
 
     public ContratosFacade() {
         super(Contratos.class);
+    }
+
+    public List<Contratos> findAllN() {
+        String consulta = "select n from Contratos n";
+        Query q = getEntityManager().createQuery(consulta);
+        return q.getResultList();
     }
     
 }

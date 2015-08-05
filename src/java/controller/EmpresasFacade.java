@@ -7,9 +7,11 @@
 package controller;
 
 import entities.Empresas;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,13 @@ public class EmpresasFacade extends AbstractFacade<Empresas> {
 
     public EmpresasFacade() {
         super(Empresas.class);
+    }
+
+    public List<Empresas> findAllProveedor() {
+        String consulta = "select n from Empresas n where n.tipoEmpresa = :tipoEmpresa";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("tipoEmpresa", "Proveedor"); //Variable a pasar de la sesión
+        return q.getResultList();
     }
  
     

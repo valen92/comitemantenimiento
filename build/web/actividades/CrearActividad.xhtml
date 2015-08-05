@@ -58,24 +58,29 @@ and open the template in the editor.
                         <h:outputLabel style="margin-left: 20px;" value="Fecha acordada de finalización:" for="fecingEmpresa" />
                         <p:calendar style="margin-left: 20px;" id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
                         </p:calendar>
-                        <h:outputLabel value="Estado:" for="fkidCiudad" />
+                        <h:outputLabel value="Estado:" for="fkidEstado" />
                         <h:selectOneMenu style="margin-left: 20px;" id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                            <f:selectItems itemLabel="Select One" itemValue="1" />
+                            <f:selectItems itemLabel="Prueba" itemValue="2" />
                         </h:selectOneMenu>
-                        <h:outputLabel style="margin-left: 20px;" value="Proveedor encragado:" for="fkidCiudad" />
+                        <h:outputLabel style="margin-left: 20px;" value="Proveedor encargado:" for="fkidCiudad" />
                         <h:selectOneMenu style="margin-left: 20px;" id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                            <f:selectItems value="#{empresasController.itemsAvailableSelectOneE}"/>
                         </h:selectOneMenu>
                         <h:outputLabel value="Tipo de servicio:" for="fkidCiudad" />
                         <h:selectOneMenu style="margin-left: 20px;" id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                            <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"/>
                         </h:selectOneMenu>
-                        <h:outputLabel style="margin-left: 20px;" value="Avtividad especifica:" for="n" />
+                        <h:outputLabel style="margin-left: 20px;" value="Actividad especifica:" for="n" />
                         <h:inputText style="margin-left: 20px;" id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.CreateEmpresasTitle_nitEmpresa}" />
                         
-                        <h:outputLabel value="Descripción:"  for="descripcion" />
+                        <h:outputLabel value="Contrato:"  for="contrato" />
+                        <h:selectOneMenu style="margin-left: 20px;" id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                            <f:selectItems value="#{contratosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel style="margin-left: 20px;" value="Descripción:"  for="descripcion" />
                         <p:inputTextarea style="margin-left: 20px;" rows="6" cols="33" value="#{serviciosController.selected.descripcionServicio}" required="true" requiredMessage="#{bundle.CreateServiciosRequiredMessage_descripcionServicio}"/>
-                        <br /><br/>
+                        
                         <h:outputText value=""/> <h:outputText value=""/> <h:outputText value=""/>
                         <h:outputText value=""/> <h:outputText value=""/> <h:outputText value=""/>
                         <h:outputText value=""/> <h:outputText value=""/>
