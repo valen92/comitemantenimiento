@@ -23,76 +23,69 @@ and open the template in the editor.
             <h:form>
                 <h:panelGrid columns="1">
                     <p:tabMenu activeIndex="#{tabMenuController.index}">
-                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                        <p:menuitem value="Inicio" url="/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Mi Perfil" url="http://localhost:8080/comitemantenimiento/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/RepuestosMC.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="1" />
                         </p:menuitem>
-
-                        <p:menuitem value="Directorio de Empresas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
-                            <f:param name="index" value="2" />
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/HerramientasMC.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio de Empresas Asociadas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                       
+                        <p:menuitem value="Directorio miembros" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedoresUsuMC.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
                     </p:tabMenu> 
                 </h:panelGrid>
-                <p:panel header="Actividad">
-                    <h:panelGrid columns="2">
+                <p:panel header="Actividades vigentes - Crear actividad">
+                    <h:panelGrid columns="4">
 
                         <h:outputLabel value="Número de actividad:" for="n" />
-                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.CreateEmpresasTitle_nitEmpresa}" />
-                        <h:outputLabel value="Fecha en que se firmo:" for="fecingEmpresa" />
-                        <p:calendar id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
+                        <h:inputText style="margin-left: 20px;" id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.CreateEmpresasTitle_nitEmpresa}" />
+                        <h:outputLabel style="margin-left: 20px;" value="Fecha en que se firmo:" for="fecingEmpresa" />
+                        <p:calendar style="margin-left: 20px;" id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
                         </p:calendar>
                         <h:outputLabel value="Fecha de inicio:" for="fecingEmpresa" />
-                        <p:calendar id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
+                        <p:calendar style="margin-left: 20px;" id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
                         </p:calendar>
-                        <h:outputLabel value="Fecha acordada de finalización:" for="fecingEmpresa" />
-                        <p:calendar id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
+                        <h:outputLabel style="margin-left: 20px;" value="Fecha acordada de finalización:" for="fecingEmpresa" />
+                        <p:calendar style="margin-left: 20px;" id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
                         </p:calendar>
                         <h:outputLabel value="Estado:" for="fkidCiudad" />
-                        <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                        <h:selectOneMenu style="margin-left: 20px;" id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
                             <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
                         </h:selectOneMenu>
-                        <h:outputLabel value="Proveedor encragado:" for="fkidCiudad" />
-                        <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                        <h:outputLabel style="margin-left: 20px;" value="Proveedor encragado:" for="fkidCiudad" />
+                        <h:selectOneMenu style="margin-left: 20px;" id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
                             <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
                         </h:selectOneMenu>
                         <h:outputLabel value="Tipo de servicio:" for="fkidCiudad" />
-                        <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                        <h:selectOneMenu style="margin-left: 20px;" id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.CreateEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
                             <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
                         </h:selectOneMenu>
-                        <h:outputLabel value="Avtividad especifica:" for="n" />
-                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.CreateEmpresasTitle_nitEmpresa}" />
+                        <h:outputLabel style="margin-left: 20px;" value="Avtividad especifica:" for="n" />
+                        <h:inputText style="margin-left: 20px;" id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.CreateEmpresasTitle_nitEmpresa}" />
                         
                         <h:outputLabel value="Descripción:"  for="descripcion" />
-                        <p:inputTextarea rows="6" cols="33" value="#{serviciosController.selected.descripcionServicio}" required="true" requiredMessage="#{bundle.CreateServiciosRequiredMessage_descripcionServicio}"/>
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
-                         
-                        <br />
+                        <p:inputTextarea style="margin-left: 20px;" rows="6" cols="33" value="#{serviciosController.selected.descripcionServicio}" required="true" requiredMessage="#{bundle.CreateServiciosRequiredMessage_descripcionServicio}"/>
+                        <br /><br/>
+                        <h:outputText value=""/> <h:outputText value=""/> <h:outputText value=""/>
+                        <h:outputText value=""/> <h:outputText value=""/> <h:outputText value=""/>
+                        <h:outputText value=""/> <h:outputText value=""/>
                         <p:growl id="growl" life="2000" />    
-                        <p:commandButton value="Aceptar" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                        <p:commandButton value="Cancelar" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                        <p:commandButton value="Cerrar Sesion" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                    </h:panelGrid>  
+                        <p:commandButton value="Aceptar" id="Aceptar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                        <p:commandButton value="Cancelar" id="Cancelar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                        </h:panelGrid>  
                 </p:panel>
+                <br/>
+                <p:commandButton style="float:right" value="Cerrar Sesion" id="Cerrar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
             </h:form>
         </ui:define>
     </ui:composition>
