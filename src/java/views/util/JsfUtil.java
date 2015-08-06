@@ -139,6 +139,20 @@ public class JsfUtil {
         return items;
     }
     
+    public static SelectItem[] getSelectItemsUsuariosM(List<Usuarios> entities, boolean selectOne) {
+        int size = selectOne ? entities.size() + 1 : entities.size();
+        SelectItem[] items = new SelectItem[size];
+        int i = 0;
+        if (selectOne) {
+            items[0] = new SelectItem("", "Seleccione una empresa");
+            i++;
+        }
+        for (Usuarios x : entities) {
+            items[i++] = new SelectItem(x, x.getFkidEmpresas().getNombreEmpresa());
+        }
+        return items;
+    }
+    
     public static SelectItem[] getSelectItemsHerramientas(List<Herramientas> entities, boolean selectOne) {
         int size = selectOne ? entities.size() + 1 : entities.size();
         SelectItem[] items = new SelectItem[size];

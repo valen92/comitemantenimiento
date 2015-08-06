@@ -37,18 +37,12 @@
                 </h:panelGrid>
                 <p:growl id="msgs" showDetail="true" />
                 <p:panel id="empcomite" header="Directorio de miembros comite" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
-
+                    <br/>
                     <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
                     <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
-                    <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresa:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                             
-                    </h:panelGrid>
+                    
 
-                </p:panel>
+                
                 
 
                <p:dataTable value="#{usuariosController.getItems(2)}" var="item"
@@ -56,8 +50,18 @@
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
+                                         widgetVar="dirMiembros"
                                           emptyMessage="No hay resultados para la busqueda" 
-                                          filteredValue="#{dtFilterView.filteredCars}">
+                                          filteredValue="#{usuariosController.filtro}">
+                   
+                    <f:facet name="header" >
+                        <h:outputLabel style="float:left" value="Empresa:" for="fkidEmpresa" />
+                            <p:selectOneMenu id="globalFilter" onchange="PF('dirMiembros').filter()" >
+                                <f:selectItems value="#{usuariosController.itemsAvailableSelectOneM}"/>
+                            </p:selectOneMenu>
+                    </f:facet>
+                  
+                   
                    <p:column headerText="Empresa">
                             <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                         </p:column>
@@ -85,17 +89,9 @@
                         <p:column style="width:24px">
                             <h:commandLink action="#{usuariosController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
-                        </p:column>    
-                    
-                   
+                        </p:column>   
                 </p:dataTable>
-                
-                
-                   
-                 
-
-
- 
+                    </p:panel>
            </h:form>
         </ui:define>
     </ui:composition>
