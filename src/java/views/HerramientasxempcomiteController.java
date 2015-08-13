@@ -179,7 +179,7 @@ public class HerramientasxempcomiteController implements Serializable {
         return items;
     }
     
-    public DataModel getItems(int tipoHerramienta) {
+    public DataModel getItemsE(int tipoHerramienta) {
         if (items == null) {
             items = getPagination(tipoHerramienta).createPageDataModel();
         }
