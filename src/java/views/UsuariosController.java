@@ -166,6 +166,15 @@ public class UsuariosController implements Serializable {
         return "List";
     }
 
+    public String destroyFinalP() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El usuario ha sido eliminado con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "LisP";
+    }
+
     public String destroyFinal1() {
         performDestroy();
         recreatePagination();
@@ -173,6 +182,15 @@ public class UsuariosController implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El usuario ha sido eliminado con exito");  
         RequestContext.getCurrentInstance().showMessageInDialog(message);
         return "DirMiembros";
+    }
+
+    public String destroyFinal1P() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El usuario ha sido eliminado con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "DirProveedores";
     }
     
     public String Miembros() {

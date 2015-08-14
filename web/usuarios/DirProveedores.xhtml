@@ -77,7 +77,14 @@
                             <h:outputText value=" "/>
                         </p:column>  
                         <p:column style="width:24px">
-                            <h:commandLink action="#{empresasController.destroy}" styleClass="ui-icon ui-icon-trash"/>
+                            <h:commandLink action="#{usuariosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                            <p:confirmDialog message="Esta seguro de que desea eliminar este usuario?"
+                                header="Atención"
+                                severity="alert" widgetVar="confirmDialog">
+                                <p:commandButton value="Si" action="#{usuariosController.destroyFinalP}" 
+                               />
+                                <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                            </p:confirmDialog>
                         </p:column>
                     </p:dataTable>
                 </p:panel>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -14,22 +13,20 @@
         <ui:define name="body">
             <h:form>
                 <h:panelGrid columns="1">
-                    <p:tabMenu activeIndex="3">
+                    <p:tabMenu activeIndex="4">
                         <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        
                         <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
                             <f:param name="index" value="1" />
                         </p:menuitem>
-                        
                         <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
                         <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
@@ -40,8 +37,8 @@
                         </p:menuitem>
                     </p:tabMenu>
                  </h:panelGrid>
-                <p:panel header="Directorio Miembros">
-               <p:dataTable value="#{usuariosController.getItems(2)}" var="item" 
+                <p:panel header="Directorio de proveedores">
+               <p:dataTable value="#{usuariosController.getItems(3)}" var="item" 
                          rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -51,19 +48,19 @@
                             <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                         </p:column>
                        
-                        <p:column headerText="Nombre del delegado">
+                        <p:column headerText="Nombre del contacto">
                             <h:outputText value="#{item.nombreUsuario}"/>
                         </p:column>
                         
-                         <p:column headerText="Apellido del delegado">
+                         <p:column headerText="Apellido del contacto">
                             <h:outputText value="#{item.apellidoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Teléfono">
+                        <p:column headerText="Teléfono" width="100">
                             <h:outputText value="#{item.fijoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Celular">
+                   <p:column headerText="Celular" width="100">
                             <h:outputText value="#{item.movilUsuario}"/>
                         </p:column>
                         
@@ -72,11 +69,11 @@
                         </p:column>
                         
                         <p:column style="width:24px">
-                            <h:commandLink action="#{usuariosController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
+                            <h:commandLink action="#{servicioscontratoController.prepareList(item.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
-                        </p:column> 
+                        </p:column>    
                         <p:column style="width:24px">
-                            <h:commandLink action="#{usuariosController.prepareEdit()}" styleClass="ui-icon ui-icon-pencil"/>
+                            <h:commandLink action="#{usuariosController.prepareEditP()}" styleClass="ui-icon ui-icon-pencil"/>
                             <h:outputText value=" "/>
                         </p:column>  
                         <p:column style="width:24px">
@@ -84,7 +81,7 @@
                             <p:confirmDialog message="Esta seguro de que desea eliminar este usuario?"
                                 header="Atención"
                                 severity="alert" widgetVar="confirmDialog">
-                                <p:commandButton value="Si" action="#{usuariosController.destroyFinal1}" 
+                                <p:commandButton value="Si" action="#{usuariosController.destroyFinal1P}" 
                                />
                                 <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                             </p:confirmDialog>

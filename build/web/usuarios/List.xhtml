@@ -29,7 +29,7 @@
                         <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
                         <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
@@ -41,7 +41,7 @@
                     </p:tabMenu>
                  </h:panelGrid>
                 <p:panel header="Directorio Miembros">
-               <p:dataTable value="#{usuariosController.items}" var="item" 
+               <p:dataTable value="#{usuariosController.getItems(2)}" var="item" 
                          rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -74,7 +74,7 @@
                         <p:column style="width:24px">
                             <h:commandLink action="#{usuariosController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
-                        </p:column>    
+                        </p:column> 
                         <p:column style="width:24px">
                             <h:commandLink action="#{usuariosController.prepareEdit()}" styleClass="ui-icon ui-icon-pencil"/>
                             <h:outputText value=" "/>
