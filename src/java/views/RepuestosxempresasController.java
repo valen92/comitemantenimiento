@@ -180,6 +180,8 @@ public class RepuestosxempresasController implements Serializable {
     }
 
     public DataModel getItems(int tipoRepuesto) {
+        recreatePagination();
+        recreateModel();
         if (items == null) {
             items = getPagination(tipoRepuesto).createPageDataModel();
         }
