@@ -134,6 +134,12 @@ public class UsuariosController implements Serializable {
         return "Edit";
     }
 
+    public String prepareEditP() {
+        current = (Usuarios) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "EditP";
+    }
+
     public String update() {
         try {
             getFacade().edit(current);
