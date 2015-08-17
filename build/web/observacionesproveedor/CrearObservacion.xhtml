@@ -32,10 +32,10 @@ and open the template in the editor.
                         <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
                         <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
@@ -58,11 +58,14 @@ and open the template in the editor.
  
                         <br />
                         <p:growl id="growl" life="2000" />    
-                      
-                        <p:commandButton value="Guardar observacion" id="Guardar" update="growl" actionListener="#{observacionesproveedorController.create}" styleClass="ui-priority-primary"/>
-                        <p:commandButton value="Cancelar" id="Cancelar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                    </h:panelGrid>  
+                        </h:panelGrid>   
+                         <p:commandButton value="Guardar observacion" id="Guardar" update="growl" actionListener="#{observacionesproveedorController.create}" styleClass="ui-priority-primary"/>
+
                 </p:panel>
+            </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="margin-left: 20px" value="Cancelar" action="#{observacionesproveedorController.prepareList()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>
