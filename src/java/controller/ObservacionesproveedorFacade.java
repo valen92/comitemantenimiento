@@ -7,9 +7,11 @@
 package controller;
 
 import entities.Observacionesproveedor;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,15 @@ public class ObservacionesproveedorFacade extends AbstractFacade<Observacionespr
 
     public ObservacionesproveedorFacade() {
         super(Observacionesproveedor.class);
+    }
+    
+    public List<Observacionesproveedor> findporUsuario(int[] range, int idU) {
+        String consulta = "select n from Observacionesproveedor n where n.fkidUsuarios.idUsuarios = :idUsuario";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idUsuario", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
     }
     
 }

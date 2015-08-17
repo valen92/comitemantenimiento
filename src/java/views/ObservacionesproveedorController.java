@@ -1,6 +1,7 @@
 package views;
 
 import entities.Observacionesproveedor;
+import entities.Servicioscontrato;
 import views.util.JsfUtil;
 import views.util.PaginationHelper;
 import controller.ObservacionesproveedorFacade;
@@ -28,6 +29,8 @@ public class ObservacionesproveedorController implements Serializable {
     private controller.ObservacionesproveedorFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int idServiciosContrato;
+    private int idUsuario;
 
     public ObservacionesproveedorController() {
     }
@@ -55,16 +58,23 @@ public class ObservacionesproveedorController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    return new ListDataModel(getFacade().findporUsuario(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idUsuario));
                 }
             };
         }
         return pagination;
     }
 
+    public String prepareListOb(int id, int idU) {
+        idServiciosContrato=id;
+        idUsuario=idU;
+        recreateModel();
+        return "/observacionesproveedor/Observaciones";
+    }
+
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "/observacionesproveedor/Observaciones";
     }
 
     public String prepareView() {
@@ -154,6 +164,8 @@ public class ObservacionesproveedorController implements Serializable {
     }
 
     public DataModel getItems() {
+        recreatePagination();
+        recreateModel();
         if (items == null) {
             items = getPagination().createPageDataModel();
         }

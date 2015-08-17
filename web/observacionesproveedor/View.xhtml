@@ -3,48 +3,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewObservacionesproveedorTitle}"></h:outputText>
+            <h:outputText value="Proveedores de servicios"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewObservacionesproveedorLabel_idObservacionesProveedor}"/>
-                    <h:outputText value="#{observacionesproveedorController.selected.idObservacionesProveedor}" title="#{bundle.ViewObservacionesproveedorTitle_idObservacionesProveedor}"/>
-                    <h:outputText value="#{bundle.ViewObservacionesproveedorLabel_tituloObservacionproveedor}"/>
-                    <h:outputText value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_tituloObservacionproveedor}"/>
-                    <h:outputText value="#{bundle.ViewObservacionesproveedorLabel_observacionObservacionproveedor}"/>
-                    <h:outputText value="#{observacionesproveedorController.selected.observacionObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_observacionObservacionproveedor}"/>
-                    <h:outputText value="#{bundle.ViewObservacionesproveedorLabel_calificacionObservacionproveedor}"/>
-                    <h:outputText value="#{observacionesproveedorController.selected.calificacionObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_calificacionObservacionproveedor}"/>
-                    <h:outputText value="#{bundle.ViewObservacionesproveedorLabel_fecObservacionproveedor}"/>
-                    <h:outputText value="#{observacionesproveedorController.selected.fecObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_fecObservacionproveedor}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewObservacionesproveedorLabel_fkidUsuarios}"/>
-                    <h:outputText value="#{observacionesproveedorController.selected.fkidUsuarios}" title="#{bundle.ViewObservacionesproveedorTitle_fkidUsuarios}"/>
-                    <h:outputText value="#{bundle.ViewObservacionesproveedorLabel_fkidServiciosContrato}"/>
-                    <h:outputText value="#{observacionesproveedorController.selected.fkidServiciosContrato}" title="#{bundle.ViewObservacionesproveedorTitle_fkidServiciosContrato}"/>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="4">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{observacionesproveedorController.destroyAndView}" value="#{bundle.ViewObservacionesproveedorDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewObservacionesproveedorEditLink}"/>
-                <br />
-                <h:commandLink action="#{observacionesproveedorController.prepareCreate}" value="#{bundle.ViewObservacionesproveedorCreateLink}" />
-                <br />
-                <h:commandLink action="#{observacionesproveedorController.prepareList}" value="#{bundle.ViewObservacionesproveedorShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewObservacionesproveedorIndexLink}"/>
 
+                <p:panel header="Observaciones - Detalle observacion">
+
+                    <h:panelGrid columns="2" style="margin-top: 20px; margin-left: 30px">
+                        <h:outputText value="Titulo:" style="font-size: 18px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_tituloObservacionproveedor}"/>
+                        <h:outputText value="Detalle:" style="font-size: 18px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{observacionesproveedorController.selected.observacionObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_observacionObservacionproveedor}"/>
+                        <h:outputText value="Calificacion:" style="font-size: 18px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{observacionesproveedorController.selected.calificacionObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_calificacionObservacionproveedor}"/>
+                        <h:outputText value="Fecha:" style="font-size: 18px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{observacionesproveedorController.selected.fecObservacionproveedor}" title="#{bundle.ViewObservacionesproveedorTitle_fecObservacionproveedor}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Usuario:" style="font-size: 18px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{observacionesproveedorController.selected.fkidUsuarios.nombreUsuario} 
+                                      #{observacionesproveedorController.selected.fkidUsuarios.apellidoUsuario}" title="#{bundle.ViewObservacionesproveedorTitle_fkidUsuarios}"/>
+                    </h:panelGrid>
+                </p:panel>  
+                <br />
+                <p:commandButton value="Aceptar" action="#{observacionesproveedorController.prepareList()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

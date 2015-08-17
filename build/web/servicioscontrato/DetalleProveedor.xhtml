@@ -59,21 +59,21 @@
                                          rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Listado de empresas con las que ha trabajado">
-                                    <h:outputText value="#{item.fkidServicios.descripcionServicio}"/>
+                                    <h:outputText value="#{item.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Observaciones del servicio">
-                                    <p:link outcome="/observacionesproveedor/Observaciones" value="Ver observaciones">
+                                    <h:commandLink action="#{observacionesproveedorController.prepareListOb(item.idServiciosContrato, servicioscontratoController.getIdUsuario())}" value="Ver observaciones">
                                         <f:param name="productId" />
-                                    </p:link>
+                                    </h:commandLink>
                                 </p:column>
 
                                 <p:column headerText="Servicios prestados">
-                                    <h:outputText value="#{item.fkidEmpresas}"/>
+                                    <h:outputText value="#{item.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
 
                                 <p:column headerText="Actividad realizada">
-                                    <h:outputText value="#{actividadesController.selected.descripcionActividad}"/>
+                                    <h:outputText value="#{item.fkidContratos.descripcionContrato}"/>
                                 </p:column>
 
                             </p:dataTable>
@@ -81,7 +81,7 @@
                     </p:tab>
                     <p:tab title="Tipo de servicios que presta actualmente">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{servicioscontratoController.itemsS}" var="item" 
+                            <p:dataTable value="#{servicioscontratoController.itemsSA}" var="item" 
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
