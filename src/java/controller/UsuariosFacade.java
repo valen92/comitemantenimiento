@@ -6,6 +6,7 @@
 
 package controller;
 
+import entities.Herramientasxempcomite;
 import entities.Usuarios;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -78,6 +79,15 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
     public List<Usuarios> findporDelegado(int[] range, int idU) {
         Usuarios usuario = new Usuarios ();
         String consulta = "select n from Usuarios n where n.fkidEmpresas.idEmpresas = :idEmpresa";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
+    public List<Herramientasxempcomite> findporHerramienta(int[] range, int idU) {
+        String consulta = "select n from Herramientasxempcomite n where n.fkidEmpresas.idEmpresas = :idEmpresa";
         Query q = getEntityManager().createQuery(consulta);
         q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
         q.setMaxResults(range[1] - range[0] + 1);

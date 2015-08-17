@@ -50,7 +50,7 @@
                         <h:panelGrid columns="2" cellpadding="10">
                             <p:dataTable value="#{usuariosController.itemsD}" var="item" 
                                          rows="5"
-                                         paginator="false"
+                                         paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
@@ -76,30 +76,34 @@
                     </p:tab>
                     <p:tab title="Tipo de herramienta que maneja en su inventario">
                         <h:panelGrid columns="2" cellpadding="10">
-                              <p:dataTable value="#{herramientasxempcomiteController}" 
+                              <p:dataTable value="#{usuariosController.itemsH}" var="item" 
                                          rows="5"
-                                         paginator="false"
+                                         paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Nombre Herramienta">
-                                    <h:outputText value="#{herramientasxempcomiteController.selected.descripcionHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+                                  
+                                <p:column headerText="Descripción General">
+                                    <h:outputText value="#{item.descripcionHerramempcomite}"/>
                                 </p:column>
 
                                 <p:column headerText="Marca">
-                                    <h:outputText value="#{herramientasxempcomiteController.selected.fkidMarcasHerramientas.selected.nombreMarcaHerramienta}"/>
+                                    <h:outputText value="#{item.fkidMarcasHerramientas.nombreMarcaherramienta}"/>
                                 </p:column>
                                 
                                 <p:column headerText="Estado">
-                                    <h:outputText value="#{herramientasxempcomiteController.selected.estadoHerramempcomite}"/>
+                                    <h:outputText value="#{item.estadoHerramempcomite}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Cantidad">
-                                    <h:outputText value="#{herramientasxempcomiteController.selected.cantidadHerramempcomite}"/>
+                                <p:column headerText="Número Existencias">
+                                    <h:outputText value="#{item.cantidadHerramempcomite}"/>
                                 </p:column>
                                   
                                 <p:column headerText="Precio">
-                                    <h:outputText value="#{herramientasxempcomiteController.selected.precioHerramempcomite}"/>
+                                    <h:outputText value="#{item.precioHerramempcomite}"/>
                                 </p:column>
                              </p:dataTable>
                         </h:panelGrid>
