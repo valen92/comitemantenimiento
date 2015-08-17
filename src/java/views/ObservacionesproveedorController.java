@@ -1,16 +1,13 @@
 package views;
 
+import controller.ObservacionesproveedorFacade;
 import entities.Observacionesproveedor;
 import entities.Servicioscontrato;
-import views.util.JsfUtil;
-import views.util.PaginationHelper;
-import controller.ObservacionesproveedorFacade;
-
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,6 +15,10 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+import org.primefaces.context.RequestContext;
+import views.util.JsfUtil;
+import views.util.PaginationHelper;
 
 @Named("observacionesproveedorController")
 @SessionScoped
@@ -58,7 +59,7 @@ public class ObservacionesproveedorController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findporUsuario(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idUsuario));
+                    return new ListDataModel(getFacade().findporUsuario(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idUsuario,idServiciosContrato));
                 }
             };
         }
@@ -78,7 +79,7 @@ public class ObservacionesproveedorController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Observacionesproveedor) getItems().getRowData();
+        current = (Observacionesproveedor) getItemsd().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
@@ -101,7 +102,7 @@ public class ObservacionesproveedorController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Observacionesproveedor) getItems().getRowData();
+        current = (Observacionesproveedor) getItemsd().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -110,20 +111,35 @@ public class ObservacionesproveedorController implements Serializable {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ObservacionesproveedorUpdated"));
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La observación ha sido actualizada con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
-    }
-
-    public String destroy() {
+    }public void destroy() {
         current = (Observacionesproveedor) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
+    }
+
+    public String destroyFinal() {
         performDestroy();
         recreatePagination();
         recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La observación ha sido eliminada con éxito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
         return "List";
+    }
+
+    public String destroyFinal1() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La observación ha sido eliminada con éxito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "Observaciones";
     }
 
     public String destroyAndView() {
@@ -166,6 +182,13 @@ public class ObservacionesproveedorController implements Serializable {
     public DataModel getItems() {
         recreatePagination();
         recreateModel();
+        if (items == null) {
+            items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsd() {
         if (items == null) {
             items = getPagination().createPageDataModel();
         }

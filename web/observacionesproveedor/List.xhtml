@@ -3,84 +3,84 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListObservacionesproveedorTitle}"></h:outputText>
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListObservacionesproveedorEmpty}" rendered="#{observacionesproveedorController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{observacionesproveedorController.items.rowCount > 0}">
-                    <h:outputText value="#{observacionesproveedorController.pagination.pageFirstItem + 1}..#{observacionesproveedorController.pagination.pageLastItem + 1}/#{observacionesproveedorController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{observacionesproveedorController.previous}" value="#{bundle.Previous} #{observacionesproveedorController.pagination.pageSize}" rendered="#{observacionesproveedorController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{observacionesproveedorController.next}" value="#{bundle.Next} #{observacionesproveedorController.pagination.pageSize}" rendered="#{observacionesproveedorController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{observacionesproveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_idObservacionesProveedor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idObservacionesProveedor}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_tituloObservacionproveedor}"/>
-                            </f:facet>
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="4">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:panelGrid>
+
+                <p:panel header="Observaciones">
+
+                    <p:dataTable value="#{observacionesproveedorController.items}" var="item" 
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                       
+                        <p:column headerText="Nombre observacion">
                             <h:outputText value="#{item.tituloObservacionproveedor}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_observacionObservacionproveedor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.observacionObservacionproveedor}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_calificacionObservacionproveedor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.calificacionObservacionproveedor}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_fecObservacionproveedor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fecObservacionproveedor}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_fkidUsuarios}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkidUsuarios}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_fkidServiciosContrato}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkidServiciosContrato}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{observacionesproveedorController.prepareView}" value="#{bundle.ListObservacionesproveedorViewLink}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Fecha de creación">   
+                        <h:outputText value="#{item.fecObservacionproveedor}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        </p:column>
+                        
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{observacionesproveedorController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{observacionesproveedorController.prepareEdit}" value="#{bundle.ListObservacionesproveedorEditLink}"/>
+                        </p:column>    
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{observacionesproveedorController.prepareEdit()}" styleClass="ui-icon ui-icon-pencil"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{observacionesproveedorController.destroy}" value="#{bundle.ListObservacionesproveedorDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
+                        </p:column>  
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{observacionesproveedorController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                            <p:confirmDialog message="Esta seguro de que desea eliminar esta observación?"
+                                header="Atención"
+                                severity="alert" widgetVar="confirmDialog">
+                                <p:commandButton value="Si" action="#{observacionesproveedorController.destroyFinal1}" 
+                               />
+                                <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                            </p:confirmDialog>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>  
                 <br />
-                <h:commandLink action="#{observacionesproveedorController.prepareCreate}" value="#{bundle.ListObservacionesproveedorCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListObservacionesproveedorIndexLink}"/>
+                <p:commandButton value="Añadir nueva observación" ajax="false" actionListener="#{observacionesproveedorController.prepareCreate()}" disabled="false" />
+                <p:link outcome="/servicioscontrato/DetalleProveedor" value="Volver">
+                    <f:param name="detprovId"  />
+                </p:link>
             </h:form>
         </ui:define>
     </ui:composition>

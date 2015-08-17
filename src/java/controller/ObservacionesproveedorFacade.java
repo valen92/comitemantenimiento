@@ -31,10 +31,12 @@ public class ObservacionesproveedorFacade extends AbstractFacade<Observacionespr
         super(Observacionesproveedor.class);
     }
     
-    public List<Observacionesproveedor> findporUsuario(int[] range, int idU) {
-        String consulta = "select n from Observacionesproveedor n where n.fkidUsuarios.idUsuarios = :idUsuario";
+    public List<Observacionesproveedor> findporUsuario(int[] range, int idU, int idS) {
+        String consulta = "select n from Observacionesproveedor n where n.fkidUsuarios.idUsuarios ";
+        consulta = consulta + "= :idUsuario and n.fkidServiciosContrato.idServiciosContrato = :idServicio";
         Query q = getEntityManager().createQuery(consulta);
         q.setParameter("idUsuario", idU); //Variable a pasar de la sesión
+        q.setParameter("idServicio", idS); //Variable a pasar de la sesión
         q.setMaxResults(range[1] - range[0] + 1);
         q.setFirstResult(range[0]);
         return q.getResultList();

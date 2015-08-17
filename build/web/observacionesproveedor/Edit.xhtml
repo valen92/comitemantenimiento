@@ -3,49 +3,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.EditObservacionesproveedorTitle}"></h:outputText>
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditObservacionesproveedorLabel_idObservacionesProveedor}" for="idObservacionesProveedor" />
-                    <h:inputText id="idObservacionesProveedor" value="#{observacionesproveedorController.selected.idObservacionesProveedor}" title="#{bundle.EditObservacionesproveedorTitle_idObservacionesProveedor}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_idObservacionesProveedor}"/>
-                    <h:outputLabel value="#{bundle.EditObservacionesproveedorLabel_tituloObservacionproveedor}" for="tituloObservacionproveedor" />
-                    <h:inputText id="tituloObservacionproveedor" value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" title="#{bundle.EditObservacionesproveedorTitle_tituloObservacionproveedor}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_tituloObservacionproveedor}"/>
-                    <h:outputLabel value="#{bundle.EditObservacionesproveedorLabel_observacionObservacionproveedor}" for="observacionObservacionproveedor" />
-                    <h:inputText id="observacionObservacionproveedor" value="#{observacionesproveedorController.selected.observacionObservacionproveedor}" title="#{bundle.EditObservacionesproveedorTitle_observacionObservacionproveedor}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_observacionObservacionproveedor}"/>
-                    <h:outputLabel value="#{bundle.EditObservacionesproveedorLabel_calificacionObservacionproveedor}" for="calificacionObservacionproveedor" />
-                    <h:inputText id="calificacionObservacionproveedor" value="#{observacionesproveedorController.selected.calificacionObservacionproveedor}" title="#{bundle.EditObservacionesproveedorTitle_calificacionObservacionproveedor}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_calificacionObservacionproveedor}"/>
-                    <h:outputLabel value="#{bundle.EditObservacionesproveedorLabel_fecObservacionproveedor}" for="fecObservacionproveedor" />
-                    <h:inputText id="fecObservacionproveedor" value="#{observacionesproveedorController.selected.fecObservacionproveedor}" title="#{bundle.EditObservacionesproveedorTitle_fecObservacionproveedor}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_fecObservacionproveedor}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditObservacionesproveedorLabel_fkidUsuarios}" for="fkidUsuarios" />
-                    <h:selectOneMenu id="fkidUsuarios" value="#{observacionesproveedorController.selected.fkidUsuarios}" title="#{bundle.EditObservacionesproveedorTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_fkidUsuarios}">
-                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditObservacionesproveedorLabel_fkidServiciosContrato}" for="fkidServiciosContrato" />
-                    <h:selectOneMenu id="fkidServiciosContrato" value="#{observacionesproveedorController.selected.fkidServiciosContrato}" title="#{bundle.EditObservacionesproveedorTitle_fkidServiciosContrato}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_fkidServiciosContrato}">
-                        <f:selectItems value="#{servicioscontratoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="4">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{observacionesproveedorController.update}" value="#{bundle.EditObservacionesproveedorSaveLink}"/>
+
+                <p:panel header="Editar observacion">
+                    <h:panelGrid columns="2" style="margin-top: 20px">
+                        <h:outputLabel value="Titulo:" for="tituloObservacionproveedor" />
+                        <h:inputText style="margin-left: 20px" id="tituloObservacionproveedor" value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" title="#{bundle.EditObservacionesproveedorTitle_tituloObservacionproveedor}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_tituloObservacionproveedor}"/>
+                        <h:outputLabel value="Observaciones:" for="observacionObservacionproveedor" />
+                        <p:inputTextarea style="margin-left: 20px" rows="10" cols="50" id="observacionObservacionproveedor" value="#{observacionesproveedorController.selected.observacionObservacionproveedor}" title="#{bundle.EditObservacionesproveedorTitle_observacionObservacionproveedor}" required="true" requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_observacionObservacionproveedor}"/>
+                        <h:outputLabel value="Fecha:" for="fecObservacionproveedor" />
+                        <p:calendar style="margin-left: 20px" id="fecObservacionproveedor" 
+                                    value="#{observacionesproveedorController.selected.fecObservacionproveedor}" 
+                                    title="#{bundle.EditObservacionesproveedorTitle_fecObservacionproveedor}" 
+                                    required="true" 
+                                    requiredMessage="#{bundle.EditObservacionesproveedorRequiredMessage_fecObservacionproveedor}"
+                                    pattern="dd-MM-yyyy">
+                        </p:calendar>
+                        
+                 </h:panelGrid>
                 <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditObservacionesproveedorViewLink}"/>
-                <br />
-                <h:commandLink action="#{observacionesproveedorController.prepareList}" value="#{bundle.EditObservacionesproveedorShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditObservacionesproveedorIndexLink}" />
-            </h:form>
+                </p:panel>  
+                <h:panelGrid columns="2" style="margin-top: 20px">
+                     <p:commandButton value="Guardar" action="#{observacionesproveedorController.update}" disabled="false" />
+                     <p:commandButton style="margin-left: 20px" value="Cancelar" action="#{observacionesproveedorController.prepareList()}" disabled="false" />
+                </h:panelGrid>
+               </h:form>
         </ui:define>
     </ui:composition>
 
