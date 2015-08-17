@@ -77,10 +77,10 @@
                     </p:dataTable>
                 </p:panel>  
                 <br />
-                <p:commandButton value="Añadir nueva observación" ajax="false" actionListener="#{observacionesproveedorController.prepareCreate()}" disabled="false" />
-                <p:link outcome="/servicioscontrato/DetalleProveedor" value="Volver">
-                    <f:param name="detprovId"  />
-                </p:link>
+                <h:panelGrid columns="2" style="margin-top: 20px">
+                     <p:commandButton value="Añadir nueva observación" ajax="false" action="#{observacionesproveedorController.prepareCreate()}" disabled="false" />
+                     <p:commandButton style="margin-left: 20px" value="Volver" action="#{servicioscontratoController.prepareList()}" disabled="false" />
+                </h:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

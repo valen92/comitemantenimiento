@@ -113,6 +113,12 @@ public class ServicioscontratoController implements Serializable {
         recreateModel();
         return "/servicioscontrato/DetalleProveedor";
     }
+    
+
+    public String prepareList() {
+        recreateModel();
+        return "/servicioscontrato/DetalleProveedor";
+    }
 
     public String prepareView() {
         current = (Servicioscontrato) getItems().getRowData();
