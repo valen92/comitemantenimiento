@@ -94,7 +94,9 @@ public class ObservacionesproveedorController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ObservacionesproveedorCreated"));
-            return prepareCreate();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La observación ha sido adicionada con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return "Observaciones";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

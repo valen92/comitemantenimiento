@@ -49,23 +49,57 @@ and open the template in the editor.
                 <p:panel header="Adicionar observación">
                     <h:panelGrid columns="2">
 
-                        <h:outputLabel value="Título:" for="observacionObservacionproveedor" />
-                        <h:inputText id="tituloObservacionproveedor" value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" />
+                        <h:outputLabel value="Título:" for="tituloObservacionproveedor" />
+                        <h:inputText id="tituloObservacionproveedor" value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" 
+                                         required="true" 
+                                         requiredMessage="Campo título requerido"/>
                         
+                        <h:outputLabel value="Observación:"  for="observacionObservacionproveedor" />
+                        <p:inputTextarea id="observacionObservacionproveedor" rows="6" cols="33" 
+                                         value="#{observacionesproveedorController.selected.observacionObservacionproveedor}" 
+                                         required="true" 
+                                         requiredMessage="Campo observacion requerido"/>
                         
-                    <h:outputLabel value="Observación:"  for="observacionObservacionproveedor" />
-                        <p:inputTextarea rows="6" cols="33" value="#{observacionesproveedorController.selected.observacionObservacionproveedor}" required="true" requiredMessage="#{bundle.CreateServiciosRequiredMessage_descripcionServicio}"/>
- 
+                        <h:outputLabel value="Calificación:" for="calificacionObservacionproveedor" />
+                        <h:selectOneMenu id="calificacionObservacionproveedor" value="#{observacionesproveedorController.selected.calificacionObservacionproveedor}" 
+                                         required="true" 
+                                         requiredMessage="Campo califiicación requerido">
+                            <f:selectItem itemLabel="Seleccione una calificación" itemValue="" />
+                            <f:selectItem itemLabel="Excelente" itemValue="Excelente" />
+                            <f:selectItem itemLabel="Bueno" itemValue="Bueno" />
+                            <f:selectItem itemLabel="Aceptable" itemValue="Aceptable" />
+                            <f:selectItem itemLabel="Malo" itemValue="Malo" />
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Fecha creación:"  for="fecObservacionproveedor" />
+                        <p:calendar id="fecObservacionproveedor" value="#{observacionesproveedorController.selected.fecObservacionproveedor}" 
+                                    pattern="dd-MM-yyyy" required="true" 
+                                    requiredMessage="Campo fecha creación requerido">
+                        </p:calendar>
+                        
+                        <h:outputLabel value="N° Contrato: " for="fkidServiciosContrato" />
+                        <h:selectOneMenu id="fkidServiciosContrato" value="#{observacionesproveedorController.selected.fkidServiciosContrato}" 
+                                         required="true" requiredMessage="Campo contrato requerido">
+                            <f:selectItems value="#{servicioscontratoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Usuario: " for="fkidUsuarios" />
+                        <h:selectOneMenu id="fkidUsuarios" value="#{observacionesproveedorController.selected.fkidUsuarios}" 
+                                         required="true" requiredMessage="Campo usuario requerido">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOneo}"/>
+                        </h:selectOneMenu>
+                        
                         <br />
                         <p:growl id="growl" life="2000" />    
                         </h:panelGrid>   
-                         <p:commandButton value="Guardar observacion" id="Guardar" update="growl" actionListener="#{observacionesproveedorController.create}" styleClass="ui-priority-primary"/>
 
                 </p:panel>
+                    <br/>
+                    <p:commandButton value="Guardar observacion" id="Guardar" update="growl" action="#{observacionesproveedorController.create}" styleClass="ui-priority-primary"/>
             </h:form>
             <br/>
             <h:form>
-                <p:commandButton style="margin-left: 20px" value="Cancelar" action="#{observacionesproveedorController.prepareList()}" disabled="false" />
+                <p:commandButton value="Cancelar" action="#{observacionesproveedorController.prepareList()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

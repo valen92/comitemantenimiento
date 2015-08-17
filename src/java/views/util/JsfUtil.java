@@ -29,7 +29,7 @@ public class JsfUtil {
         SelectItem[] items = new SelectItem[size];
         int i = 0;
         if (selectOne) {
-            items[0] = new SelectItem("", "---");
+            items[0] = new SelectItem("", "Seleccione un número de contrato");
             i++;
         }
         for (Object x : entities) {
@@ -135,6 +135,20 @@ public class JsfUtil {
         }
         for (Usuarios x : entities) {
             items[i++] = new SelectItem(x, x.getNombreUsuario());
+        }
+        return items;
+    }
+    
+    public static SelectItem[] getSelectItemsUsuarioso(List<Usuarios> entities, boolean selectOne) {
+        int size = selectOne ? entities.size() + 1 : entities.size();
+        SelectItem[] items = new SelectItem[size];
+        int i = 0;
+        if (selectOne) {
+            items[0] = new SelectItem("", "Seleccione un usuario");
+            i++;
+        }
+        for (Usuarios x : entities) {
+            items[i++] = new SelectItem(x, x.getNombreUsuario()+" "+x.getApellidoUsuario());
         }
         return items;
     }

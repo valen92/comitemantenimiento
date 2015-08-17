@@ -319,6 +319,10 @@ public class UsuariosController implements Serializable {
         return JsfUtil.getSelectItemsUsuarios(ejbFacade.findAll(), true);
     }
 
+    public SelectItem[] getItemsAvailableSelectOneo() {
+        return JsfUtil.getSelectItemsUsuarioso(ejbFacade.findAll(), true);
+    }
+
     public SelectItem[] getItemsAvailableSelectOneM() {
         return JsfUtil.getSelectItemsUsuariosM(ejbFacade.findAllMiembro(), true);
     }

@@ -136,7 +136,7 @@ public class Servicioscontrato implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Servicioscontrato[ idServiciosContrato=" + idServiciosContrato + " ]";
+        return "" + idServiciosContrato ;
     }
 
 }
