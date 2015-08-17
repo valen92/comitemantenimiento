@@ -47,23 +47,23 @@
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                        
-                        <p:column headerText="Empresa">
+                        <p:column headerText="Empresa" style="width:200px">
                             <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                         </p:column>
                        
-                        <p:column headerText="Nombre del delegado">
+                        <p:column headerText="Nombre del delegado" style="width:180px">
                             <h:outputText value="#{item.nombreUsuario}"/>
                         </p:column>
                         
-                         <p:column headerText="Apellido del delegado">
+                         <p:column headerText="Apellido del delegado" style="width:180px">
                             <h:outputText value="#{item.apellidoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Teléfono">
+                        <p:column headerText="Teléfono" style="width:100px">
                             <h:outputText value="#{item.fijoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Celular">
+                        <p:column headerText="Celular" style="width:100px">
                             <h:outputText value="#{item.movilUsuario}"/>
                         </p:column>
                         
@@ -72,7 +72,7 @@
                         </p:column>
                         
                         <p:column style="width:24px">
-                            <h:commandLink action="#{usuariosController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
+                            <h:commandLink action="#{usuariosController.prepareView(item.fkidEmpresas, item.idUsuarios)}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
                         </p:column>    
                         <p:column style="width:24px">

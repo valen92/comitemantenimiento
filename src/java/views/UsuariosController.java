@@ -2,6 +2,7 @@ package views;
 
 import controller.UsuariosFacade;
 import entities.Usuarios;
+import entities.Empresas;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -39,6 +40,9 @@ public class UsuariosController implements Serializable {
     
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
+    private int idEmpresa;
+    private int idUsuario;
+    private String nomEmpresa;
 
     public UsuariosController() {
         faceContext=FacesContext.getCurrentInstance();
@@ -75,6 +79,24 @@ public class UsuariosController implements Serializable {
         return pagination;
     }
 
+    public PaginationHelper getPaginationD() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporDelegado(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idEmpresa));
+                }
+            };
+        }
+        return pagination;
+    }
+
 
     public PaginationHelper getPagination(int perf) {
         final int perU = perf;
@@ -100,7 +122,10 @@ public class UsuariosController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public String prepareView(Empresas id, int idU) {
+        idEmpresa=id.getIdEmpresas();
+        nomEmpresa=id.getNombreEmpresa();
+        idUsuario=idU;
         current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ViewUsuario";
@@ -138,6 +163,10 @@ public class UsuariosController implements Serializable {
         current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "EditP";
+    }
+
+    public String getNomEmpresa() {
+        return nomEmpresa;
     }
 
     public String update() {
@@ -279,7 +308,18 @@ public class UsuariosController implements Serializable {
         return items;
     }
 
+    public DataModel getItemsD () {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+             items = getPaginationD().createPageDataModel();
+        }
+        return items;
+    }
+
     public DataModel getItems (int per) {
+        recreatePagination();
+        recreateModel();
         if (items == null) {
              items = getPagination(per).createPageDataModel();
         }

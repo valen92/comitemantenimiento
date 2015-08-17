@@ -44,15 +44,15 @@
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                        
-                        <p:column headerText="Empresa">
+                        <p:column headerText="Empresa" style="width:200px">
                             <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                         </p:column>
                        
-                        <p:column headerText="Nombre del contacto">
+                        <p:column headerText="Nombre del contacto" style="width:180px">
                             <h:outputText value="#{item.nombreUsuario}"/>
                         </p:column>
                         
-                         <p:column headerText="Apellido del contacto">
+                         <p:column headerText="Apellido del contacto" style="width:180px">
                             <h:outputText value="#{item.apellidoUsuario}"/>
                         </p:column>
                          

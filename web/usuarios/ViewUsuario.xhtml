@@ -17,16 +17,18 @@
                         <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
+                        
                         <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
                             <f:param name="index" value="1" />
                         </p:menuitem>
+                        
                         <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
                         <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
                         <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
@@ -39,13 +41,14 @@
                 </h:panelGrid>
                 <p:growl id="msgs" showDetail="true" />
                 
-                <h3><strong>Detalle Empresa:</strong></h3>
-                    <h:outputText value="#{empresasController.selected.nombreEmpresa}"/>
+                <h3><strong>Detalle Empresa: </strong></h3>
+                        <h:outputText value="#{usuariosController.getNomEmpresa()}"/>
+                   <br/> <br/>
 
                 <p:accordionPanel>
                     <p:tab title="Delegado de la empresa">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{usuariosController.items}" var="item" 
+                            <p:dataTable value="#{usuariosController.itemsD}" var="item" 
                                          rows="5"
                                          paginator="false"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

@@ -72,7 +72,16 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         q.setParameter("idPerfil", idU); //Variable a pasar de la sesión
         q.setMaxResults(range[1] - range[0] + 1);
         q.setFirstResult(range[0]);
-        System.out.println(""+idU);
+        return q.getResultList();
+    }
+    
+    public List<Usuarios> findporDelegado(int[] range, int idU) {
+        Usuarios usuario = new Usuarios ();
+        String consulta = "select n from Usuarios n where n.fkidEmpresas.idEmpresas = :idEmpresa";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
         return q.getResultList();
     }
     

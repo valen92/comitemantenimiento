@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/servicios/ListServicios.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/actividades/List.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/observacionesproveedor/View.xhtml</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/ObservacionesproveedorController.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/observacionesproveedor/Observaciones.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/normas/List.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/servicios/List.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/servicioscontrato/DetalleProveedor.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/actividades/ConsultaActividad.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/servicios/View.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/util/JsfUtil.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/UsuariosController.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/ServicioscontratoController.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Observacionesproveedor.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/usuarios/Create.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Servicioscontrato.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/observacionesproveedor/CrearObservacion.xhtml</file>
         </group>
     </open-files>
 </project-private>
