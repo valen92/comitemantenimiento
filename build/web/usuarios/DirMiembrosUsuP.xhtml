@@ -12,23 +12,24 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                
-                    <p:tabMenu activeIndex="#{tabMenuController.index}">
-                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="2">
+                        <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Mi Perfil" url="http://localhost:8080/comitemantenimiento/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="1" />
                         </p:menuitem>
                        
-                        <p:menuitem value="Directorio de Empresas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
-                            <f:param name="index" value="2" />
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuP.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio de Empresas Asociadas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
                         
-                    </p:tabMenu>
+                    </p:tabMenu>              
+                </h:panelGrid>
                 <p:growl id="msgs" showDetail="true" />
                 <p:panel id="empcomite" header="Directorio de miembros comite" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
 
@@ -37,32 +38,35 @@
 
                     
                     
-                </p:panel>
+                
 
-               <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+               <p:dataTable value="#{usuariosController.itemsMC}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
-                   <p:column headerText="Nombre">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                    <p:column headerText="Nombre" style="width:200px">
+                        <h:outputText value="#{item.nombreUsuario}"/>
                     </p:column>
-                   <p:column headerText="Teléfono">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                    <p:column headerText="Apellido" style="width:200px">
+                        <h:outputText value="#{item.apellidoUsuario}"/>
                     </p:column>
-                   <p:column headerText="Empresas">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                   <p:column headerText="Teléfono" style="width:100px">
+                        <h:outputText value="#{item.fijoUsuario}"/>
                     </p:column>
-                   <p:column headerText="Correo Electrónico">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                   <p:column headerText="Celular" style="width:100px">
+                        <h:outputText value="#{item.movilUsuario}"/>
+                    </p:column>
+                    <p:column headerText="Empresas" style="width:250px">
+                        <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
+                    </p:column>
+                    <p:column headerText="Correo Electrónico">
+                        <h:outputText value="#{item.emailUsuario}"/>
                     </p:column>
                     
                    
                 </p:dataTable>
+                </p:panel>
                 <br />
                 <p:commandButton value="Cerrar sesion" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
               

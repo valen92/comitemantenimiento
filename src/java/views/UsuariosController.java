@@ -359,6 +359,15 @@ public class UsuariosController implements Serializable {
         return items;
     }
 
+    public DataModel getItemsMC() {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPagination(2).createPageDataModel();
+        }
+        return items;
+    }
+
     public DataModel getItemsD () {
         recreatePagination();
         recreateModel();
