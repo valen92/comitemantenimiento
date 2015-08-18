@@ -6,6 +6,7 @@
 
 package controller;
 
+import entities.Actividades;
 import entities.Herramientasxempcomite;
 import entities.Usuarios;
 import java.util.List;
@@ -88,6 +89,19 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
     
     public List<Herramientasxempcomite> findporHerramienta(int[] range, int idU) {
         String consulta = "select n from Herramientasxempcomite n where n.fkidEmpresas.idEmpresas = :idEmpresa";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
+    public List<Actividades> findporProActual(int[] range, int idU) {
+        String consulta = "SELECT n FROM Actividades n LEFT JOIN Servicioscontrato s";
+        consulta = consulta + ", Serviciosxempproveedoras u where n.fkidServiciosContrato";
+        consulta = consulta + ".idServiciosContrato = s.idServiciosContrato and";
+        consulta = consulta + " s.fkidServiciosxEmpProveedoras.idServiciosxEmpProveedoras";
+        consulta = consulta + " = u.idServiciosxEmpProveedoras and s.fkidEmpresas.idEmpresas = :idEmpresa";
         Query q = getEntityManager().createQuery(consulta);
         q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
         q.setMaxResults(range[1] - range[0] + 1);

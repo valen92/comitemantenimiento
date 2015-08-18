@@ -115,6 +115,24 @@ public class UsuariosController implements Serializable {
         return pagination;
     }
 
+    public PaginationHelper getPaginationPa() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporProActual(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idEmpresa));
+                }
+            };
+        }
+        return pagination;
+    }
+
 
     public PaginationHelper getPagination(int perf) {
         final int perU = perf;
@@ -326,6 +344,15 @@ public class UsuariosController implements Serializable {
         return items;
     }
 
+    public DataModel getItemsDP() {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPagination(3).createPageDataModel();
+        }
+        return items;
+    }
+
     public DataModel getItemsD () {
         recreatePagination();
         recreateModel();
@@ -340,6 +367,15 @@ public class UsuariosController implements Serializable {
         recreateModel();
         if (items == null) {
              items = getPaginationH().createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsPa () {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+             items = getPaginationPa().createPageDataModel();
         }
         return items;
     }

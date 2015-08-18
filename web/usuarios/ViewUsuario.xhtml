@@ -110,21 +110,30 @@
                     </p:tab>
                     <p:tab title="Proveedores asociados a la empresa actualmente">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable rows="5"
+                            <p:dataTable  value="#{usuariosController.itemsPa}" var="item"
+                                         rows="5"
                                          paginator="false"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Nombre Proveedor">
-                                    <h:outputText value="#{usuariosController.selected.nombreUsuario}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="" style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListM(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
                                 </p:column>
 
                                 <p:column headerText="Tipo de servicio">
-                                    <h:outputText value="#{serviciosxempproveedorasController.selected.fkidServicios.nombreServicio}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
                                 <p:column headerText="Actividad especifica">
-                                    <h:outputText value="#{actividadesController.selected.descripcionActividad}"/>
+                                    <h:outputText value="#{item.tituloActividad}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Contacto proveedor">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
                              </p:dataTable>
                         </h:panelGrid>
