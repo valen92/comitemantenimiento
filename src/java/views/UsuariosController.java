@@ -419,6 +419,11 @@ public class UsuariosController implements Serializable {
         recreateModel();
         return "/InicioMiembroComite";
     }
+    
+    public String reloadP() {
+        recreateModel();
+        return "/InicioProveedor";
+    }
 
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);

@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -16,77 +11,102 @@ and open the template in the editor.
             <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-
             <h:form>
                 <h:panelGrid columns="1">
                     <p:tabMenu activeIndex="#{tabMenuController.index}">
-                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                        <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Mi Perfil" url="http://localhost:8080/comitemantenimiento/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="1" />
                         </p:menuitem>
-
-                        <p:menuitem value="Directorio de Empresas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
-                            <f:param name="index" value="2" />
+                       
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio de Empresas Asociadas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                    </p:tabMenu> 
+                        
+                    </p:tabMenu>              
                 </h:panelGrid>
-                <p:panel header="Actividad">
-                    <h:panelGrid columns="2">
-
-                        <h:outputLabel value="Número de contrato:" for="n" />
-                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                        <h:outputLabel value="Fecha de inicio:" for="fecingEmpresa" />
-                        <p:calendar id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.ViewEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
-                        </p:calendar>
-                        <h:outputLabel value="Fecha acordada de finalización:" for="fecingEmpresa" />
-                        <p:calendar id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.ViewEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
-                        </p:calendar>
-                        <h:outputLabel value="Estado:" for="fkidCiudad" />
-                        <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.EditEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Tipo de servicio:" for="fkidCiudad" />
-                        <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Avtividad especifica:" for="n" />
-                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                        
-                        <h:outputLabel value="Descripción:"  for="descripcion" />
-                        <p:inputTextarea rows="6" cols="33" value="#{serviciosController.selected.descripcionServicio}" required="true" requiredMessage="#{bundle.CreateServiciosRequiredMessage_descripcionServicio}"/>
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
-                         
-                        <br />
-                        <p:growl id="growl" life="2000" />    
-                        <p:commandButton value="Guardar cambios" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                        <p:commandButton value="Volver" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                        <p:commandButton value="Cerrar Sesion" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                    </h:panelGrid>  
-                </p:panel>
+                  
+                <p:panel header="Actividades vigentes - Detalle actividad">
+                <h:panelGrid columns="4">
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <h:outputText value="Número de actividad" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.numeroActividad}" 
+                                  title="#{bundle.ViewActividadesTitle_numeroActividad}"/>
+                    <h:outputText value="Tipo de Servicio" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}" 
+                                  title="#{bundle.ViewActividadesTitle_fkidServiciosContrato}"/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <h:outputText value="Fecha firma" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.fecfirmaActividad}" 
+                                  title="#{bundle.ViewActividadesTitle_fecfirmaActividad}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Actividad específica" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.tituloActividad}" 
+                                  title="#{bundle.ViewActividadesTitle_tituloActividad}"/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <h:outputText value="Fecha inicio" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.fecinicioActividad}" 
+                                  title="#{bundle.ViewActividadesTitle_fecinicioActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Proveedor encargado" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.fkidServiciosContrato.fkidEmpresas.nombreEmpresa}" 
+                                  title="#{bundle.ViewActividadesTitle_fkidServiciosContrato}"/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <h:outputText value="Fecha fin" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.fecfinActividad}" 
+                                  title="#{bundle.ViewActividadesTitle_fecfinActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Estado" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.estadoActividad}" 
+                                  title="#{bundle.ViewActividadesTitle_estadoActividad}"/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <h:outputText value="Breve descripción" style="font-size: 16px; color: black; font-weight: bold"/>
+                    <h:outputText style="margin-left: 20px; font-size: 14px;" 
+                                  value="#{actividadesController.selected.descripcionActividad}" 
+                                  title="#{bundle.ViewActividadesTitle_descripcionActividad}"/>
+                </h:panelGrid>
+                </p:panel>  
+                <br />
+                <br />
+                 <p:commandButton value="Volver" action="#{usuariosController.reloadP}" disabled="false" />  
             </h:form>
         </ui:define>
     </ui:composition>
+
 </html>

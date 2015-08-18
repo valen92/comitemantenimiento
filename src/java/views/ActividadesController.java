@@ -82,6 +82,12 @@ public class ActividadesController implements Serializable {
         return "/actividades/View";
     }
 
+    public String prepareViewP() {
+        current = (Actividades) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "/actividades/ConsultaActividad";
+    }
+
     public String prepareCreate() {
         current = new Actividades();
         selectedItemIndex = -1;

@@ -40,15 +40,21 @@
                                     
                           </p:column>
                          <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.tituloActividad}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                     
                           </p:column>
+                                          
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{actividadesController.prepareViewP}" styleClass="ui-icon ui-icon-search"/>
+                        </p:column> 
                                      
                     </p:dataTable> 
                       
                             
                 </p:panel>
                 <br />
+            </h:form>
+            <h:form>
                 <p:panel header="Servicios a Prestar">
                     <p:tabView orientation="left">
                         <p:tab title="Trabajos  mecánicos">
