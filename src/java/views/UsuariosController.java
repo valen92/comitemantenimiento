@@ -224,6 +224,12 @@ public class UsuariosController implements Serializable {
         return "Edit";
     }
 
+    public String prepareEditPerfil() {
+        current = (Usuarios) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "/usuarios/EditPerfil";
+    }
+
     public String prepareDetalle() {
         current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -245,6 +251,19 @@ public class UsuariosController implements Serializable {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuariosUpdated"));
             return "View";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String updatePerfil() {
+        try {
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuariosUpdated"));
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "Perfil actualizado con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return "/perfil/MiembrodelComite";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

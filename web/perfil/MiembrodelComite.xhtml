@@ -55,10 +55,10 @@
                     <p:column headerText="Cargo">
                         <h:outputText value="#{item.cargoUsuario}"/>
                     </p:column>
-                   <p:column headerText="Teléfono">
+                   <p:column headerText="Teléfono" style="width:100px">
                         <h:outputText value="#{item.fijoUsuario}"/>
                     </p:column>
-                   <p:column headerText="Celular">
+                   <p:column headerText="Celular" style="width:100px">
                         <h:outputText value="#{item.movilUsuario}"/>
                     </p:column>
                     <p:column headerText="Correo Electronico">
@@ -66,7 +66,7 @@
                     </p:column>
                    
                     <p:column style="width:24px">
-                                    <h:commandLink action="#{usuariosController.prepareEdit}" styleClass="ui-icon ui-icon-pencil"/>
+                                    <h:commandLink action="#{usuariosController.prepareEditPerfil}" styleClass="ui-icon ui-icon-pencil"/>
                                     <h:outputText value=" "/>
                      </p:column>
                </p:dataTable>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de Mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                 <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="1">
+                        <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                       
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuP.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuP.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        
+                    </p:tabMenu>              
+                </h:panelGrid>
+                <p:growl id="msgs" showDetail="true" />
+                <p:panel id="empcomite" header="Mi Perfil / Editar Información de Contacto" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
+                    <h:panelGrid columns="4">
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_nombreUsuario}" for="nombreUsuario" />
+                        <h:inputText id="nombreUsuario" value="#{usuariosController.selected.nombreUsuario}" title="#{bundle.CreateUsuariosTitle_nombreUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_nombreUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_apellidoUsuario}" for="apellidoUsuario" />
+                        <h:inputText id="apellidoUsuario" value="#{usuariosController.selected.apellidoUsuario}" title="#{bundle.CreateUsuariosTitle_apellidoUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_apellidoUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_cargoUsuario}" for="cargoUsuario" />
+                        <h:inputText id="cargoUsuario" value="#{usuariosController.selected.cargoUsuario}" title="#{bundle.CreateUsuariosTitle_cargoUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_cargoUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_movilUsuario}" for="movilUsuario" />
+                        <h:inputText id="movilUsuario" value="#{usuariosController.selected.movilUsuario}" title="#{bundle.CreateUsuariosTitle_movilUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_movilUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_fijoUsuario}" for="fijoUsuario" />
+                        <h:inputText id="fijoUsuario" value="#{usuariosController.selected.fijoUsuario}" title="#{bundle.CreateUsuariosTitle_fijoUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_fijoUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_emailUsuario}" for="emailUsuario" />
+                        <h:inputText id="emailUsuario" value="#{usuariosController.selected.emailUsuario}" title="#{bundle.CreateUsuariosTitle_emailUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_emailUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuarioUsuario}" for="usuarioUsuario" />
+                        <h:inputText id="usuarioUsuario" value="#{usuariosController.selected.usuarioUsuario}" title="#{bundle.CreateUsuariosTitle_usuarioUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_usuarioUsuario}"/>
+
+
+
+                        <h:outputText value="#{bundle.CreateUsuariosLabel_contraseñaUsuario}" />
+                        <p:password id="contrasenaUsuario" value="#{usuariosController.selected.contrasenaUsuario}" feedback="true" />
+
+                        <p:outputLabel for="estado" value="Estado:" />
+                        <p:selectOneRadio id="estado" value="#{usuariosController.selected.estadoUsuario}">
+                            <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
+                        </p:selectOneRadio>
+
+                        <h:outputText value="Confirmar contraseña: " />
+                        <p:password id="feedback" value="#{usuariosController.selected.contrasenaUsuario}" feedback="true" />
+
+
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_fecregistroUsuario}" for="fecregistroUsuario" />
+                        <p:calendar id="fecregistroUsuario" value="#{usuariosController.selected.fecregistroUsuario}" title="#{bundle.CreateUsuariosTitle_fecregistroUsuario}" pattern="dd-MM-yyyy">
+                        </p:calendar>
+
+
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_fotoUsuario}" />
+                        <p:fileUpload value="#{usuariosController.selected.fotoUsuario}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000"/>
+
+
+
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_fkidPerfil}" for="fkidPerfil" />
+                        <h:selectOneMenu id="fkidPerfil" value="#{usuariosController.selected.fkidPerfil}" title="#{bundle.CreateUsuariosTitle_fkidPerfil}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_fkidPerfil}">
+                            <f:selectItems value="#{perfilController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_fkidEmpresas}" for="fkidEmpresas" />
+                        <h:selectOneMenu id="fkidEmpresas" value="#{usuariosController.selected.fkidEmpresas}" title="#{bundle.CreateUsuariosTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_fkidEmpresas}">
+                            <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        
+
+                    </h:panelGrid>
+                    <p:growl id="growl" life="2000" />   
+                    <br />
+                </p:panel>
+                <br/>
+                <p:commandButton id="btnAceptar" value="Aceptar" update="growl" action="#{usuariosController.updatePerfil}" styleClass="ui-priority-primary"  />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
