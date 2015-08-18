@@ -188,6 +188,16 @@ public class UsuariosController implements Serializable {
         recreateModel();
         return "/usuarios/DirMiembros";        
     }
+    
+    public void reloadAsociadas (){
+        RequestContext.getCurrentInstance().closeDialog("/servicioscontrato/DetalleServicios");
+        reloadAsociadas1();       
+    }
+    
+    public String reloadAsociadas1 (){
+        recreateModel();
+        return "/usuarios/DirEmpasociadasUsuP";        
+    }
 
     public String prepareEdit() {
         current = (Usuarios) getItems().getRowData();

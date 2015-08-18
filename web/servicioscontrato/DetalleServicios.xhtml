@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:growl id="msgs" showDetail="true" />
+                <p:panel id="empcomite" header="Historial de Servicios Prestados" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
+
+                    <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
+                    <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
+                    <p:dataTable value="#{servicioscontratoController.itemsServicios}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+                   <p:column headerText="Servicio">
+                        <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
+                    </p:column>
+                    <p:column headerText="Actividad Específica">
+                        <h:outputText value="#{item.tituloActividad}"/>
+                    </p:column>
+                   <p:column headerText="Año">
+                        <h:outputText value="#{item.fecfirmaActividad}">
+                    <f:convertDateTime pattern="yyyy" />
+                    </h:outputText>
+                    </p:column>
+                   <p:column headerText="Fecha Inicio">
+                        <h:outputText value="#{item.fecinicioActividad}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    </p:column>
+                    <p:column headerText="Fecha Finalizacion">
+                        <h:outputText value="#{item.fecfinActividad}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    </p:column>
+                </p:dataTable>
+                
+                </p:panel>
+            </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton action="#{usuariosController.reloadAsociadas()}" process="@this" value="Aceptar"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

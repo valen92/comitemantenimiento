@@ -16,6 +16,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 import views.util.JsfUtil;
 import views.util.PaginationHelper;
 
@@ -107,11 +108,35 @@ public class ServicioscontratoController implements Serializable {
         return idUsuario;
     }
 
+    public PaginationHelper getPaginationServicios() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporProActual(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idEmpresa));
+                }
+            };
+        }
+        return pagination;
+    }
+
     public String prepareList(Empresas id, int idU) {
         idEmpresa=id.getIdEmpresas();
         idUsuario=idU;
         recreateModel();
         return "/servicioscontrato/DetalleProveedor";
+    }
+
+    public void detalle(Empresas id) {
+        idEmpresa=id.getIdEmpresas();
+        recreateModel();
+        RequestContext.getCurrentInstance().openDialog("/servicioscontrato/DetalleServicios");
     }
 
     public String prepareListM(Empresas id) {
@@ -226,6 +251,15 @@ public class ServicioscontratoController implements Serializable {
         recreateModel();
         if (items == null) {
             items = getPaginationS().createPageDataModel();
+        }
+        return items;
+    }
+    
+    public DataModel getItemsServicios() {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationServicios().createPageDataModel();
         }
         return items;
     }
