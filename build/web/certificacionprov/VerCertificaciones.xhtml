@@ -13,18 +13,18 @@
         <ui:define name="body">
             <h:form>
                 <h:panelGrid columns="1">
-                    <p:tabMenu activeIndex="#{tabMenuController.index}">
-                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                    <p:tabMenu activeIndex="1">
+                        <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Mi Perfil" url="http://localhost:8080/comitemantenimiento/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="1" />
                         </p:menuitem>
                        
-                        <p:menuitem value="Directorio de Empresas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuP.xhtml" icon="ui-icon-contact"  >
                             <f:param name="index" value="2" /> 
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio de Empresas Asociadas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuP.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
                         
@@ -32,20 +32,28 @@
                 </h:panelGrid>
                 <p:panel header="Certificaciones">
                     
-                    <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                    <p:dataTable value="#{certificacionprovController.items}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
                                          
                          <p:column headerText="No">
-                                     <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                          </p:column>
+                            <h:outputText value="#{item.idCertificacionProv}"/>
+                         </p:column>
                          <p:column headerText="Listado de certificaciones">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                          </p:column>
+                            <h:outputText value="#{item.nombreCertificacionprov}"/>
+                         </p:column> 
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{certificacionprovController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                            <p:confirmDialog message="Esta seguro de que desea eliminar esta certificación?"
+                                header="Atención"
+                                severity="alert" widgetVar="confirmDialog">
+                                <p:commandButton value="Si" action="#{certificacionprovController.destroyFinal}" 
+                               />
+                                <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                            </p:confirmDialog>
+                        </p:column>
                                      
                     </p:dataTable> 
                       
@@ -54,11 +62,10 @@
                 </p:panel>
                 <br />
                 
-                <p:commandButton value="Agregar certificación" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+                <p:commandButton value="Agregar certificación" ajax="false" action="#{usuariosController.updatePerfil}" disabled="false" />
                 <br />
-                <p:commandButton value="Eliminar certificaión" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
                 <br />
-                <p:commandButton value="Cerrar Sesion" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+                <p:commandButton value="Cerrar Sesion" ajax="false" action="#{usuariosController.updatePerfil}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

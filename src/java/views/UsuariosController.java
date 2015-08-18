@@ -246,6 +246,10 @@ public class UsuariosController implements Serializable {
         return nomEmpresa;
     }
 
+    public int getIdEmpresa() {
+        return idEmpresa;
+    }
+
     public String update() {
         try {
             getFacade().edit(current);
@@ -343,6 +347,7 @@ public class UsuariosController implements Serializable {
         if (usuarioBd != null) {
             if (usuarioBd.getContrasenaUsuario().compareTo(usu.getContrasenaUsuario()) == 0) {
                 idUsuario=usuarioBd.getIdUsuarios();
+                idEmpresa=usuarioBd.getFkidEmpresas().getIdEmpresas();
                 if(usuarioBd.getFkidPerfil().getIdPerfil() == 1){
                     httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
                     System.out.println("Empresa "+usuarioBd.getFkidPerfil());

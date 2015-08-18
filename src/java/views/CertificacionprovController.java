@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,6 +18,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.context.RequestContext;
 
 @Named("certificacionprovController")
 @SessionScoped
@@ -28,6 +30,7 @@ public class CertificacionprovController implements Serializable {
     private controller.CertificacionprovFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int idEmpresa;
 
     public CertificacionprovController() {
     }
@@ -55,7 +58,7 @@ public class CertificacionprovController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    return new ListDataModel(getFacade().findCertificacion(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idEmpresa));
                 }
             };
         }
@@ -65,6 +68,12 @@ public class CertificacionprovController implements Serializable {
     public String prepareList() {
         recreateModel();
         return "List";
+    }
+
+    public String prepareVista(int id) {
+        idEmpresa=id;
+        recreateModel();
+        return "/certificacionprov/VerCertificaciones";
     }
 
     public String prepareView() {
@@ -107,13 +116,28 @@ public class CertificacionprovController implements Serializable {
         }
     }
 
-    public String destroy() {
+    public void destroy() {
         current = (Certificacionprov) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
+    }
+
+    public String destroyFinal() {
         performDestroy();
         recreatePagination();
         recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La certificación ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
         return "List";
+    }
+
+    public String destroyFinal1() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La certificación ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "VerCertificaciones";
     }
 
     public String destroyAndView() {
