@@ -348,6 +348,7 @@ public class UsuariosController implements Serializable {
             if (usuarioBd.getContrasenaUsuario().compareTo(usu.getContrasenaUsuario()) == 0) {
                 idUsuario=usuarioBd.getIdUsuarios();
                 idEmpresa=usuarioBd.getFkidEmpresas().getIdEmpresas();
+                nomEmpresa=usuarioBd.getFkidEmpresas().getNombreEmpresa();
                 if(usuarioBd.getFkidPerfil().getIdPerfil() == 1){
                     httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
                     System.out.println("Empresa "+usuarioBd.getFkidPerfil());

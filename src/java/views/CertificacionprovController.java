@@ -70,6 +70,12 @@ public class CertificacionprovController implements Serializable {
         return "List";
     }
 
+    public String reloadCertificacion() {
+        recreatePagination();
+        recreateModel();
+        return "VerCertificaciones";
+    }
+
     public String prepareVista(int id) {
         idEmpresa=id;
         recreateModel();
@@ -92,7 +98,9 @@ public class CertificacionprovController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CertificacionprovCreated"));
-            return prepareCreate();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "Certificación insertada con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return reloadCertificacion();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

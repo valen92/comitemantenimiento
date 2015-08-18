@@ -3,35 +3,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateCertificacionprovTitle}"></h:outputText>
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
             <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="1">
+                        <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                       
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuP.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuP.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        
+                    </p:tabMenu>              
+                </h:panelGrid>
+                <p:panel header="Certificaciones - Adicionar Certificación">
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateCertificacionprovLabel_idCertificacionProv}" for="idCertificacionProv" />
-                    <h:inputText id="idCertificacionProv" value="#{certificacionprovController.selected.idCertificacionProv}" title="#{bundle.CreateCertificacionprovTitle_idCertificacionProv}" required="true" requiredMessage="#{bundle.CreateCertificacionprovRequiredMessage_idCertificacionProv}"/>
-                    <h:outputLabel value="#{bundle.CreateCertificacionprovLabel_nombreCertificacionprov}" for="nombreCertificacionprov" />
+                    <h:outputLabel value="Nombre: " for="nombreCertificacionprov" />
                     <h:inputText id="nombreCertificacionprov" value="#{certificacionprovController.selected.nombreCertificacionprov}" title="#{bundle.CreateCertificacionprovTitle_nombreCertificacionprov}" required="true" requiredMessage="#{bundle.CreateCertificacionprovRequiredMessage_nombreCertificacionprov}"/>
-                    <h:outputLabel value="#{bundle.CreateCertificacionprovLabel_fkidEmpresas}" for="fkidEmpresas" />
+                    <h:outputLabel value="Empresa" for="fkidEmpresas" />
                     <h:selectOneMenu id="fkidEmpresas" value="#{certificacionprovController.selected.fkidEmpresas}" title="#{bundle.CreateCertificacionprovTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateCertificacionprovRequiredMessage_fkidEmpresas}">
                         <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{certificacionprovController.create}" value="#{bundle.CreateCertificacionprovSaveLink}" />
+                <p:commandButton action="#{certificacionprovController.create}" value="Guardar" />
                 <br />
-                <br />
-                <h:commandLink action="#{certificacionprovController.prepareList}" value="#{bundle.CreateCertificacionprovShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateCertificacionprovIndexLink}"/>
+                
+                </p:panel>
             </h:form>
         </ui:define>
     </ui:composition>
