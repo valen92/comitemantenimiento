@@ -195,6 +195,12 @@ public class UsuariosController implements Serializable {
         return "Edit";
     }
 
+    public String prepareDetalle() {
+        current = (Usuarios) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+
     public String prepareEditP() {
         current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();

@@ -3,64 +3,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewUsuariosTitle}"></h:outputText>
+            <h:outputText value="Comité de Mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_idUsuarios}"/>
-                    <h:outputText value="#{usuariosController.selected.idUsuarios}" title="#{bundle.ViewUsuariosTitle_idUsuarios}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_nombreUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.nombreUsuario}" title="#{bundle.ViewUsuariosTitle_nombreUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_apellidoUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.apellidoUsuario}" title="#{bundle.ViewUsuariosTitle_apellidoUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_cargoUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.cargoUsuario}" title="#{bundle.ViewUsuariosTitle_cargoUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_movilUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.movilUsuario}" title="#{bundle.ViewUsuariosTitle_movilUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_fijoUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.fijoUsuario}" title="#{bundle.ViewUsuariosTitle_fijoUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_emailUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.emailUsuario}" title="#{bundle.ViewUsuariosTitle_emailUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.usuarioUsuario}" title="#{bundle.ViewUsuariosTitle_usuarioUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_contrasenaUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.contrasenaUsuario}" title="#{bundle.ViewUsuariosTitle_contraseñaUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_estadoUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.estadoUsuario}" title="#{bundle.ViewUsuariosTitle_estadoUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_fecregistroUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.fecregistroUsuario}" title="#{bundle.ViewUsuariosTitle_fecregistroUsuario}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_fotoUsuario}"/>
-                    <h:outputText value="#{usuariosController.selected.fotoUsuario}" title="#{bundle.ViewUsuariosTitle_fotoUsuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_fkidPerfil}"/>
-                    <h:outputText value="#{usuariosController.selected.fkidPerfil}" title="#{bundle.ViewUsuariosTitle_fkidPerfil}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_fkidEmpresas}"/>
-                    <h:outputText value="#{usuariosController.selected.fkidEmpresas}" title="#{bundle.ViewUsuariosTitle_fkidEmpresas}"/>
-                </h:panelGrid>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="3">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                 </h:panelGrid>
+                <p:panel header="Detalle miembro comité">
+                    <h:panelGrid columns="2" style="margin-top: 20px; margin-left: 30px">
+                         <h:outputText value="Nombre: " style="font-size: 18px; color: black; font-weight: bold"/>
+                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.nombreUsuario}" title="#{bundle.ViewUsuariosTitle_nombreUsuario}"/>
+                         <h:outputText value="Apellido: " style="font-size: 18px; color: black; font-weight: bold"/>
+                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.apellidoUsuario}" title="#{bundle.ViewUsuariosTitle_apellidoUsuario}"/>
+                         <h:outputText value="Empresa: " style="font-size: 18px; color: black; font-weight: bold"/>
+                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.fkidEmpresas.nombreEmpresa}" title="#{bundle.ViewUsuariosTitle_fkidEmpresas}"/>
+                         <h:outputText value="Cargo: " style="font-size: 18px; color: black; font-weight: bold"/>
+                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.cargoUsuario}" title="#{bundle.ViewUsuariosTitle_cargoUsuario}"/>
+                         <h:outputText value="Teléfono: " style="font-size: 18px; color: black; font-weight: bold"/>
+                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.fijoUsuario}" title="#{bundle.ViewUsuariosTitle_fijoUsuario}"/>
+                         <h:outputText value="Celular: " style="font-size: 18px; color: black; font-weight: bold"/>
+                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.movilUsuario}" title="#{bundle.ViewUsuariosTitle_movilUsuario}"/>
+                         <h:outputText value="Correo electrónico: " style="font-size: 18px; color: black; font-weight: bold"/>
+                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.emailUsuario}" title="#{bundle.ViewUsuariosTitle_emailUsuario}"/>
+                     </h:panelGrid>
+                </p:panel>
                 <br />
-                <h:commandLink action="#{usuariosController.destroyAndView}" value="#{bundle.ViewUsuariosDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewUsuariosEditLink}"/>
-                <br />
-                <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ViewUsuariosCreateLink}" />
-                <br />
-                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.ViewUsuariosShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewUsuariosIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>
 
 </html>
+
