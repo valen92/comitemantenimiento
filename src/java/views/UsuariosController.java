@@ -152,6 +152,25 @@ public class UsuariosController implements Serializable {
         }
         return pagination;
     }
+
+    public PaginationHelper getPaginationPerfil() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findUsuarioPerfil(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idUsuario));
+                }
+            };
+        }
+        return pagination;
+    }
+
     
     public String prepareList() {
         recreateModel();
@@ -304,6 +323,7 @@ public class UsuariosController implements Serializable {
         Usuarios usuarioBd = ejbFacade.findporLogin(usu.getUsuarioUsuario());
         if (usuarioBd != null) {
             if (usuarioBd.getContrasenaUsuario().compareTo(usu.getContrasenaUsuario()) == 0) {
+                idUsuario=usuarioBd.getIdUsuarios();
                 if(usuarioBd.getFkidPerfil().getIdPerfil() == 1){
                     httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
                     System.out.println("Empresa "+usuarioBd.getFkidPerfil());
@@ -410,6 +430,15 @@ public class UsuariosController implements Serializable {
         recreateModel();
         if (items == null) {
              items = getPagination(per).createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsPerfil () {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+             items = getPaginationPerfil().createPageDataModel();
         }
         return items;
     }

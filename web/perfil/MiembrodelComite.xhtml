@@ -12,7 +12,7 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                
+                 <h:panelGrid columns="1">
                     <p:tabMenu activeIndex="1">
                         <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
@@ -21,13 +21,15 @@
                             <f:param name="index" value="1" />
                         </p:menuitem>
                        
-                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
-                            <f:param name="index" value="2" />
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuP.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
                         </p:menuitem>
-                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuP.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
-                        </p:menuitem>                        
-                    </p:tabMenu>
+                        </p:menuitem>
+                        
+                    </p:tabMenu>              
+                </h:panelGrid>
                 <p:growl id="msgs" showDetail="true" />
                 <p:panel id="empcomite" header="Mi Perfil / Información de Contacto" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
 
@@ -36,32 +38,31 @@
 
                     
                     
-                </p:panel>
+               
 
-               <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+               <p:dataTable value="#{usuariosController.itemsPerfil}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
-                   <p:column headerText="No">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
+                   
                     <p:column headerText="Nombre">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                        <h:outputText value="#{item.nombreUsuario}"/>
+                    </p:column>
+                   <p:column headerText="Apellido">
+                        <h:outputText value="#{item.apellidoUsuario}"/>
                     </p:column>
                     <p:column headerText="Cargo">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                        <h:outputText value="#{item.cargoUsuario}"/>
                     </p:column>
                    <p:column headerText="Teléfono">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                        <h:outputText value="#{item.fijoUsuario}"/>
                     </p:column>
-                   <p:column headerText="Correo Electronico">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
+                   <p:column headerText="Celular">
+                        <h:outputText value="#{item.movilUsuario}"/>
+                    </p:column>
+                    <p:column headerText="Correo Electronico">
+                        <h:outputText value="#{item.emailUsuario}"/>
                     </p:column>
                    
                     <p:column style="width:24px">
@@ -69,7 +70,10 @@
                                     <h:outputText value=" "/>
                      </p:column>
                </p:dataTable>
-                
+                </p:panel>
+            </h:form>
+            <br/>
+            <h:form>
                 <p:commandButton value="Mis Certificaciones" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
                    
                  
