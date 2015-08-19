@@ -1,57 +1,144 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateActividadesTitle}"></h:outputText>
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_idActividad}" for="idActividad" />
-                    <h:inputText id="idActividad" value="#{actividadesController.selected.idActividad}" title="#{bundle.CreateActividadesTitle_idActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_idActividad}"/>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_numeroActividad}" for="numeroActividad" />
-                    <h:inputText id="numeroActividad" value="#{actividadesController.selected.numeroActividad}" title="#{bundle.CreateActividadesTitle_numeroActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_numeroActividad}"/>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_tituloActividad}" for="tituloActividad" />
-                    <h:inputText id="tituloActividad" value="#{actividadesController.selected.tituloActividad}" title="#{bundle.CreateActividadesTitle_tituloActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_tituloActividad}"/>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_descripcionActividad}" for="descripcionActividad" />
-                    <h:inputText id="descripcionActividad" value="#{actividadesController.selected.descripcionActividad}" title="#{bundle.CreateActividadesTitle_descripcionActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_descripcionActividad}"/>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_fecfirmaActividad}" for="fecfirmaActividad" />
-                    <h:inputText id="fecfirmaActividad" value="#{actividadesController.selected.fecfirmaActividad}" title="#{bundle.CreateActividadesTitle_fecfirmaActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_fecfirmaActividad}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_fecinicioActividad}" for="fecinicioActividad" />
-                    <h:inputText id="fecinicioActividad" value="#{actividadesController.selected.fecinicioActividad}" title="#{bundle.CreateActividadesTitle_fecinicioActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_fecinicioActividad}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_fecfinActividad}" for="fecfinActividad" />
-                    <h:inputText id="fecfinActividad" value="#{actividadesController.selected.fecfinActividad}" title="#{bundle.CreateActividadesTitle_fecfinActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_fecfinActividad}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_estadoActividad}" for="estadoActividad" />
-                    <h:inputText id="estadoActividad" value="#{actividadesController.selected.estadoActividad}" title="#{bundle.CreateActividadesTitle_estadoActividad}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_estadoActividad}"/>
-                    <h:outputLabel value="#{bundle.CreateActividadesLabel_fkidServiciosContrato}" for="fkidServiciosContrato" />
-                    <h:selectOneMenu id="fkidServiciosContrato" value="#{actividadesController.selected.fkidServiciosContrato}" title="#{bundle.CreateActividadesTitle_fkidServiciosContrato}" required="true" requiredMessage="#{bundle.CreateActividadesRequiredMessage_fkidServiciosContrato}">
-                        <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="0">
+                        <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                       
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuP.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuP.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        
+                    </p:tabMenu>   
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{actividadesController.create}" value="#{bundle.CreateActividadesSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{actividadesController.prepareList}" value="#{bundle.CreateActividadesShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateActividadesIndexLink}"/>
+                <p:panel header="Actividades vigentes - Crear actividad">
+                    <h:panelGrid columns="4">
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        
+                        <h:outputLabel value="Número de actividad:" for="numeroActividad" />
+                        <p:inputText style="margin-left: 20px;" id="numeroActividad" 
+                                     value="#{actividadesController.selected.numeroActividad}" 
+                                     title="#{bundle.CreateActividadLabel_numeroActividad}" 
+                                     required="true" 
+                                     requiredMessage="Campo número de actividad requerido"/>
+                        <h:outputLabel style="margin-left: 20px;" value="Fecha en que se firmo:" for="fecfirmaActividad" />
+                        <p:calendar style="margin-left: 20px;" id="fecfirmaActividad" 
+                                    value="#{actividadesController.selected.fecfirmaActividad}" 
+                                    title="#{bundle.CreateActividadLabel_fecfirmaActividad}" 
+                                    pattern="dd-MM-yyyy"
+                                    required="true" 
+                                    requiredMessage="Campo Fecha en que se firmo requerido">
+                        </p:calendar>
+                        
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        
+                        <h:outputLabel value="Fecha de inicio:" for="fecinicioActividad" />
+                        <p:calendar style="margin-left: 20px;" id="fecinicioActividad" 
+                                    value="#{actividadesController.selected.fecinicioActividad}" 
+                                    title="#{bundle.CreateActividadLabel_fecinicioActividad}" 
+                                    pattern="dd-MM-yyyy"
+                                    required="true" 
+                                    requiredMessage="Campo Fecha de inicio requerido">
+                        </p:calendar>
+                        <h:outputLabel style="margin-left: 20px;" value="Fecha acordada de finalización:" 
+                                       for="fecfinActividad" />
+                        <p:calendar style="margin-left: 20px;" id="fecfinActividad" 
+                                    value="#{actividadesController.selected.fecfinActividad}" 
+                                    title="#{bundle.CreateActividadLabel_fecfinActividad}" 
+                                    pattern="dd-MM-yyyy"
+                                    required="true" 
+                                    requiredMessage="Campo Fecha de finalización requerido">
+                        </p:calendar>
+                        
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        
+                        <h:outputLabel value="Estado:" for="estadoActividad" />
+                        <p:selectOneMenu style="margin-left: 20px;" id="estadoActividad" 
+                                         value="#{actividadesController.selected.estadoActividad}"
+                                         required="true" 
+                                         requiredMessage="Campo estado requerido">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                            <f:selectItem itemLabel="Inactiva" itemValue="Inactiva" />
+                            <f:selectItem itemLabel="Pendiente" itemValue="Pendiente" />
+                        </p:selectOneMenu>
+                        <h:outputLabel style="margin-left: 20px;" value="Número de contrato de servicio:" 
+                                       for="fkidServiciosContrato" />
+                        <p:selectOneMenu style="margin-left: 20px;" id="fkidServiciosContrato" 
+                                         value="#{actividadesController.selected.fkidServiciosContrato}" 
+                                         required="true" 
+                                         requiredMessage="Número de contrato requerido">
+                            <f:selectItems value="#{servicioscontratoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        
+                        <h:outputLabel value="Título:" for="tituloActividad" />
+                        <p:inputText style="margin-left: 20px;" id="tituloActividad" 
+                                     value="#{actividadesController.selected.tituloActividad}" 
+                                     title="#{bundle.CreateActividadLabel_tituloActividad}" 
+                                     required="true" 
+                                     requiredMessage="Título de actividad requerido"/>
+                        <h:outputLabel style="margin-left: 20px;" value="Descripción:" 
+                                       for="descripcionActividad" />
+                        <p:inputTextarea style="margin-left: 20px;" id="descripcionActividad" 
+                                         rows="6" cols="33" 
+                                         value="#{actividadesController.selected.descripcionActividad}" 
+                                         title="#{bundle.CreateActividadLabel_descripcionActividad}" 
+                                         required="true" 
+                                         requiredMessage="Descripción de actividad requerido"/>
+                        
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        <p:commandButton value="Aceptar" id="Aceptar" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                        <p:commandButton value="Cancelar" id="Cancelar" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                        </h:panelGrid>  
+                </p:panel>
+                <br/>
+                <p:commandButton style="float:right" value="Cerrar Sesion" id="Cerrar" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
             </h:form>
         </ui:define>
     </ui:composition>
-
 </html>

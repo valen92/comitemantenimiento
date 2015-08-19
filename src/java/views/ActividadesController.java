@@ -90,6 +90,12 @@ public class ActividadesController implements Serializable {
         return pagination;
     }
 
+    public String reloadP() {
+        recreatePagination();
+        recreateModel();
+        return "/InicioProveedor";
+    }
+
     public String prepareList() {
         recreateModel();
         return "List";
@@ -113,11 +119,28 @@ public class ActividadesController implements Serializable {
         return "/actividades/CrearActividad";
     }
 
+    public String prepareCreateP() {
+        current = new Actividades();
+        selectedItemIndex = -1;
+        return "/actividades/Create";
+    }
+
     public String create() {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ActividadesCreated"));
             return prepareCreate();
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String createP() {
+        try {
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ActividadesCreated"));
+            return prepareCreateP();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

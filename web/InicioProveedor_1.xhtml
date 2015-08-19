@@ -305,9 +305,11 @@
 
                 </p:panel>
                 <br />
-                <p:commandButton value="Agregar actividad" ajax="false" actionListener="#{actividadesController.prepareCreate}" disabled="false" />
+                <p:commandButton value="Agregar actividad" action="#{actividadesController.prepareCreateP}" disabled="false" />
                 <br /> <br/>
-                <p:commandButton value="Cerrar Sesión" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+            </h:form>
+            <h:form>
+                <p:commandButton value="Cerrar Sesión" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>
