@@ -131,12 +131,16 @@ and open the template in the editor.
                         <h:outputText value=""/>
                         <h:outputText value=""/>
                         <h:outputText value=""/>
-                        <h:outputText value=""/>
-                        <p:commandButton value="Aceptar" id="Aceptar" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
-                        <p:commandButton value="Cancelar" id="Cancelar" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                        <p:growl id="growl" life="2000" />   
+                        <p:commandButton value="Aceptar" id="Aceptar" update="growl" action="#{actividadesController.createP}" styleClass="ui-priority-primary"/>
                         </h:panelGrid>  
-                </p:panel>
-                <br/>
+                    </p:panel>
+                        </h:form>
+            <h:form><br/>
+                        <p:commandButton value="Cancelar" id="Cancelar" action="#{actividadesController.reloadP()}" styleClass="ui-priority-primary"/>
+                        
+                
+                <br/><br/>
                 <p:commandButton style="float:right" value="Cerrar Sesion" id="Cerrar" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
             </h:form>
         </ui:define>

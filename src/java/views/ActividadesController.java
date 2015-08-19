@@ -140,7 +140,9 @@ public class ActividadesController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ActividadesCreated"));
-            return prepareCreateP();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La actividad ha sido adicionada con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return reloadP();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
