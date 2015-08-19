@@ -58,18 +58,18 @@
                 <p:panel header="Servicios a Prestar">
                     <p:tabView orientation="left">
                         <p:tab title="Trabajos  mecánicos">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad específica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
                                 
@@ -78,194 +78,194 @@
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Civiles-Locativos">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad Especifica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                               
+                                
 
                                 <p:column headerText="Servicio habilitado">
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctricos">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad Especifica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                               
+                                
 
                                 <p:column headerText="Servicio habilitado">
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                                 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Limpieza y oficios varios">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(4)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad Especifica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                               
+                                
 
                                 <p:column headerText="Servicio habilitado">
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                                 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Mantenimiento preventivo y predictivo">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(5)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad Especifica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                               
+                                
 
                                 <p:column headerText="Servicio habilitado">
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                                 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Calibraciones e instrumentación">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(6)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad Especifica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                               
+                                
 
                                 <p:column headerText="Servicio habilitado">
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                                 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Marcación y planos">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(7)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad Especifica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                               
+                                
 
                                 <p:column headerText="Servicio habilitado">
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                                 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Servicios especificos">
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(8)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
 
-                                <p:column headerText="Actividad Especifica">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Actividad Específica">
+                                    <h:outputText value="#{item.tituloActividad}"/>
                                 </p:column>
 
                                 <p:column headerText="Empresas que requieren servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                               
+                                
 
                                 <p:column headerText="Servicio habilitado">
                                     <p:growl id="msg" />
 
                                     <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
                                     </h:panelGrid>
                                 </p:column>
                                 

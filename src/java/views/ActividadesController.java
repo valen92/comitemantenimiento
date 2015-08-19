@@ -71,6 +71,25 @@ public class ActividadesController implements Serializable {
         return pagination;
     }
 
+    public PaginationHelper getPaginationServicio(int servicio) {
+        final int idServicio=servicio;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findActividadServicio(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU, idServicio));
+                }
+            };
+        }
+        return pagination;
+    }
+
     public String prepareList() {
         recreateModel();
         return "List";
@@ -186,6 +205,15 @@ public class ActividadesController implements Serializable {
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsServicio(int servicio) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationServicio(servicio).createPageDataModel();
         }
         return items;
     }

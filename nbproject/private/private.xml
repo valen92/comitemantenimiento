@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/UsuariosController.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/InicioProveedor.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/controller/ActividadesFacade.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/HerramientasxempcomiteController.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Actividades.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Serviciosxempproveedoras.java</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Empresas.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/certificacionprov/VerCertificaciones.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/certificacionprov/Create.xhtml</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/TipoherramientasController.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/ActividadesController.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Servicioscontrato.java</file>
         </group>
     </open-files>
 </project-private>
