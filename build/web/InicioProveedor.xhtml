@@ -78,6 +78,16 @@
                                 <p:column headerText="Servicio habilitado">
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
+                                </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Civiles-Locativos">
@@ -128,6 +138,16 @@
                                 <p:column headerText="Servicio habilitado">
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
+                                </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Limpieza y oficios varios">
@@ -147,6 +167,16 @@
 
                                 <p:column headerText="Servicio habilitado">
                                     <h:outputText value="#{item.estadoActividad}" />
+                                </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -168,6 +198,16 @@
                                 <p:column headerText="Servicio habilitado">
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
+                                </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Calibraciones e instrumentación">
@@ -187,6 +227,16 @@
 
                                 <p:column headerText="Servicio habilitado">
                                     <h:outputText value="#{item.estadoActividad}" />
+                                </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -208,6 +258,16 @@
                                 <p:column headerText="Servicio habilitado">
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
+                                </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Servicios especificos">
@@ -227,6 +287,16 @@
 
                                 <p:column headerText="Servicio habilitado">
                                     <h:outputText value="#{item.estadoActividad}" />
+                                </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
