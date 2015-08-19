@@ -165,6 +165,24 @@ public class ActividadesController implements Serializable {
         return "/InicioMiembroComite";
     }
 
+    public String destroyFinale() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La actividad ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "/InicioProveedor_1";
+    }
+
+    public String destroyFinale1() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La actividad ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "/InicioProveedor";
+    }
+
     public String destroyAndView() {
         performDestroy();
         recreateModel();

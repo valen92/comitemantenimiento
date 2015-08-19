@@ -5,12 +5,8 @@
         <group>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/InicioProveedor.xhtml</file>
             <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/controller/ActividadesFacade.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/HerramientasxempcomiteController.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Actividades.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Serviciosxempproveedoras.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Empresas.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/views/ActividadesController.java</file>
-            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/src/java/entities/Servicioscontrato.java</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/actividades/CrearActividad.xhtml</file>
+            <file>file:/C:/Users/Valentina/Documents/NetBeansProjects/comitemantenimiento/web/actividades/Create.xhtml</file>
         </group>
     </open-files>
 </project-private>

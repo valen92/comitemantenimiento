@@ -33,7 +33,10 @@
                 <p:panel header="Actividades vigentes">
                     
                     <p:dataTable value="#{actividadesController.items}" var="item"
-                                         rows="5">
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
                                          
                          <p:column headerText="Titulo actividad">
                                      <h:outputText value="#{item.tituloActividad}"/>
@@ -72,14 +75,8 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -98,14 +95,18 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
+                                </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
+                                        header="Atención"
+                                        severity="alert" widgetVar="confirmDialog">
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                       />
+                                        <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                                    </p:confirmDialog>
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -124,16 +125,9 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
-                                
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Limpieza y oficios varios">
@@ -151,16 +145,9 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
-                                
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Mantenimiento preventivo y predictivo">
@@ -178,16 +165,9 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
-                                
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Calibraciones e instrumentación">
@@ -205,16 +185,9 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
-                                
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Marcación y planos">
@@ -232,16 +205,9 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
-                                
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Servicios especificos">
@@ -259,16 +225,9 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                
-
                                 <p:column headerText="Servicio habilitado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoActividad}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
-                                
                             </p:dataTable>
                         </p:tab>
                     </p:tabView>
@@ -276,11 +235,8 @@
 
                 </p:panel>
                 <br />
-                <br />
                 <p:commandButton value="Agregar actividad" ajax="false" actionListener="#{actividadesController.prepareCreate}" disabled="false" />
-                <br />
-                <p:commandButton value="Eliminar actividad" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
-                <br />
+                <br /> <br/>
                 <p:commandButton value="Cerrar Sesión" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
             </h:form>
         </ui:define>
