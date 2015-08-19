@@ -3,55 +3,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateRepuestosxempresasTitle}"></h:outputText>
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_idRepuestosxEmpresas}" for="idRepuestosxEmpresas" />
-                    <h:inputText id="idRepuestosxEmpresas" value="#{repuestosxempresasController.selected.idRepuestosxEmpresas}" title="#{bundle.CreateRepuestosxempresasTitle_idRepuestosxEmpresas}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_idRepuestosxEmpresas}"/>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_estadoRepuestoempresa}" for="estadoRepuestoempresa" />
-                    <h:inputText id="estadoRepuestoempresa" value="#{repuestosxempresasController.selected.estadoRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_estadoRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_estadoRepuestoempresa}"/>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_codigoRepuestoempresa}" for="codigoRepuestoempresa" />
-                    <h:inputText id="codigoRepuestoempresa" value="#{repuestosxempresasController.selected.codigoRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_codigoRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_codigoRepuestoempresa}"/>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_cantidadRepuestoempresa}" for="cantidadRepuestoempresa" />
-                    <h:inputText id="cantidadRepuestoempresa" value="#{repuestosxempresasController.selected.cantidadRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_cantidadRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_cantidadRepuestoempresa}"/>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_precioRepuestoepresa}" for="precioRepuestoepresa" />
-                    <h:inputText id="precioRepuestoepresa" value="#{repuestosxempresasController.selected.precioRepuestoepresa}" title="#{bundle.CreateRepuestosxempresasTitle_precioRepuestoepresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_precioRepuestoepresa}"/>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_descripcionRepuestoempresa}" for="descripcionRepuestoempresa" />
-                    <h:inputText id="descripcionRepuestoempresa" value="#{repuestosxempresasController.selected.descripcionRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_descripcionRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_descripcionRepuestoempresa}"/>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_fkidRepuestos}" for="fkidRepuestos" />
-                    <h:selectOneMenu id="fkidRepuestos" value="#{repuestosxempresasController.selected.fkidRepuestos}" title="#{bundle.CreateRepuestosxempresasTitle_fkidRepuestos}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidRepuestos}">
-                        <f:selectItems value="#{repuestosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_fkidUsuarios}" for="fkidUsuarios" />
-                    <h:selectOneMenu id="fkidUsuarios" value="#{repuestosxempresasController.selected.fkidUsuarios}" title="#{bundle.CreateRepuestosxempresasTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidUsuarios}">
-                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_fkidEmpresas}" for="fkidEmpresas" />
-                    <h:selectOneMenu id="fkidEmpresas" value="#{repuestosxempresasController.selected.fkidEmpresas}" title="#{bundle.CreateRepuestosxempresasTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidEmpresas}">
-                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateRepuestosxempresasLabel_fkidMarcasRepuestos}" for="fkidMarcasRepuestos" />
-                    <h:selectOneMenu id="fkidMarcasRepuestos" value="#{repuestosxempresasController.selected.fkidMarcasRepuestos}" title="#{bundle.CreateRepuestosxempresasTitle_fkidMarcasRepuestos}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidMarcasRepuestos}">
-                        <f:selectItems value="#{marcasrepuestosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="1">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{repuestosxempresasController.create}" value="#{bundle.CreateRepuestosxempresasSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{repuestosxempresasController.prepareList}" value="#{bundle.CreateRepuestosxempresasShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateRepuestosxempresasIndexLink}"/>
+                <p:panel header="Ingresar Repuesto">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Id Repuesto" for="idRepuestosxEmpresas" />
+                        <h:inputText id="idRepuestosxEmpresas" value="#{repuestosxempresasController.selected.idRepuestosxEmpresas}" title="#{bundle.CreateRepuestosxempresasTitle_idRepuestosxEmpresas}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_idRepuestosxEmpresas}"/>
+                        <h:outputLabel value="Estado" for="estadoRepuestoempresa" />
+                        <h:inputText id="estadoRepuestoempresa" value="#{repuestosxempresasController.selected.estadoRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_estadoRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_estadoRepuestoempresa}"/>
+                        <h:outputLabel value="Código Repuesto" for="codigoRepuestoempresa" />
+                        <h:inputText id="codigoRepuestoempresa" value="#{repuestosxempresasController.selected.codigoRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_codigoRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_codigoRepuestoempresa}"/>
+                        <h:outputLabel value="Cantidad" for="cantidadRepuestoempresa" />
+                        <h:inputText id="cantidadRepuestoempresa" value="#{repuestosxempresasController.selected.cantidadRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_cantidadRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_cantidadRepuestoempresa}"/>
+                        <h:outputLabel value="Precio" for="precioRepuestoepresa" />
+                        <h:inputText id="precioRepuestoepresa" value="#{repuestosxempresasController.selected.precioRepuestoepresa}" title="#{bundle.CreateRepuestosxempresasTitle_precioRepuestoepresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_precioRepuestoepresa}"/>
+                        <h:outputLabel value="Descripción" for="descripcionRepuestoempresa" />
+                        <h:inputText id="descripcionRepuestoempresa" value="#{repuestosxempresasController.selected.descripcionRepuestoempresa}" title="#{bundle.CreateRepuestosxempresasTitle_descripcionRepuestoempresa}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_descripcionRepuestoempresa}"/>
+                        <h:outputLabel value="Repuesto" for="fkidRepuestos" />
+                        <h:selectOneMenu id="fkidRepuestos" value="#{repuestosxempresasController.selected.fkidRepuestos}" title="#{bundle.CreateRepuestosxempresasTitle_fkidRepuestos}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidRepuestos}">
+                            <f:selectItems value="#{repuestosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Usuario" for="fkidUsuarios" />
+                        <h:selectOneMenu id="fkidUsuarios" value="#{repuestosxempresasController.selected.fkidUsuarios}" title="#{bundle.CreateRepuestosxempresasTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidUsuarios}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Empresa" for="fkidEmpresas" />
+                        <h:selectOneMenu id="fkidEmpresas" value="#{repuestosxempresasController.selected.fkidEmpresas}" title="#{bundle.CreateRepuestosxempresasTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidEmpresas}">
+                            <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Marca Repuesto" for="fkidMarcasRepuestos" />
+                        <h:selectOneMenu id="fkidMarcasRepuestos" value="#{repuestosxempresasController.selected.fkidMarcasRepuestos}" title="#{bundle.CreateRepuestosxempresasTitle_fkidMarcasRepuestos}" required="true" requiredMessage="#{bundle.CreateRepuestosxempresasRequiredMessage_fkidMarcasRepuestos}">
+                            <f:selectItems value="#{marcasrepuestosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    
+                    <p:growl id="growl" life="2000" />   
+                    <p:commandButton id="btnGuardarNorma" value="Guardar" update="growl" action="#{repuestosxempresasController.create}" styleClass="ui-priority-primary"  />
+                </p:panel>
+                
+                
             </h:form>
         </ui:define>
     </ui:composition>
