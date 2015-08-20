@@ -125,4 +125,12 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         return q.getResultList();
     }
     
+
+    public List<Usuarios> findAllProveedor() {
+        String consulta = "select n from Usuarios n where n.fkidPerfil.idPerfil = :idPerfil";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idPerfil", 3); //Variable a pasar de la sesión
+        return q.getResultList();
+    }
+    
 }

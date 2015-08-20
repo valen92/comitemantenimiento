@@ -36,56 +36,52 @@
                     </p:tabMenu>
                 </h:panelGrid>
                 <p:growl id="msgs" showDetail="true" />
-                <p:panel id="empcomite" header="Directorio de miembros comite" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
-
-                    <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
-                    <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
-                    <h:panelGrid columns="2">
-                              <h:outputLabel value="Proveedor:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                             
-                    </h:panelGrid>
-
-                </p:panel>
-                
-
-               <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                <p:dataTable value="#{usuariosController.getItems(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
-                   <p:column headerText="Nombre">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                   <p:column headerText="Telefono">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                   <p:column headerText="Empresas">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                   <p:column headerText="Correo Electronico">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                    <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
-                                    
-                    </p:column>
-                    
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="dirProveedores"
+                                          emptyMessage="No hay resultados para la busqueda" 
+                                          filteredValue="#{usuariosController.filtro}">
                    
+                    <f:facet name="header" >
+                        <h:outputLabel style="float:left" value="Empresa:" for="fkidEmpresa" />
+                            <p:selectOneMenu id="globalFilter" onchange="PF('dirProveedores').filter()" >
+                                <f:selectItems value="#{usuariosController.itemsAvailableSelectOneP}"/>
+                            </p:selectOneMenu>
+                    </f:facet>
+                  
+                   
+                   <p:column headerText="Empresa">
+                            <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{item.nombreUsuario}"/>
+                        </p:column>
+                        
+                         <p:column headerText="Apellido">
+                            <h:outputText value="#{item.apellidoUsuario}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Teléfono" style="width:100px">
+                            <h:outputText value="#{item.fijoUsuario}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Celular" style="width:100px">
+                            <h:outputText value="#{item.movilUsuario}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Correo Electrónico">
+                            <h:outputText value="#{item.emailUsuario}"/>
+                        </p:column>
+                        
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{usuariosController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
+                            <h:outputText value=" "/>
+                        </p:column>   
                 </p:dataTable>
-                
-                
-                   
-                 
-
-
- 
            </h:form>
         </ui:define>
     </ui:composition>
