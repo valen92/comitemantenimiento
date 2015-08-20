@@ -131,8 +131,12 @@
                         <f:param name="productId" value="10" />
                     </p:link>-->
                 </p:panel>
+                
             </h:form>
-
+            <h:form>
+                <br />
+                <p:commandButton value="Añadir nuevo repuesto" ajax="false" action="#{repuestosxempresasController.prepareCreate}" disabled="false" />
+            </h:form>
         </ui:define>
     </ui:composition>
 

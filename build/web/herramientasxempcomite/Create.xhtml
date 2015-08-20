@@ -3,57 +3,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateHerramientasxempcomiteTitle}"></h:outputText>
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_idHerramientasxEmpComite}" for="idHerramientasxEmpComite" />
-                    <h:inputText id="idHerramientasxEmpComite" value="#{herramientasxempcomiteController.selected.idHerramientasxEmpComite}" title="#{bundle.CreateHerramientasxempcomiteTitle_idHerramientasxEmpComite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_idHerramientasxEmpComite}"/>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_descripcionHerramempcomite}" for="descripcionHerramempcomite" />
-                    <h:inputText id="descripcionHerramempcomite" value="#{herramientasxempcomiteController.selected.descripcionHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_descripcionHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_descripcionHerramempcomite}"/>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_disponibilidadHerramempcomite}" for="disponibilidadHerramempcomite" />
-                    <h:inputText id="disponibilidadHerramempcomite" value="#{herramientasxempcomiteController.selected.disponibilidadHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_disponibilidadHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_disponibilidadHerramempcomite}"/>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_codigoHerramempcomite}" for="codigoHerramempcomite" />
-                    <h:inputText id="codigoHerramempcomite" value="#{herramientasxempcomiteController.selected.codigoHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_codigoHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_codigoHerramempcomite}"/>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_estadoHerramempcomite}" for="estadoHerramempcomite" />
-                    <h:inputText id="estadoHerramempcomite" value="#{herramientasxempcomiteController.selected.estadoHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_estadoHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_estadoHerramempcomite}"/>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_cantidadHerramempcomite}" for="cantidadHerramempcomite" />
-                    <h:inputText id="cantidadHerramempcomite" value="#{herramientasxempcomiteController.selected.cantidadHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_cantidadHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_cantidadHerramempcomite}"/>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_precioHerramempcomite}" for="precioHerramempcomite" />
-                    <h:inputText id="precioHerramempcomite" value="#{herramientasxempcomiteController.selected.precioHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_precioHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_precioHerramempcomite}"/>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_fkidMarcasHerramientas}" for="fkidMarcasHerramientas" />
-                    <h:selectOneMenu id="fkidMarcasHerramientas" value="#{herramientasxempcomiteController.selected.fkidMarcasHerramientas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidMarcasHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidMarcasHerramientas}">
-                        <f:selectItems value="#{marcasherramientasController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_fkidUsuarios}" for="fkidUsuarios" />
-                    <h:selectOneMenu id="fkidUsuarios" value="#{herramientasxempcomiteController.selected.fkidUsuarios}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidUsuarios}">
-                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_fkidEmpresas}" for="fkidEmpresas" />
-                    <h:selectOneMenu id="fkidEmpresas" value="#{herramientasxempcomiteController.selected.fkidEmpresas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidEmpresas}">
-                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateHerramientasxempcomiteLabel_fkidHerramientas}" for="fkidHerramientas" />
-                    <h:selectOneMenu id="fkidHerramientas" value="#{herramientasxempcomiteController.selected.fkidHerramientas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidHerramientas}">
-                        <f:selectItems value="#{herramientasController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="2">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{herramientasxempcomiteController.create}" value="#{bundle.CreateHerramientasxempcomiteSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{herramientasxempcomiteController.prepareList}" value="#{bundle.CreateHerramientasxempcomiteShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateHerramientasxempcomiteIndexLink}"/>
+                <p:panel header="Ingresar Herramienta">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Id Herramienta" for="idHerramientasxEmpComite" />
+                        <h:inputText id="idHerramientasxEmpComite" value="#{herramientasxempcomiteController.selected.idHerramientasxEmpComite}" title="#{bundle.CreateHerramientasxempcomiteTitle_idHerramientasxEmpComite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_idHerramientasxEmpComite}"/>
+                        <h:outputLabel value="Descripción" for="descripcionHerramempcomite" />
+                        <h:inputText id="descripcionHerramempcomite" value="#{herramientasxempcomiteController.selected.descripcionHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_descripcionHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_descripcionHerramempcomite}"/>
+                        <h:outputLabel value="Disponibilidad" for="disponibilidadHerramempcomite" />
+                        <h:inputText id="disponibilidadHerramempcomite" value="#{herramientasxempcomiteController.selected.disponibilidadHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_disponibilidadHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_disponibilidadHerramempcomite}"/>
+                        <h:outputLabel value="Codigo Herramienta" for="codigoHerramempcomite" />
+                        <h:inputText id="codigoHerramempcomite" value="#{herramientasxempcomiteController.selected.codigoHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_codigoHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_codigoHerramempcomite}"/>
+                        <h:outputLabel value="Estado" for="estadoHerramempcomite" />
+                        <h:inputText id="estadoHerramempcomite" value="#{herramientasxempcomiteController.selected.estadoHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_estadoHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_estadoHerramempcomite}"/>
+                        <h:outputLabel value="Cantidad" for="cantidadHerramempcomite" />
+                        <h:inputText id="cantidadHerramempcomite" value="#{herramientasxempcomiteController.selected.cantidadHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_cantidadHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_cantidadHerramempcomite}"/>
+                        <h:outputLabel value="Precio" for="precioHerramempcomite" />
+                        <h:inputText id="precioHerramempcomite" value="#{herramientasxempcomiteController.selected.precioHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_precioHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_precioHerramempcomite}"/>
+                        <h:outputLabel value="Marca Herramienta" for="fkidMarcasHerramientas" />
+                        <h:selectOneMenu id="fkidMarcasHerramientas" value="#{herramientasxempcomiteController.selected.fkidMarcasHerramientas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidMarcasHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidMarcasHerramientas}">
+                            <f:selectItems value="#{marcasherramientasController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Usuario" for="fkidUsuarios" />
+                        <h:selectOneMenu id="fkidUsuarios" value="#{herramientasxempcomiteController.selected.fkidUsuarios}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidUsuarios}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Empresa" for="fkidEmpresas" />
+                        <h:selectOneMenu id="fkidEmpresas" value="#{herramientasxempcomiteController.selected.fkidEmpresas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidEmpresas}">
+                            <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Herramienta" for="fkidHerramientas" />
+                        <h:selectOneMenu id="fkidHerramientas" value="#{herramientasxempcomiteController.selected.fkidHerramientas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidHerramientas}">
+                            <f:selectItems value="#{herramientasController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    
+                    <p:growl id="growl" life="2000" />   
+                    <p:commandButton id="btnGuardarNorma" value="Guardar" update="growl" action="#{herramientasxempcomiteController.create}" styleClass="ui-priority-primary"  />
+                </p:panel>
             </h:form>
         </ui:define>
     </ui:composition>

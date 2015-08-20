@@ -90,6 +90,12 @@ public class ActividadesController implements Serializable {
         return pagination;
     }
 
+    public String reload() {
+        recreatePagination();
+        recreateModel();
+        return "/InicioMiembroComite";
+    }
+
     public String reloadP() {
         recreatePagination();
         recreateModel();
@@ -129,7 +135,9 @@ public class ActividadesController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ActividadesCreated"));
-            return prepareCreate();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La actividad ha sido adicionada con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return reload();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
