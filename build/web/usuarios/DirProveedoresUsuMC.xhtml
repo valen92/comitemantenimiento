@@ -43,25 +43,22 @@
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="dirProveedores"
                                           emptyMessage="No hay resultados para la busqueda" 
-                                          filteredValue="#{usuariosController.filtro}">
+                                          filteredValue="#{usuariosController.filtro}">         
                    
-                    <f:facet name="header" >
-                        <h:outputLabel style="float:left" value="Empresa:" for="fkidEmpresa" />
-                            <p:selectOneMenu id="globalFilter" onchange="PF('dirProveedores').filter()" >
-                                <f:selectItems value="#{usuariosController.itemsAvailableSelectOneP}"/>
-                            </p:selectOneMenu>
-                    </f:facet>
-                  
-                   
-                   <p:column headerText="Empresa">
+                        <p:column headerText="Empresa" filterBy="#{item.fkidEmpresas.nombreEmpresa}">
+                            <f:facet name="filter" >
+                                <p:selectOneMenu id="globalFilter" onchange="PF('dirProveedores').filter()" >
+                                    <f:selectItems value="#{usuariosController.itemsAvailableSelectOneP}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
                             <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                         </p:column>
                        
-                        <p:column headerText="Nombre">
+                        <p:column headerText="Nombre" style="width:200px">
                             <h:outputText value="#{item.nombreUsuario}"/>
                         </p:column>
                         
-                         <p:column headerText="Apellido">
+                         <p:column headerText="Apellido" style="width:200px">
                             <h:outputText value="#{item.apellidoUsuario}"/>
                         </p:column>
                          

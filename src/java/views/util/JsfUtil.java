@@ -162,7 +162,7 @@ public class JsfUtil {
             i++;
         }
         for (Usuarios x : entities) {
-            items[i++] = new SelectItem(x, x.getFkidEmpresas().getNombreEmpresa());
+            items[i++] = new SelectItem(x.getFkidEmpresas().getNombreEmpresa(), x.getFkidEmpresas().getNombreEmpresa());
         }
         return items;
     }
@@ -176,7 +176,7 @@ public class JsfUtil {
             i++;
         }
         for (Usuarios x : entities) {
-            items[i++] = new SelectItem(x, x.getFkidEmpresas().getNombreEmpresa());
+            items[i++] = new SelectItem(x.getFkidEmpresas().getNombreEmpresa(), x.getFkidEmpresas().getNombreEmpresa());
         }
         return items;
     }

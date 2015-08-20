@@ -1,16 +1,16 @@
 package views;
 
 import controller.UsuariosFacade;
-import entities.Usuarios;
 import entities.Empresas;
+import entities.Usuarios;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.servlet.http.HttpServletRequest;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -19,6 +19,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
 
 import org.primefaces.event.CloseEvent;
@@ -37,6 +38,7 @@ public class UsuariosController implements Serializable {
     private controller.UsuariosFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private List<Usuarios> filtro;
     
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
@@ -55,6 +57,14 @@ public class UsuariosController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
+    }
+    
+    public List<Usuarios> getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(List<Usuarios> filtro) {
+        this.filtro = filtro;
     }
 
     private UsuariosFacade getFacade() {
@@ -515,7 +525,7 @@ public class UsuariosController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectOneP() {
-        return JsfUtil.getSelectItemsUsuariosM(ejbFacade.findAllProveedor(), true);
+        return JsfUtil.getSelectItemsUsuariosP(ejbFacade.findAllProveedor(), true);
     }
 
     public Usuarios getUsuarios(java.lang.Integer id) {
