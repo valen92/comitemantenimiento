@@ -60,15 +60,15 @@
                             <h:outputText value="#{item.descripcionNorma}"/>
                         </p:column>
                                           
-                        <p:column style="width:24px">
+                        <p:column style="width:24px" exportable="false">
                             <h:commandLink action="#{normasController.prepareView}" styleClass="ui-icon ui-icon-search"/>
                             
                         </p:column> 
-                        <p:column style="width:24px">
+                        <p:column style="width:24px" exportable="false">
                             <h:commandLink action="#{normasController.prepareEdit}" styleClass="ui-icon ui-icon-pencil"/>
                             
                         </p:column>  
-                        <p:column style="width:24px">
+                        <p:column style="width:24px" exportable="false">
                             <h:commandLink action="#{normasController.destroy}" styleClass="ui-icon ui-icon-trash"/>
                             <p:confirmDialog message="Esta seguro de que desea eliminar esta norma?"
                                 header="Atención"
@@ -79,6 +79,22 @@
                             </p:confirmDialog>
                         </p:column>
                     </p:dataTable>
+                    
+                    <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                    <h:commandLink>
+                        <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="normas" />
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                        <p:dataExporter type="pdf" target="tbl" fileName="normas"/>
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="normas" />
+                    </h:commandLink>
                 </p:panel>
                 <br />
                  <p:commandButton value="Añadir nueva norma" ajax="false" action="#{normasController.prepareCreate}" disabled="false" />
