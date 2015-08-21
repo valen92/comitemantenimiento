@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
 import views.util.JsfUtil;
 import views.util.PaginationHelper;
+import javax.annotation.PostConstruct;
 
 @Named("normasController")
 @ManagedBean
