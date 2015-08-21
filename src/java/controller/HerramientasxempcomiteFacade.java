@@ -42,4 +42,17 @@ public class HerramientasxempcomiteFacade extends AbstractFacade<Herramientasxem
         return q.getResultList();
     }
     
+    public List<Herramientasxempcomite> findporTipoHerramientaM(int[] range, int idTH, int idU) {
+        String consulta = "SELECT n FROM Herramientasxempcomite n LEFT JOIN Herramientas h, Usuarios u "
+                + "where n.fkidHerramientas.idHerramientas = h.idHerramientas and "
+                + "h.fkidTipoHerramientas.idTipoHerramientas = :idTipo and n.fkidEmpresas.idEmpresas = "
+                + "u.fkidEmpresas.idEmpresas and u.idUsuarios = :idUsuario";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idTipo", idTH); //Variable a pasar de la sesión
+        q.setParameter("idUsuario", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
 }

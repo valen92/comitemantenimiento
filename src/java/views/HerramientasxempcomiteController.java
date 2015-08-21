@@ -1,14 +1,11 @@
 package views;
 
-import entities.Herramientasxempcomite;
-import views.util.JsfUtil;
-import views.util.PaginationHelper;
 import controller.HerramientasxempcomiteFacade;
-
+import entities.Herramientasxempcomite;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,6 +14,10 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import views.util.JsfUtil;
+import views.util.PaginationHelper;
 
 @Named("herramientasxempcomiteController")
 @SessionScoped
@@ -28,8 +29,24 @@ public class HerramientasxempcomiteController implements Serializable {
     private controller.HerramientasxempcomiteFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private List<Herramientasxempcomite> filtro;
 
-    public HerramientasxempcomiteController() {
+    private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
+    private int idU;
+
+    public HerramientasxempcomiteController() {faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+    }
+    
+    public List<Herramientasxempcomite> getFiltro() {
+        recreateModel();
+        return filtro;
+    }
+
+    public void setFiltro(List<Herramientasxempcomite> filtro) {
+        this.filtro = filtro;
     }
 
     public Herramientasxempcomite getSelected() {
@@ -75,6 +92,25 @@ public class HerramientasxempcomiteController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findporTipoHerramienta(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoH));
+                }
+            };
+        }
+        return pagination;
+    }
+    
+    public PaginationHelper getPaginationM(int tipoHerramienta) {
+        final int tipoH = tipoHerramienta;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporTipoHerramientaM(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoH, idU));
                 }
             };
         }
@@ -184,6 +220,15 @@ public class HerramientasxempcomiteController implements Serializable {
         recreateModel();
         if (items == null) {
             items = getPagination(tipoHerramienta).createPageDataModel();
+        }
+        return items;
+    }
+    
+    public DataModel getItemsEM(int tipoHerramienta) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationM(tipoHerramienta).createPageDataModel();
         }
         return items;
     }

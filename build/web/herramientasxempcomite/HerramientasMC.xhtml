@@ -30,7 +30,7 @@
                         <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedoresUsuMC.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Normas" url="/faces/normas/Normas.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
                     </p:tabMenu>
@@ -38,117 +38,128 @@
                 <p:panel header="Herramientas">
                     <p:tabView orientation="left">
                         <p:tab title="Mecánico">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Nombre Herramienta:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Código Herramienta:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Empresa:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              
-                             
-                            </h:panelGrid>
-                            <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{herramientasxempcomiteController.getItemsEM(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay herramientas mecánicas"
+                                         widgetVar="mecanico"
+                                         filteredValue="#{herramientasxempcomiteController.filtro}">
 
-                                <p:column headerText="Herramienta">
-                                    
+                                <p:column headerText="Código"
+                                          filterBy="#{item.codigoHerramempcomite}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Herramienta"
+                                          filterBy="#{item.fkidHerramientas.nombreHerramienta}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
                                 </p:column>
 
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                <p:column headerText="Empresa">
+                                <p:column headerText="Empresa"
+                                          filterBy="#{item.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Disponibilidad">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad"
+                                          filterBy="#{item.disponibilidadHerramempcomite}"
+                                          filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('mecanico').filter()" >
+                                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="Habilitado" itemValue="Habilitado" />
+                                            <f:selectItem itemLabel="Deshabilitado" itemValue="Deshabilitado" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{item.disponibilidadHerramempcomite}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctrico">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Nombre Herramienta:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Código Herramienta:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Empresa:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                             
-                            </h:panelGrid>
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{herramientasxempcomiteController.getItemsEM(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay herramientas eléctricas"
+                                         widgetVar="electrico"
+                                         filteredValue="#{herramientasxempcomiteController.filtro}">
 
-                                <p:column headerText="Repuesto">
+                                <p:column headerText="Código"
+                                          filterBy="#{item.codigoHerramempcomite}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Herramienta"
+                                          filterBy="#{item.fkidHerramientas.nombreHerramienta}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
                                 </p:column>
 
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                <p:column headerText="Empresa">
+                                <p:column headerText="Empresa"
+                                          filterBy="#{item.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Estado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad"
+                                          filterBy="#{item.disponibilidadHerramempcomite}"
+                                          filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('electrico').filter()" >
+                                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="Habilitado" itemValue="Habilitado" />
+                                            <f:selectItem itemLabel="Deshabilitado" itemValue="Deshabilitado" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{item.disponibilidadHerramempcomite}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Instrumentación">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Nombre Herramienta:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Código Herramienta:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Empresa:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              
-                             
-                            </h:panelGrid>
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{herramientasxempcomiteController.getItemsEM(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay herramientas de instrumentación"
+                                         widgetVar="instrumentacion"
+                                         filteredValue="#{herramientasxempcomiteController.filtro}">
 
-                                <p:column headerText="Repuesto">
+                                <p:column headerText="Código"
+                                          filterBy="#{item.codigoHerramempcomite}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Herramienta"
+                                          filterBy="#{item.fkidHerramientas.nombreHerramienta}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
                                 </p:column>
 
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                <p:column headerText="Empresa">
+                                <p:column headerText="Empresa"
+                                          filterBy="#{item.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Estado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad"
+                                          filterBy="#{item.disponibilidadHerramempcomite}"
+                                          filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('instrumentacion').filter()" >
+                                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="Habilitado" itemValue="Habilitado" />
+                                            <f:selectItem itemLabel="Deshabilitado" itemValue="Deshabilitado" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{item.disponibilidadHerramempcomite}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
