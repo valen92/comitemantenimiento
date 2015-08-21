@@ -80,9 +80,21 @@ public class ObservacionesproveedorController implements Serializable {
         return "/observacionesproveedor/ObservacionesM";
     }
 
+    public String prepareListObMS(int id, int idU) {
+        idServiciosContrato=id;
+        idUsuario=idU;
+        recreateModel();
+        return "/observacionesproveedor/ObservacionesMS";
+    }
+
     public String prepareList() {
         recreateModel();
         return "/observacionesproveedor/Observaciones";
+    }
+
+    public String prepareListS() {
+        recreateModel();
+        return "/observacionesproveedor/ObservacionesMS";
     }
 
     public String prepareListM() {
@@ -94,6 +106,12 @@ public class ObservacionesproveedorController implements Serializable {
         current = (Observacionesproveedor) getItemsd().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
+    }
+
+    public String prepareViewS() {
+        current = (Observacionesproveedor) getItemsd().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "ViewMS";
     }
 
     public String prepareViewM() {
@@ -112,6 +130,12 @@ public class ObservacionesproveedorController implements Serializable {
         current = new Observacionesproveedor();
         selectedItemIndex = -1;
         return "/observacionesproveedor/CrearObservacionM";
+    }
+
+    public String prepareCreateS() {
+        current = new Observacionesproveedor();
+        selectedItemIndex = -1;
+        return "/observacionesproveedor/CrearObservacionS";
     }
 
     public String create() {
@@ -134,6 +158,19 @@ public class ObservacionesproveedorController implements Serializable {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La observación ha sido adicionada con éxito");  
             RequestContext.getCurrentInstance().showMessageInDialog(message);
             return "ObservacionesM";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String createS() {
+        try {
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ObservacionesproveedorCreated"));
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La observación ha sido adicionada con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return "ObservacionesMS";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
