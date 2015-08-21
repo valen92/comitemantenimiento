@@ -60,6 +60,7 @@ public class UsuariosController implements Serializable {
     }
     
     public List<Usuarios> getFiltro() {
+        recreateModel();
         return filtro;
     }
 
@@ -119,6 +120,24 @@ public class UsuariosController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findporHerramienta(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idEmpresa));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationR() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporRepuesto(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idEmpresa));
                 }
             };
         }
@@ -196,6 +215,15 @@ public class UsuariosController implements Serializable {
         return "ViewUsuario";
     }
 
+    public String prepareViewM(Empresas id, int idU) {
+        idEmpresa=id.getIdEmpresas();
+        nomEmpresa=id.getNombreEmpresa();
+        idUsuario=idU;
+        current = (Usuarios) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "ViewUsuarioM";
+    }
+
     public String prepareCreate() {
         current = new Usuarios();
         selectedItemIndex = -1;
@@ -216,6 +244,11 @@ public class UsuariosController implements Serializable {
     public String reloadMiembro (){
         recreateModel();
         return "/usuarios/DirMiembros";        
+    }
+    
+    public String reloadMiembroM (){
+        recreateModel();
+        return "/usuarios/DirMiembrosUsuMC";        
     }
     
     public void reloadAsociadas (){
@@ -244,6 +277,12 @@ public class UsuariosController implements Serializable {
         current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
+    }
+
+    public String prepareDetalleM() {
+        current = (Usuarios) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View_1";
     }
 
     public String prepareEditP() {
@@ -330,6 +369,12 @@ public class UsuariosController implements Serializable {
         recreatePagination();
         recreateModel();
         return "/usuarios/DirMiembros";
+    }
+    
+    public String MiembrosM() {
+        recreatePagination();
+        recreateModel();
+        return "/usuarios/DirMiembrosUsuMC";
     }
     
     public String Proveedores() {
@@ -447,6 +492,15 @@ public class UsuariosController implements Serializable {
         recreateModel();
         if (items == null) {
              items = getPaginationH().createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsR () {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+             items = getPaginationR().createPageDataModel();
         }
         return items;
     }

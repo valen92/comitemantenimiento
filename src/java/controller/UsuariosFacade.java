@@ -7,7 +7,9 @@
 package controller;
 
 import entities.Actividades;
+import entities.Empresas;
 import entities.Herramientasxempcomite;
+import entities.Repuestosxempresas;
 import entities.Usuarios;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -104,6 +106,15 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         return q.getResultList();
     }
     
+    public List<Repuestosxempresas> findporRepuesto(int[] range, int idU) {
+        String consulta = "select n from Repuestosxempresas n where n.fkidEmpresas.idEmpresas = :idEmpresa";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
     public List<Actividades> findporProActual(int[] range, int idU) {
         String consulta = "SELECT n FROM Actividades n LEFT JOIN Servicioscontrato s";
         consulta = consulta + ", Serviciosxempproveedoras u where n.fkidServiciosContrato";
@@ -118,18 +129,18 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
     }
     
 
-    public List<Usuarios> findAllMiembro() {
-        String consulta = "select n from Usuarios n where n.fkidPerfil.idPerfil = :idPerfil";
+    public List<Empresas> findAllMiembro() {
+        String consulta = "select n from Empresas n where n.tipoEmpresa = :idPerfil";
         Query q = getEntityManager().createQuery(consulta);
-        q.setParameter("idPerfil", 2); //Variable a pasar de la sesión
+        q.setParameter("idPerfil", "Comite"); //Variable a pasar de la sesión
         return q.getResultList();
     }
     
 
-    public List<Usuarios> findAllProveedor() {
-        String consulta = "select n from Usuarios n where n.fkidPerfil.idPerfil = :idPerfil";
+    public List<Empresas> findAllProveedor() {
+        String consulta = "select n from Empresas n where n.tipoEmpresa = :idPerfil";
         Query q = getEntityManager().createQuery(consulta);
-        q.setParameter("idPerfil", 3); //Variable a pasar de la sesión
+        q.setParameter("idPerfil", "Proveedor"); //Variable a pasar de la sesión
         return q.getResultList();
     }
     

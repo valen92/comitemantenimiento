@@ -153,7 +153,7 @@ public class JsfUtil {
         return items;
     }
     
-    public static SelectItem[] getSelectItemsUsuariosM(List<Usuarios> entities, boolean selectOne) {
+    public static SelectItem[] getSelectItemsUsuariosM(List<Empresas> entities, boolean selectOne) {
         int size = selectOne ? entities.size() + 1 : entities.size();
         SelectItem[] items = new SelectItem[size];
         int i = 0;
@@ -161,13 +161,13 @@ public class JsfUtil {
             items[0] = new SelectItem("", "Seleccione una empresa");
             i++;
         }
-        for (Usuarios x : entities) {
-            items[i++] = new SelectItem(x.getFkidEmpresas().getNombreEmpresa(), x.getFkidEmpresas().getNombreEmpresa());
+        for (Empresas x : entities) {
+            items[i++] = new SelectItem(x.getNombreEmpresa(), x.getNombreEmpresa());
         }
         return items;
     }
     
-    public static SelectItem[] getSelectItemsUsuariosP(List<Usuarios> entities, boolean selectOne) {
+    public static SelectItem[] getSelectItemsUsuariosP(List<Empresas> entities, boolean selectOne) {
         int size = selectOne ? entities.size() + 1 : entities.size();
         SelectItem[] items = new SelectItem[size];
         int i = 0;
@@ -175,8 +175,8 @@ public class JsfUtil {
             items[0] = new SelectItem("", "Seleccione una empresa");
             i++;
         }
-        for (Usuarios x : entities) {
-            items[i++] = new SelectItem(x.getFkidEmpresas().getNombreEmpresa(), x.getFkidEmpresas().getNombreEmpresa());
+        for (Empresas x : entities) {
+            items[i++] = new SelectItem(x.getNombreEmpresa(), x.getNombreEmpresa());
         }
         return items;
     }
