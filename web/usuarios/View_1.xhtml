@@ -8,7 +8,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="Comité de Mantenimiento"></h:outputText>
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form>
@@ -34,29 +34,63 @@
                             <f:param name="index" value="3" />
                         </p:menuitem>
                     </p:tabMenu>
-                 </h:panelGrid>
-                <p:panel header="Detalle miembro comité">
-                    <h:panelGrid columns="2" style="margin-top: 20px; margin-left: 30px">
-                         <h:outputText value="Nombre: " style="font-size: 18px; color: black; font-weight: bold"/>
-                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.nombreUsuario}" title="#{bundle.ViewUsuariosTitle_nombreUsuario}"/>
-                         <h:outputText value="Apellido: " style="font-size: 18px; color: black; font-weight: bold"/>
-                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.apellidoUsuario}" title="#{bundle.ViewUsuariosTitle_apellidoUsuario}"/>
-                         <h:outputText value="Empresa: " style="font-size: 18px; color: black; font-weight: bold"/>
-                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.fkidEmpresas.nombreEmpresa}" title="#{bundle.ViewUsuariosTitle_fkidEmpresas}"/>
-                         <h:outputText value="Cargo: " style="font-size: 18px; color: black; font-weight: bold"/>
-                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.cargoUsuario}" title="#{bundle.ViewUsuariosTitle_cargoUsuario}"/>
-                         <h:outputText value="Teléfono: " style="font-size: 18px; color: black; font-weight: bold"/>
-                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.fijoUsuario}" title="#{bundle.ViewUsuariosTitle_fijoUsuario}"/>
-                         <h:outputText value="Celular: " style="font-size: 18px; color: black; font-weight: bold"/>
-                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.movilUsuario}" title="#{bundle.ViewUsuariosTitle_movilUsuario}"/>
-                         <h:outputText value="Correo electrónico: " style="font-size: 18px; color: black; font-weight: bold"/>
-                         <h:outputText style="margin-left: 20px; font-size: 16px;" value="#{usuariosController.selected.emailUsuario}" title="#{bundle.ViewUsuariosTitle_emailUsuario}"/>
-                     </h:panelGrid>
-                </p:panel>
-                <br />
-            </h:form>
+                </h:panelGrid>
+                <p:growl id="msgs" showDetail="true" />
+                <p:panel id="empcomite" header="Directorio de miembros comite" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
+                    <br/>
+                    <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
+                    <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
+                    
+
+                
+                
+
+               <p:dataTable value="#{servicioscontratoController.getItemsEmpresa}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="dirMiembros"
+                                          emptyMessage="No hay resultados para la busqueda" 
+                                          filteredValue="#{usuariosController.filtro}">
+                   
+                        <p:column headerText="Empresa" filterBy="#{item.fkidEmpresas.nombreEmpresa}">
+                            <f:facet name="filter" >
+                                <p:selectOneMenu id="globalFilter" onchange="PF('dirMiembros').filter()" >
+                                    <f:selectItems value="#{usuariosController.itemsAvailableSelectOneM}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Nombre" style="width:200px">
+                            <h:outputText value="#{item.nombreUsuario}"/>
+                        </p:column>
+                        
+                         <p:column headerText="Apellido" style="width:200px">
+                            <h:outputText value="#{item.apellidoUsuario}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Teléfono" style="width:100px">
+                            <h:outputText value="#{item.fijoUsuario}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Celular" style="width:100px">
+                            <h:outputText value="#{item.movilUsuario}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Correo Electrónico">
+                            <h:outputText value="#{item.emailUsuario}"/>
+                        </p:column>
+                        
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{usuariosController.prepareViewM(item.fkidEmpresas, item.idUsuarios)}" styleClass="ui-icon ui-icon-search"/>
+                            <h:outputText value=" "/>
+                        </p:column>   
+                </p:dataTable>
+                    </p:panel>
+           </h:form>
         </ui:define>
     </ui:composition>
 
 </html>
-

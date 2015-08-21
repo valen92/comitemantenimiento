@@ -7,6 +7,7 @@
 package controller;
 
 import entities.Actividades;
+import entities.Empresas;
 import entities.Servicioscontrato;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -62,6 +63,15 @@ public class ServicioscontratoFacade extends AbstractFacade<Servicioscontrato> {
         consulta = consulta + ".idServiciosContrato = s.idServiciosContrato and";
         consulta = consulta + " s.fkidServiciosxEmpProveedoras.idServiciosxEmpProveedoras";
         consulta = consulta + " = u.idServiciosxEmpProveedoras and s.fkidEmpresas.idEmpresas = :idEmpresa";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
+    public List<Empresas> findporEmpresas(int[] range, int idU) {
+        String consulta = "SELECT n FROM Empresas n where n.idEmpresas = :idEmpresa";
         Query q = getEntityManager().createQuery(consulta);
         q.setParameter("idEmpresa", idU); //Variable a pasar de la sesión
         q.setMaxResults(range[1] - range[0] + 1);

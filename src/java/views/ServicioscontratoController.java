@@ -126,6 +126,24 @@ public class ServicioscontratoController implements Serializable {
         return pagination;
     }
 
+    public PaginationHelper getPaginationEmpresa() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporEmpresas(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idEmpresa));
+                }
+            };
+        }
+        return pagination;
+    }
+
     public String prepareList(Empresas id, int idU) {
         idEmpresa=id.getIdEmpresas();
         idUsuario=idU;
@@ -145,10 +163,10 @@ public class ServicioscontratoController implements Serializable {
         return "/servicioscontrato/DetalleProveedor";
     }
 
-    public String prepareListMC(Empresas id) {
+    public void prepareListMC(Empresas id) {
         idEmpresa=id.getIdEmpresas();
         recreateModel();
-        return "/servicioscontrato/DetalleProveedorM";
+        RequestContext.getCurrentInstance().openDialog("/servicioscontrato/DetalleProveedorM");
     }
     
 
@@ -257,6 +275,15 @@ public class ServicioscontratoController implements Serializable {
         recreateModel();
         if (items == null) {
             items = getPaginationS().createPageDataModel();
+        }
+        return items;
+    }
+    
+    public DataModel getItemsEmpresa() {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationEmpresa().createPageDataModel();
         }
         return items;
     }

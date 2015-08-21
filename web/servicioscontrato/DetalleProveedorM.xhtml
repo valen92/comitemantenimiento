@@ -8,164 +8,39 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="Comité de mantenimiento"></h:outputText>
+            <h:outputText value="Detalle proveedor"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:panelGrid columns="1">
-                    <p:tabMenu activeIndex="4">
-                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
-                            <f:param name="index" value="0" />
-                        </p:menuitem>
-                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
-                            <f:param name="index" value="1" />
-                        </p:menuitem>
-                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
-                            <f:param name="index" value="2" />
-                        </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
-                            <f:param name="index" value="3" />
-                        </p:menuitem>
-                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
-                            <f:param name="index" value="4" />
-                        </p:menuitem>
-                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
-                            <f:param name="index" value="5" />
-                        </p:menuitem>
-                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
-                            <f:param name="index" value="6" />
-                        </p:menuitem>
-                    </p:tabMenu>
-                </h:panelGrid>
-                <p:growl id="msgs" showDetail="true" />
-
-                <h3><strong>Detalle Empresa Proveedora:</strong></h3>
-                <h:outputText value=""/>
-                
-                <p:dataTable value="#{servicioscontratoController.itemsS}" var="item" 
-                                         rows="1" >
-                    <p:column>
-                        <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
-                    </p:column>
+                    <p:dataTable value="#{servicioscontratoController.itemsEmpresa}" var="item"
+                                         >
+                   
+                        <p:column headerText="Nit"  style="width:60px">
+                            <h:outputText value="#{item.nitEmpresa}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Nombre" style="width:60px">
+                            <h:outputText value="#{item.nombreEmpresa}"/>
+                        </p:column>
+                        
+                         <p:column headerText="Dirección" style="width:60px">
+                            <h:outputText value="#{item.direccionEmpresa}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Teléfono" style="width:60px">
+                            <h:outputText value="#{item.fijoEmpresa}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Celular" style="width:60px">
+                            <h:outputText value="#{item.movilEmpresa}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Ciudad" style="width:60px">
+                            <h:outputText value="#{item.fkidCiudad.nombreCiudad}"/>
+                        </p:column>  
                 </p:dataTable>
-                <br/>
-                <p:accordionPanel>
-                    <p:tab title="Historial empresa proveedora">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{servicioscontratoController.itemsS}" var="item" 
-                                         rows="5"
-                                         paginator="true"
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
-
-                                <p:column headerText="Listado de empresas con las que ha trabajado">
-                                    <h:outputText value="#{item.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
-                                </p:column>
-
-                                <p:column headerText="Observaciones del servicio">
-                                    <h:commandLink action="#{observacionesproveedorController.prepareListOb(item.idServiciosContrato, servicioscontratoController.getIdUsuario())}" value="Ver observaciones">
-                                        <f:param name="productId" />
-                                    </h:commandLink>
-                                </p:column>
-
-                                <p:column headerText="Servicios prestados">
-                                    <h:outputText value="#{item.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
-                                </p:column>
-
-                                <p:column headerText="Actividad realizada">
-                                    <h:outputText value="#{item.fkidContratos.descripcionContrato}"/>
-                                </p:column>
-
-                            </p:dataTable>
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="Tipo de servicios que presta actualmente">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{servicioscontratoController.itemsSA}" var="item" 
-                                         rows="5"
-                                         paginator="true"
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
-
-                                <p:column headerText="Tipo de servicio">
-                                    <h:outputText value="#{item.fkidServicios.nombreServicio}"/>
-                                </p:column>
-
-                                <p:column headerText="Descripción">
-                                    <h:outputText value="#{item.fkidServicios.descripcionServicio}"/>
-                                </p:column>
-
-                            </p:dataTable>
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="Contacto proveedores">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{usuariosController.itemsDP}" var="item" 
-                                         rows="5"
-                                         paginator="true"
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
-
-                                <p:column headerText="Nombre">
-                                    <h:outputText value="#{item.nombreUsuario}"/>
-                                </p:column>
-
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
-                                </p:column>
-
-                                <p:column headerText="Teléfono">
-                                    <h:outputText value="#{item.fijoUsuario}"/>
-                                </p:column>
-
-                                <p:column headerText="Celular">
-                                    <h:outputText value="#{item.movilUsuario}"/>
-                                </p:column>
-
-                                <p:column headerText="Correo electrónico">
-                                    <h:outputText value="#{item.emailUsuario}"/>
-                                </p:column>
-                            </p:dataTable>
-                        </h:panelGrid>
-                    </p:tab>
-                </p:accordionPanel>
-                <br/>
-                <p:commandButton  id="aceptar" value="Volver al menu principal"  action="#{usuariosController.Proveedores}" styleClass="ui-priority-primary" />
-            </h:form>
+           </h:form>
         </ui:define>
     </ui:composition>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

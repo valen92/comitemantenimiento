@@ -160,10 +160,6 @@
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="" style="width:24px">
-                                    <h:commandLink action="#{servicioscontratoController.prepareListMC(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
-                                </p:column>
-
                                 <p:column headerText="Tipo de servicio">
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
@@ -174,6 +170,10 @@
                                 
                                 <p:column headerText="Contacto proveedor">
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidEmpresas.movilEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="" style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListMC(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
                                 </p:column>
                              </p:dataTable>
                         </h:panelGrid>
