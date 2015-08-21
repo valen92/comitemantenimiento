@@ -23,26 +23,24 @@ and open the template in the editor.
             <h:form>
                 <h:panelGrid columns="1">
                     <p:tabMenu activeIndex="4">
-                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                        <p:menuitem value="Inicio" url="/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/RepuestosMC.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="1" />
                         </p:menuitem>
-                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
-                            <f:param name="index" value="2" />
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/HerramientasMC.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
+                       
+                        <p:menuitem value="Directorio miembros" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedoresUsuMC.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
-                            <f:param name="index" value="4" />
-                        </p:menuitem>
-                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
-                            <f:param name="index" value="5" />
-                        </p:menuitem>
-                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
-                            <f:param name="index" value="6" />
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
                         </p:menuitem>
                     </p:tabMenu>
                 </h:panelGrid>
@@ -95,11 +93,11 @@ and open the template in the editor.
 
                 </p:panel>
                     <br/>
-                    <p:commandButton value="Guardar observacion" id="Guardar" update="growl" action="#{observacionesproveedorController.create}" styleClass="ui-priority-primary"/>
+                    <p:commandButton value="Guardar observacion" id="Guardar" update="growl" action="#{observacionesproveedorController.createM}" styleClass="ui-priority-primary"/>
             </h:form>
             <br/>
             <h:form>
-                <p:commandButton value="Cancelar" action="#{observacionesproveedorController.prepareList()}" disabled="false" />
+                <p:commandButton value="Cancelar" action="#{observacionesproveedorController.prepareListM()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

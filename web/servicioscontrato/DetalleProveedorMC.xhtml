@@ -57,12 +57,12 @@
                                          rowsPerPageTemplate="5,10,15"
                                          emptyMessage="No hay historial de servicios para esta empresa">
 
-                                <p:column headerText="Listado de empresas con las que ha trabajado">
+                                <p:column headerText="Empresas con las que ha trabajado">
                                     <h:outputText value="#{item.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Observaciones del servicio">
-                                    <h:commandLink action="#{observacionesproveedorController.prepareListOb(item.idServiciosContrato, servicioscontratoController.getIdUsuario())}" value="Ver observaciones">
+                                <p:column headerText="Observaciones" style="width: 120px">
+                                    <h:commandLink style="float: right" action="#{observacionesproveedorController.prepareListObM(item.idServiciosContrato, servicioscontratoController.getIdUsuario())}" styleClass="ui-icon ui-icon-search">
                                         <f:param name="productId" />
                                     </h:commandLink>
                                 </p:column>

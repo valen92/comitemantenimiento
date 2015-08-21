@@ -50,7 +50,7 @@ and open the template in the editor.
                     <h:panelGrid columns="2">
 
                         <h:outputLabel value="Título:" for="tituloObservacionproveedor" />
-                        <h:inputText id="tituloObservacionproveedor" value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" 
+                        <p:inputText id="tituloObservacionproveedor" value="#{observacionesproveedorController.selected.tituloObservacionproveedor}" 
                                          required="true" 
                                          requiredMessage="Campo título requerido"/>
                         
@@ -61,7 +61,7 @@ and open the template in the editor.
                                          requiredMessage="Campo observacion requerido"/>
                         
                         <h:outputLabel value="Calificación:" for="calificacionObservacionproveedor" />
-                        <h:selectOneMenu id="calificacionObservacionproveedor" value="#{observacionesproveedorController.selected.calificacionObservacionproveedor}" 
+                        <p:selectOneMenu id="calificacionObservacionproveedor" value="#{observacionesproveedorController.selected.calificacionObservacionproveedor}" 
                                          required="true" 
                                          requiredMessage="Campo califiicación requerido">
                             <f:selectItem itemLabel="Seleccione una calificación" itemValue="" />
@@ -69,7 +69,7 @@ and open the template in the editor.
                             <f:selectItem itemLabel="Bueno" itemValue="Bueno" />
                             <f:selectItem itemLabel="Aceptable" itemValue="Aceptable" />
                             <f:selectItem itemLabel="Malo" itemValue="Malo" />
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         
                         <h:outputLabel value="Fecha creación:"  for="fecObservacionproveedor" />
                         <p:calendar id="fecObservacionproveedor" value="#{observacionesproveedorController.selected.fecObservacionproveedor}" 
@@ -78,16 +78,16 @@ and open the template in the editor.
                         </p:calendar>
                         
                         <h:outputLabel value="N° Contrato: " for="fkidServiciosContrato" />
-                        <h:selectOneMenu id="fkidServiciosContrato" value="#{observacionesproveedorController.selected.fkidServiciosContrato}" 
+                        <p:selectOneMenu id="fkidServiciosContrato" value="#{observacionesproveedorController.selected.fkidServiciosContrato}" 
                                          required="true" requiredMessage="Campo contrato requerido">
                             <f:selectItems value="#{servicioscontratoController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         
                         <h:outputLabel value="Usuario: " for="fkidUsuarios" />
-                        <h:selectOneMenu id="fkidUsuarios" value="#{observacionesproveedorController.selected.fkidUsuarios}" 
+                        <p:selectOneMenu id="fkidUsuarios" value="#{observacionesproveedorController.selected.fkidUsuarios}" 
                                          required="true" requiredMessage="Campo usuario requerido">
                             <f:selectItems value="#{usuariosController.itemsAvailableSelectOneo}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         
                         <br />
                         <p:growl id="growl" life="2000" />    

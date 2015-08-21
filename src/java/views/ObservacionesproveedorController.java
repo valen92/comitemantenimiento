@@ -73,21 +73,39 @@ public class ObservacionesproveedorController implements Serializable {
         return "/observacionesproveedor/Observaciones";
     }
 
+    public String prepareListObM(int id, int idU) {
+        idServiciosContrato=id;
+        idUsuario=idU;
+        recreateModel();
+        return "/observacionesproveedor/ObservacionesM";
+    }
+
     public String prepareList() {
         recreateModel();
         return "/observacionesproveedor/Observaciones";
     }
 
+    public String prepareListM() {
+        recreateModel();
+        return "/observacionesproveedor/ObservacionesM";
+    }
+
     public String prepareView() {
         current = (Observacionesproveedor) getItemsd().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "ViewM";
     }
 
     public String prepareCreate() {
         current = new Observacionesproveedor();
         selectedItemIndex = -1;
         return "/observacionesproveedor/CrearObservacion";
+    }
+
+    public String prepareCreateM() {
+        current = new Observacionesproveedor();
+        selectedItemIndex = -1;
+        return "/observacionesproveedor/CrearObservacionM";
     }
 
     public String create() {
@@ -97,6 +115,19 @@ public class ObservacionesproveedorController implements Serializable {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La observación ha sido adicionada con éxito");  
             RequestContext.getCurrentInstance().showMessageInDialog(message);
             return "Observaciones";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String createM() {
+        try {
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ObservacionesproveedorCreated"));
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La observación ha sido adicionada con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return "ObservacionesM";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
