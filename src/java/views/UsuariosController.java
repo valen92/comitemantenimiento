@@ -382,6 +382,12 @@ public class UsuariosController implements Serializable {
         recreateModel();
         return "/usuarios/DirProveedores";
     }
+    
+    public String ProveedoresM() {
+        recreatePagination();
+        recreateModel();
+        return "/usuarios/DirProveedoresUsuMC";
+    }
 
     public String destroyAndView() {
         performDestroy();

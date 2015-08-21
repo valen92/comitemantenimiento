@@ -75,7 +75,7 @@
                         </p:column>
                         
                         <p:column style="width:24px">
-                            <h:commandLink action="#{usuariosController.prepareView()}" styleClass="ui-icon ui-icon-search"/>
+                            <h:commandLink action="#{servicioscontratoController.prepareListM(item.fkidEmpresas, item.idUsuarios)}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
                         </p:column>   
                 </p:dataTable>
