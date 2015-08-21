@@ -13,7 +13,7 @@
         <ui:define name="body">
             <h:form>
                 <h:panelGrid columns="1">
-                    <p:tabMenu activeIndex="6">
+                    <p:tabMenu activeIndex="5">
                         <p:menuitem value="Inicio" url="/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
@@ -67,7 +67,7 @@
                         </p:column>
                                           
                         <p:column style="width:24px">
-                            <h:commandLink action="#{normasController.prepareView}" styleClass="ui-icon ui-icon-search"/>
+                            <h:commandLink action="#{normasController.prepareViewM}" styleClass="ui-icon ui-icon-search"/>
                         </p:column> 
                     </p:dataTable>
                 </p:panel>

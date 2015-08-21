@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de Mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="5">
+                        <p:menuitem value="Inicio" url="/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/RepuestosMC.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/HerramientasMC.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                       
+                        <p:menuitem value="Directorio miembros" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedoresUsuMC.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normas.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                 </h:panelGrid>
+            </h:form>
+            <h:form>
+                 <p:panel header="Normatividad - Detalles norma">
+                    <h:panelGrid columns="2" style="margin-top: 20px; margin-left: 30px">
+                        <h:outputText value="Emisor de la norma" style="font-size: 20px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 18px;" value="  #{normasController.selected.entidadreguladoraNorma}" title="#{bundle.ViewNormasTitle_entidadreguladoraNorma}"/>
+                        
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        
+                        <h:outputText value="Titulo" style="font-size: 20px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 18px" value="  #{normasController.selected.nombreNorma}" title="#{bundle.ViewNormasTitle_nombreNorma}"/>
+                        
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        
+                        <h:outputText value="Numeral" style="font-size: 20px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 18px" value="  #{normasController.selected.codigoNorma}" title="#{bundle.ViewNormasTitle_codigoNorma}"/>
+                        
+                        <h:outputText value=""/>
+                        <h:outputText value=""/>
+                        
+                        <h:outputText value="Descripción" style="font-size: 20px; color: black; font-weight: bold"/>
+                        <h:outputText style="margin-left: 20px; font-size: 18px" value="  #{normasController.selected.descripcionNorma}" title="#{bundle.ViewNormasTitle_descripcionNorma}"/>
+                    </h:panelGrid>
+                </p:panel>
+                <br />
+                <br />
+                 <p:commandButton value="Volver" action="#{normasController.reloadM}" disabled="false" />                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

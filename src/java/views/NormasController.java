@@ -114,10 +114,21 @@ public class NormasController implements Serializable {
         return "Normatividad";
     }
 
+    public String reloadM() {
+        recreateModel();
+        return "Normas";
+    }
+
     public String prepareView() {
         current = (Normas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
+    }
+
+    public String prepareViewM() {
+        current = (Normas) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "ViewM";
     }
 
     public String prepareCreate() {
