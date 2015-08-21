@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de Mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="6">
+                        <p:menuitem value="Inicio" url="/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/RepuestosMC.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/HerramientasMC.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                       
+                        <p:menuitem value="Directorio miembros" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedoresUsuMC.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normas.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                 </h:panelGrid>
+                <p:panel header="Normatividad">
+               <p:dataTable value="#{normasController.itemsUsuario}" var="item" 
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="No hay normas para este usuario con ese nombre"
+                         widgetVar="normas"
+                         filteredValue="#{normasController.filtro}">
+                       
+                        <p:column headerText="Ente emisor" >
+                            <h:outputText value="#{item.entidadreguladoraNorma}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Norma" filterBy="#{item.nombreNorma}">
+                            <f:facet name="filter" >
+                                <p:selectOneMenu id="globalFilter" onchange="PF('normas').filter()" >
+                                    <f:selectItems value="#{normasController.itemsAvailableSelectOneM}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreNorma}"/>
+                        </p:column>
+                        
+                         <p:column headerText="Numeral">
+                            <h:outputText value="#{item.codigoNorma}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Descripción">
+                            <h:outputText value="#{item.descripcionNorma}"/>
+                        </p:column>
+                                          
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{normasController.prepareView}" styleClass="ui-icon ui-icon-search"/>
+                        </p:column> 
+                    </p:dataTable>
+                </p:panel>
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

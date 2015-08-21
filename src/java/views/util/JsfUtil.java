@@ -9,6 +9,7 @@ import entities.Herramientas;
 import entities.Linearepuestos;
 import entities.Marcasherramientas;
 import entities.Marcasrepuestos;
+import entities.Normas;
 import entities.Perfil;
 import entities.Repuestos;
 import entities.Servicios;
@@ -63,6 +64,20 @@ public class JsfUtil {
         }
         for (Ciudad x : entities) {
             items[i++] = new SelectItem(x, x.getNombreCiudad());
+        }
+        return items;
+    } 
+     
+     public static SelectItem[] getSelectItemsNormas(List<Normas> entities, boolean selectOne) {
+        int size = selectOne ? entities.size() + 1 : entities.size();
+        SelectItem[] items = new SelectItem[size];
+        int i = 0;
+        if (selectOne) {
+            items[0] = new SelectItem("", "Seleccione una Norma");
+            i++;
+        }
+        for (Normas x : entities) {
+            items[i++] = new SelectItem(x.getNombreNorma(), x.getNombreNorma());
         }
         return items;
     } 

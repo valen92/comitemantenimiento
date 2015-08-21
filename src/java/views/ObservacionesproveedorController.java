@@ -93,6 +93,12 @@ public class ObservacionesproveedorController implements Serializable {
     public String prepareView() {
         current = (Observacionesproveedor) getItemsd().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+
+    public String prepareViewM() {
+        current = (Observacionesproveedor) getItemsd().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ViewM";
     }
 

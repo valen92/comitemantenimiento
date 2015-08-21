@@ -1,16 +1,15 @@
 package views;
 
-import entities.Normas;
-import views.util.JsfUtil;
-import views.util.PaginationHelper;
 import controller.NormasFacade;
-
+import entities.Normas;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,11 +17,11 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import org.primefaces.context.RequestContext;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import org.primefaces.context.RequestContext;
+import views.util.JsfUtil;
+import views.util.PaginationHelper;
 
 @Named("normasController")
 @ManagedBean
@@ -36,6 +35,7 @@ public class NormasController implements Serializable {
     private controller.NormasFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private List<Normas> filtro;
 
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
@@ -54,6 +54,15 @@ public class NormasController implements Serializable {
         }
         return current;
     }
+    
+    public List<Normas> getFiltro() {
+        recreateModel();
+        return filtro;
+    }
+
+    public void setFiltro(List<Normas> filtro) {
+        this.filtro = filtro;
+    }
 
     private NormasFacade getFacade() {
         return ejbFacade;
@@ -71,6 +80,24 @@ public class NormasController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationUsuario() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporLogin(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU));
                 }
             };
         }
@@ -196,6 +223,16 @@ public class NormasController implements Serializable {
         
     }
 
+    public DataModel getItemsUsuario() {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationUsuario().createPageDataModel();
+        }
+        return items;
+        
+    }
+
     private void recreateModel() {
         items = null;
     }
@@ -221,7 +258,11 @@ public class NormasController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+        return JsfUtil.getSelectItemsNormas(ejbFacade.findAll(), true);
+    }
+
+    public SelectItem[] getItemsAvailableSelectOneM() {
+        return JsfUtil.getSelectItemsNormas(ejbFacade.findAll(), true);
     }
 
     public Normas getNormas(java.lang.Integer id) {
