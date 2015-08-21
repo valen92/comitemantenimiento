@@ -1,14 +1,11 @@
 package views;
 
-import entities.Repuestosxempresas;
-import views.util.JsfUtil;
-import views.util.PaginationHelper;
 import controller.RepuestosxempresasFacade;
-
+import entities.Repuestosxempresas;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,6 +14,10 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import views.util.JsfUtil;
+import views.util.PaginationHelper;
 
 @Named("repuestosxempresasController")
 @SessionScoped
@@ -28,8 +29,25 @@ public class RepuestosxempresasController implements Serializable {
     private controller.RepuestosxempresasFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private List<Repuestosxempresas> filtro;
+
+    private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
+    private int idU;
 
     public RepuestosxempresasController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+    }
+    
+    public List<Repuestosxempresas> getFiltro() {
+        recreateModel();
+        return filtro;
+    }
+
+    public void setFiltro(List<Repuestosxempresas> filtro) {
+        this.filtro = filtro;
     }
 
     public Repuestosxempresas getSelected() {
@@ -75,6 +93,25 @@ public class RepuestosxempresasController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findporTipoRepuesto(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoR));
+                }
+            };
+        }
+        return pagination;
+    }
+    
+    public PaginationHelper getPaginationU(int tipoRepuesto) {
+        final int tipoR = tipoRepuesto;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporTipoRepuestoU(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoR, idU));
                 }
             };
         }
@@ -187,6 +224,15 @@ public class RepuestosxempresasController implements Serializable {
         }
         return items;
     }
+
+    public DataModel getItemsU(int tipoRepuesto) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationU(tipoRepuesto).createPageDataModel();
+        }
+        return items;
+    }
     
     private void recreateModel() {
         items = null;
@@ -214,6 +260,10 @@ public class RepuestosxempresasController implements Serializable {
 
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+    }
+
+    public SelectItem[] getItemsAvailableSelectOneM() {
+        return JsfUtil.getSelectItemsCodigoRepuesto(ejbFacade.findAll(), true);
     }
 
     public Repuestosxempresas getRepuestosxempresas(java.lang.Integer id) {

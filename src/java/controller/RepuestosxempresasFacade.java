@@ -34,9 +34,25 @@ public class RepuestosxempresasFacade extends AbstractFacade<Repuestosxempresas>
     }
     
     public List<Repuestosxempresas> findporTipoRepuesto(int[] range, int idTR) {
-        String consulta = "SELECT n FROM Repuestosxempresas n LEFT JOIN Repuestos h where n.fkidRepuestos.idRepuestos = h.idRepuestos and h.fkidLineaRepuestos.idLineaRepuestos = :idLinea";
+        String consulta = "SELECT n FROM Repuestosxempresas n LEFT JOIN Repuestos h where "
+                + "n.fkidRepuestos.idRepuestos = h.idRepuestos and h.fkidLineaRepuestos."
+                + "idLineaRepuestos = :idLinea";
         Query q = getEntityManager().createQuery(consulta);
         q.setParameter("idLinea", idTR); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
+    public List<Repuestosxempresas> findporTipoRepuestoU(int[] range, int idTR, int idU) {
+        String consulta = "SELECT n FROM Repuestosxempresas n LEFT JOIN Repuestos h, Usuarios u where "
+                + "n.fkidRepuestos.idRepuestos = h.idRepuestos and n.fkidEmpresas.idEmpresas = "
+                + "u.fkidEmpresas.idEmpresas and h.fkidLineaRepuestos."
+                + "idLineaRepuestos = :idLinea "
+                + " and u.idUsuarios = :idUsuario";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idLinea", idTR); //Variable a pasar de la sesión
+        q.setParameter("idUsuario", idU); //Variable a pasar de la sesión
         q.setMaxResults(range[1] - range[0] + 1);
         q.setFirstResult(range[0]);
         return q.getResultList();

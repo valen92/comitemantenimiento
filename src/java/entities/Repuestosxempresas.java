@@ -197,7 +197,10 @@ public class Repuestosxempresas implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Repuestosxempresas[ idRepuestosxEmpresas=" + idRepuestosxEmpresas + " ]";
+        return "" + idRepuestosxEmpresas + "";
+    }
+    public String toStringCodigo() {
+        return "" + codigoRepuestoempresa + "";
     }
     
 }

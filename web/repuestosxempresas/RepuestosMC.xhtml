@@ -30,7 +30,7 @@
                         <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirProveedoresUsuMC.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Normas" url="/faces/normas/Normas.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="3" />
                         </p:menuitem>
                     </p:tabMenu>
@@ -38,140 +38,133 @@
                 <p:panel header="Repuestos">
                     <p:tabView orientation="left">
                         <p:tab title="Mecánico">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Nombre Repuesto:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Código Repuesto:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Empresa:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              
-                            </h:panelGrid>
-                            <br />
-                            <p:dataTable value="#{repuestosxempresasController.items}" var="item"
+                            <p:dataTable value="#{repuestosxempresasController.getItemsU(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="mecanico"
+                                         emptyMessage="No hay repuestos mecánicos"
+                                         filteredValue="#{repuestosxempresasController.filtro}">
 
-                                <p:column headerText="Repuesto">
+                                <p:column headerText="Código" 
+                                          filterBy="#{item.codigoRepuestoempresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.codigoRepuestoempresa}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Repuesto" 
+                                          filterBy="#{item.fkidRepuestos.nombreRepuesto}"
+                                          filterMatchMode="contains">
+                                    
                                     <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
                                 </p:column>
 
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{item.codigoRepuestoempresa}"/>
-                                </p:column>
-
-                                <p:column headerText="Empresa">
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Disponibilidad">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoRepuestoempresa}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad"
+                                          filterBy="#{item.estadoRepuestoempresa}"
+                                          filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('mecanico').filter()" >
+                                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="Habilitado" itemValue="Habilitado" />
+                                            <f:selectItem itemLabel="Deshabilitado" itemValue="Deshabilitado" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctrico">
-                             <h:panelGrid columns="2">
-                              <h:outputLabel value="Nombre Repuesto:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Código Repuesto:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Empresa:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              
-                            </h:panelGrid>
-                            <p:dataTable value="#{repuestosxempresasController.items}" var="item"
+                            <p:dataTable value="#{repuestosxempresasController.getItems(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="electrico"
+                                         emptyMessage="No hay repuestos eléctricos">
 
-                                <p:column headerText="Repuesto">
+                                <p:column headerText="Código" 
+                                          filterBy="#{item.codigoRepuestoempresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.codigoRepuestoempresa}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Repuesto" 
+                                          filterBy="#{item.fkidRepuestos.nombreRepuesto}"
+                                          filterMatchMode="contains">
+                                    
                                     <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
                                 </p:column>
 
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{item.codigoRepuestoempresa}"/>
-                                </p:column>
-
-                                <p:column headerText="Empresa">
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Activo">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoRepuestoempresa}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad"
+                                          filterBy="#{item.estadoRepuestoempresa}"
+                                          filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('electrico').filter()" >
+                                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="Habilitado" itemValue="Habilitado" />
+                                            <f:selectItem itemLabel="Deshabilitado" itemValue="Deshabilitado" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Instrumentación">
-                             <h:panelGrid columns="2">
-                              <h:outputLabel value="Nombre Repuesto:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Código Repuesto:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              <h:outputLabel value="Empresa:" for="n" />
-                              <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.ViewEmpresasTitle_nitEmpresa}" />
-                              
-                            </h:panelGrid>
-                            <p:dataTable value="#{repuestosxempresasController.items}" var="item"
+                            <p:dataTable value="#{repuestosxempresasController.getItems(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="instrumentacion"
+                                         emptyMessage="No hay repuestos de instrumentación">
 
-                                <p:column headerText="Repuesto">
+                                <p:column headerText="Código" 
+                                          filterBy="#{item.codigoRepuestoempresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.codigoRepuestoempresa}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Repuesto" 
+                                          filterBy="#{item.fkidRepuestos.nombreRepuesto}"
+                                          filterMatchMode="contains">
+                                    
                                     <h:outputText value="#{item.fkidRepuestos.nombreRepuesto}"/>
                                 </p:column>
 
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{item.codigoRepuestoempresa}"/>
-                                </p:column>
-
-                                <p:column headerText="Empresa">
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Activo">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoRepuestoempresa}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad"
+                                          filterBy="#{item.estadoRepuestoempresa}"
+                                          filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('instrumentacion').filter()" >
+                                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="Habilitado" itemValue="Habilitado" />
+                                            <f:selectItem itemLabel="Deshabilitado" itemValue="Deshabilitado" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
-                                
-                                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
-                                 <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
-                                </p:dialog>
-
-                                  <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                                    <p:fileDownload value="#{fileDownloadView.file}" />
-                                  </p:commandButton>
-                    
-                                <script type="text/javascript">
-                                   function start() {
-                                   PF('statusDialog').show();
-                                   }
-
-                                   function stop() {
-                                   PF('statusDialog').hide();
-                                   }
-                                </script>
                             </p:dataTable>
-                            
                         </p:tab>
                     </p:tabView>
-                    <p:link outcome="productDetail" value="Bookmark">
-                        <f:param name="productId" value="10" />
-                    </p:link>
                 </p:panel>
             </h:form>
 

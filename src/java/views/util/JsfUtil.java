@@ -12,6 +12,7 @@ import entities.Marcasrepuestos;
 import entities.Normas;
 import entities.Perfil;
 import entities.Repuestos;
+import entities.Repuestosxempresas;
 import entities.Servicios;
 import entities.Serviciosxempproveedoras;
 import entities.Tipoherramientas;
@@ -178,6 +179,20 @@ public class JsfUtil {
         }
         for (Empresas x : entities) {
             items[i++] = new SelectItem(x.getNombreEmpresa(), x.getNombreEmpresa());
+        }
+        return items;
+    }
+    
+    public static SelectItem[] getSelectItemsCodigoRepuesto(List<Repuestosxempresas> entities, boolean selectOne) {
+        int size = selectOne ? entities.size() + 1 : entities.size();
+        SelectItem[] items = new SelectItem[size];
+        int i = 0;
+        if (selectOne) {
+            items[0] = new SelectItem("", "Seleccione un codigo");
+            i++;
+        }
+        for (Repuestosxempresas x : entities) {
+            items[i++] = new SelectItem(x.getCodigoRepuestoempresa(), x.toStringCodigo());
         }
         return items;
     }
