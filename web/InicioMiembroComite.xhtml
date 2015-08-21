@@ -79,42 +79,45 @@
                     
                     <p:tabView orientation="left">
                         <p:tab title="Trabajos  mecánicos">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad1" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad2" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              
-                            </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
 
                                 
                             </p:dataTable>
@@ -123,506 +126,623 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Civiles-Locativos">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad3" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad4" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                           </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas1"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                 <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
 
+                                
                             </p:dataTable>
                             <br />
                             <br />
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia1"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa"
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctricos">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad5" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad6" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                           </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas2"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
                                 </p:column>
-                                
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
+                                </p:column>
+
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                                                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
+                                
                             </p:dataTable>
                             <br />
                             <br />
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia2"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Limpieza y oficios varios">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad7" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad8" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                           </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(4)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas3"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
                                 </p:column>
-                                
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
+                                </p:column>
+
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                             <br />
                             <br />
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(4)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia3"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Mantenimiento preventivo y predictivo">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad9" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad10" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                           </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(5)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas4"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
                                 </p:column>
-                                
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
+                                </p:column>
+
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-                                                     
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
+
+                                
                             </p:dataTable>
                             <br />
                             <br />
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(5)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia4"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Calibraciones e instrumentación">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad12" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad13" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                           </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(6)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas5"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
                                 </p:column>
-                                
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
+                                </p:column>
+
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-                             
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
+
+                                
                             </p:dataTable>
                             <br />
                             <br />
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(6)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia5"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Marcación y planos">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad14" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad15" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                           </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(7)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas6"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                                 
-                                 <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
                             </p:dataTable>
                             <br />
                             <br />
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(7)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia6"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Servicios específicos">
-                            <h:panelGrid columns="2">
-                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad16" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
-                              <h:selectOneMenu id="fkidCiudad17" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
-                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
-                              </h:selectOneMenu>
-                           </h:panelGrid>
+                            
                             <br />
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsAsociadas(8)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="asociadas7"
+                                         emptyMessage="No hay empresas asociadas actualmente"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
                                 </p:column>
-                                
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
+                                </p:column>
+
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
+                                
                             </p:dataTable>
                             <br />
                             <br />
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(8)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         widgetVar="frecuencia7"
+                                         emptyMessage="No hay empresas contratadas con frecuencia"
+                                         filteredValue="#{actividadesController.filtro}">
 
-                                <p:column headerText="Empresa">
-                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                <p:column headerText="Empresa" 
+                                          filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
+                                          filterMatchMode="contains">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Contacto">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                <p:column headerText="Dirección">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.direccionEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Teléfono">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.fijoEmpresa}"/>
+                                </p:column>
+
+                                <p:column headerText="Celular">
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.movilEmpresa}"/>
                                 </p:column>
 
                                 <p:column headerText="Servicio">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                    <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
                                 </p:column>
                                 
-                                <p:column headerText="Icono buscar">
-                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
-                                </p:column>
-
-                                
+                                <p:column style="width:24px">
+                                    <h:commandLink action="#{servicioscontratoController.prepareListS(item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
+                                </p:column> 
                             </p:dataTable>
                         </p:tab>
                     </p:tabView>

@@ -1,14 +1,11 @@
 package views;
 
-import entities.Actividades;
-import views.util.JsfUtil;
-import views.util.PaginationHelper;
 import controller.ActividadesFacade;
-
+import entities.Actividades;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -18,8 +15,11 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
+import views.util.JsfUtil;
+import views.util.PaginationHelper;
 
 @Named("actividadesController")
 @SessionScoped
@@ -34,11 +34,21 @@ public class ActividadesController implements Serializable {
     private int idU;
     private final FacesContext faceContext;
     private final HttpServletRequest httpServletRequest;
+    private List<Actividades> filtro;
 
     public ActividadesController() {
         faceContext=FacesContext.getCurrentInstance();
         httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
         idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+    }
+    
+    public List<Actividades> getFiltro() {
+        recreateModel();
+        return filtro;
+    }
+
+    public void setFiltro(List<Actividades> filtro) {
+        this.filtro = filtro;
     }
 
     public Actividades getSelected() {
@@ -84,6 +94,44 @@ public class ActividadesController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findActividadServicio(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU, idServicio));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationAsociadas(int servicio) {
+        final int idServicio=servicio;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findAsociadas(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU, idServicio));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationFrecuencia(int servicio) {
+        final int idServicio=servicio;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findFrecuencia(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU, idServicio));
                 }
             };
         }
@@ -265,6 +313,24 @@ public class ActividadesController implements Serializable {
         recreateModel();
         if (items == null) {
             items = getPaginationServicio(servicio).createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsAsociadas(int servicio) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationAsociadas(servicio).createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsFrecuencia(int servicio) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationFrecuencia(servicio).createPageDataModel();
         }
         return items;
     }

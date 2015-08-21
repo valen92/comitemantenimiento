@@ -16,6 +16,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
 import views.util.JsfUtil;
 import views.util.PaginationHelper;
@@ -33,8 +34,14 @@ public class ServicioscontratoController implements Serializable {
     private List<Servicioscontrato> getResultList;
     private int idEmpresa;
     private int idUsuario;
+    private int idU1;
+    private final FacesContext faceContext;
+    private final HttpServletRequest httpServletRequest;
 
     public ServicioscontratoController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        idU1 = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
     }
 
     public Servicioscontrato getSelected() {
@@ -142,6 +149,13 @@ public class ServicioscontratoController implements Serializable {
             };
         }
         return pagination;
+    }
+
+    public String prepareListS(Empresas id) {
+        idEmpresa=id.getIdEmpresas();
+        idUsuario=idU1;
+        recreateModel();
+        return "/servicioscontrato/DetalleProveedorS";
     }
 
     public String prepareList(Empresas id, int idU) {
