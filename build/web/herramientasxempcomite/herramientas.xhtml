@@ -46,7 +46,8 @@
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay lista de herramientas mecánicas">
 
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoHerramempcomite}"/>
@@ -61,11 +62,7 @@
                                 </p:column>
 
                                 <p:column headerText="Disponibilidad">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoHerramempcomite}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -74,7 +71,8 @@
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay lista de herramientas eléctricas">
 
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoHerramempcomite}"/>
@@ -89,11 +87,7 @@
                                 </p:column>
 
                                 <p:column headerText="Estado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoHerramempcomite}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -102,7 +96,8 @@
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay lista de herramientas de instrumentación">
 
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoHerramempcomite}"/>
@@ -117,11 +112,7 @@
                                 </p:column>
 
                                 <p:column headerText="Estado">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoHerramempcomite}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>

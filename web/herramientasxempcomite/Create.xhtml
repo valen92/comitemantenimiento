@@ -43,36 +43,55 @@
                 </h:panelGrid>
                 <p:panel header="Ingresar Herramienta">
                     <h:panelGrid columns="2">
-                        <h:outputLabel value="Id Herramienta" for="idHerramientasxEmpComite" />
-                        <h:inputText id="idHerramientasxEmpComite" value="#{herramientasxempcomiteController.selected.idHerramientasxEmpComite}" title="#{bundle.CreateHerramientasxempcomiteTitle_idHerramientasxEmpComite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_idHerramientasxEmpComite}"/>
                         <h:outputLabel value="Descripción" for="descripcionHerramempcomite" />
-                        <h:inputText id="descripcionHerramempcomite" value="#{herramientasxempcomiteController.selected.descripcionHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_descripcionHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_descripcionHerramempcomite}"/>
+                        <p:inputText id="descripcionHerramempcomite" value="#{herramientasxempcomiteController.selected.descripcionHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_descripcionHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_descripcionHerramempcomite}"/>
+                        
                         <h:outputLabel value="Disponibilidad" for="disponibilidadHerramempcomite" />
-                        <h:inputText id="disponibilidadHerramempcomite" value="#{herramientasxempcomiteController.selected.disponibilidadHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_disponibilidadHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_disponibilidadHerramempcomite}"/>
+                        <p:selectOneMenu id="disponibilidadHerramempcomite" value="#{herramientasxempcomiteController.selected.disponibilidadHerramempcomite}"
+                                         required="true" 
+                                         requiredMessage="Campo disponibilidad requerido">
+                            <f:selectItem itemLabel="Seleccione disponibilidad" itemValue="" />
+                            <f:selectItem itemLabel="Habilitado" itemValue="Habilitado" />
+                            <f:selectItem itemLabel="Deshabilitado" itemValue="Deshabilitado" />
+                        </p:selectOneMenu>
+                        
                         <h:outputLabel value="Codigo Herramienta" for="codigoHerramempcomite" />
-                        <h:inputText id="codigoHerramempcomite" value="#{herramientasxempcomiteController.selected.codigoHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_codigoHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_codigoHerramempcomite}"/>
+                        <p:inputText id="codigoHerramempcomite" value="#{herramientasxempcomiteController.selected.codigoHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_codigoHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_codigoHerramempcomite}"/>
+                        
                         <h:outputLabel value="Estado" for="estadoHerramempcomite" />
-                        <h:inputText id="estadoHerramempcomite" value="#{herramientasxempcomiteController.selected.estadoHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_estadoHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_estadoHerramempcomite}"/>
+                        <p:selectOneMenu id="estadodHerramempcomite" value="#{herramientasxempcomiteController.selected.estadoHerramempcomite}"
+                                         required="true" 
+                                         requiredMessage="Campo estado requerido">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItem itemLabel="En buen estado" itemValue="En buen estado" />
+                            <f:selectItem itemLabel="Mal estado" itemValue="Mal estado" />
+                        </p:selectOneMenu>
+                        
                         <h:outputLabel value="Cantidad" for="cantidadHerramempcomite" />
-                        <h:inputText id="cantidadHerramempcomite" value="#{herramientasxempcomiteController.selected.cantidadHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_cantidadHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_cantidadHerramempcomite}"/>
+                        <p:inputText id="cantidadHerramempcomite" value="#{herramientasxempcomiteController.selected.cantidadHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_cantidadHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_cantidadHerramempcomite}"/>
+                        
                         <h:outputLabel value="Precio" for="precioHerramempcomite" />
-                        <h:inputText id="precioHerramempcomite" value="#{herramientasxempcomiteController.selected.precioHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_precioHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_precioHerramempcomite}"/>
+                        <p:inputText id="precioHerramempcomite" value="#{herramientasxempcomiteController.selected.precioHerramempcomite}" title="#{bundle.CreateHerramientasxempcomiteTitle_precioHerramempcomite}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_precioHerramempcomite}"/>
+                        
                         <h:outputLabel value="Marca Herramienta" for="fkidMarcasHerramientas" />
-                        <h:selectOneMenu id="fkidMarcasHerramientas" value="#{herramientasxempcomiteController.selected.fkidMarcasHerramientas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidMarcasHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidMarcasHerramientas}">
+                        <p:selectOneMenu id="fkidMarcasHerramientas" value="#{herramientasxempcomiteController.selected.fkidMarcasHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidMarcasHerramientas}">
                             <f:selectItems value="#{marcasherramientasController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
+                        
                         <h:outputLabel value="Usuario" for="fkidUsuarios" />
-                        <h:selectOneMenu id="fkidUsuarios" value="#{herramientasxempcomiteController.selected.fkidUsuarios}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidUsuarios}">
-                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
+                        <p:selectOneMenu id="fkidUsuarios" value="#{herramientasxempcomiteController.selected.fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidUsuarios}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOneo}"/>
+                        </p:selectOneMenu>
+                        
                         <h:outputLabel value="Empresa" for="fkidEmpresas" />
-                        <h:selectOneMenu id="fkidEmpresas" value="#{herramientasxempcomiteController.selected.fkidEmpresas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidEmpresas}">
+                        <p:selectOneMenu id="fkidEmpresas" value="#{herramientasxempcomiteController.selected.fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidEmpresas}">
                             <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
+                        
                         <h:outputLabel value="Herramienta" for="fkidHerramientas" />
-                        <h:selectOneMenu id="fkidHerramientas" value="#{herramientasxempcomiteController.selected.fkidHerramientas}" title="#{bundle.CreateHerramientasxempcomiteTitle_fkidHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidHerramientas}">
+                        <p:selectOneMenu id="fkidHerramientas" value="#{herramientasxempcomiteController.selected.fkidHerramientas}" required="true" requiredMessage="#{bundle.CreateHerramientasxempcomiteRequiredMessage_fkidHerramientas}">
                             <f:selectItems value="#{herramientasController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                     </h:panelGrid>
                     
                     <p:growl id="growl" life="2000" />   
