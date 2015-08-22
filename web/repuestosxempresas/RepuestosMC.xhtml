@@ -45,7 +45,8 @@
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="mecanico"
                                          emptyMessage="No hay repuestos mecánicos"
-                                         filteredValue="#{repuestosxempresasController.filtro}">
+                                         filteredValue="#{repuestosxempresasController.filtro}"
+                                         id="tbl">
 
                                 <p:column headerText="Código" 
                                           filterBy="#{item.codigoRepuestoempresa}"
@@ -79,6 +80,23 @@
                                     <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
+                            <br />
+                                <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                                    <h:commandLink>
+                                        <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                                        <p:dataExporter type="xls" target="tbl" fileName="repuestosMecanicos" />
+                                    </h:commandLink>
+
+                                    <h:commandLink style="margin-left: 20px;" >
+                                        <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                                        <p:dataExporter type="pdf" target="tbl" fileName="repuestosMecanicos"/>
+                                    </h:commandLink>
+
+                                    <h:commandLink style="margin-left: 20px;" >
+                                        <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                                        <p:dataExporter type="csv" target="tbl" fileName="repuestosMecanicos" />
+                                    </h:commandLink>
+                             <br />
                         </p:tab>
                         <p:tab title="Eléctrico">
                             <p:dataTable value="#{repuestosxempresasController.getItems(2)}" var="item"
@@ -87,7 +105,8 @@
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="electrico"
-                                         emptyMessage="No hay repuestos eléctricos">
+                                         emptyMessage="No hay repuestos eléctricos"
+                                         id="tbl1">
 
                                 <p:column headerText="Código" 
                                           filterBy="#{item.codigoRepuestoempresa}"
@@ -121,6 +140,23 @@
                                     <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
+                            <br />
+                            <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                                <h:commandLink>
+                                    <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                                    <p:dataExporter type="xls" target="tbl1" fileName="repuestosElectricos" />
+                                </h:commandLink>
+
+                                <h:commandLink style="margin-left: 20px;" >
+                                    <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                                    <p:dataExporter type="pdf" target="tbl1" fileName="repuestosElectricos"/>
+                                </h:commandLink>
+
+                                <h:commandLink style="margin-left: 20px;" >
+                                    <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                                    <p:dataExporter type="csv" target="tbl1" fileName="repuestosElectricos" />
+                                </h:commandLink>
+                            <br />
                         </p:tab>
                         <p:tab title="Instrumentación">
                             <p:dataTable value="#{repuestosxempresasController.getItems(3)}" var="item"
@@ -129,7 +165,8 @@
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="instrumentacion"
-                                         emptyMessage="No hay repuestos de instrumentación">
+                                         emptyMessage="No hay repuestos de instrumentación"
+                                         id="tbl2">
 
                                 <p:column headerText="Código" 
                                           filterBy="#{item.codigoRepuestoempresa}"
@@ -163,6 +200,23 @@
                                     <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
+                            <br />
+                            <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                                <h:commandLink>
+                                    <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                                    <p:dataExporter type="xls" target="tbl2" fileName="repuestosInstrumentacion" />
+                                </h:commandLink>
+
+                                <h:commandLink style="margin-left: 20px;" >
+                                    <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                                    <p:dataExporter type="pdf" target="tbl2" fileName="repuestosInstrumentacion"/>
+                                </h:commandLink>
+
+                                <h:commandLink style="margin-left: 20px;" >
+                                    <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                                    <p:dataExporter type="csv" target="tbl2" fileName="repuestosInstrumentacion" />
+                                </h:commandLink>
+                            <br />
                         </p:tab>
                     </p:tabView>
                 </p:panel>
