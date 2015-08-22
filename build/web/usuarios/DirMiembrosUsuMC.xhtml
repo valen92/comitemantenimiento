@@ -52,7 +52,8 @@
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="dirMiembros"
                                           emptyMessage="No hay resultados para la busqueda" 
-                                          filteredValue="#{usuariosController.filtro}">
+                                          filteredValue="#{usuariosController.filtro}"
+                                          id="tbl">
                    
                         <p:column headerText="Empresa" filterBy="#{item.fkidEmpresas.nombreEmpresa}">
                             <f:facet name="filter" >
@@ -83,12 +84,29 @@
                             <h:outputText value="#{item.emailUsuario}"/>
                         </p:column>
                         
-                        <p:column style="width:24px">
+                        <p:column style="width:24px" exportable="false">
                             <h:commandLink action="#{usuariosController.prepareViewM(item.fkidEmpresas, item.idUsuarios)}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
                         </p:column>   
                 </p:dataTable>
                     </p:panel>
+                <br />
+                <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                    <h:commandLink>
+                        <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="DirectorioMiembros" />
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                        <p:dataExporter type="pdf" target="tbl" fileName="DirectorioMiembros"/>
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="DirectorioMiembros" />
+                    </h:commandLink>
+                <br />
            </h:form>
         </ui:define>
     </ui:composition>
