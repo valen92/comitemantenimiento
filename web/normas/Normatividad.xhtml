@@ -81,7 +81,13 @@
                         </p:column>
                     </p:dataTable>
                     
-                    <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                    
+                    
+                </p:panel>
+                <br />
+                 <p:commandButton value="Añadir nueva norma" ajax="false" action="#{normasController.prepareCreate}" disabled="false" />
+                <br/> 
+                <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
                     <h:commandLink>
                         <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
                         <p:dataExporter type="xls" target="tbl" fileName="normas" />
@@ -96,11 +102,6 @@
                         <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
                         <p:dataExporter type="csv" target="tbl" fileName="normas" />
                     </h:commandLink>
-                    
-                </p:panel>
-                <br />
-                 <p:commandButton value="Añadir nueva norma" ajax="false" action="#{normasController.prepareCreate}" disabled="false" />
-                <br/> 
             </h:form>
         </ui:define>
     </ui:composition>

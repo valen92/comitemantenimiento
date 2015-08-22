@@ -14,85 +14,91 @@
             <h:form>
                 <h:panelGrid columns="1">
                     <p:tabMenu activeIndex="#{tabMenuController.index}">
-                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/Inicio.xhtml" icon="ui-icon-home">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Repuestos" url="http://localhost:8080/comitemantenimiento/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
                             <f:param name="index" value="1" />
                         </p:menuitem>
-                        <p:menuitem value="Herramientas" url="http://localhost:8080/comitemantenimiento/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio proveedores" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Directorio Proveedores" action="#{usuariosController.Proveedores}"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
-                        <p:menuitem value="Servicios" url="http://localhost:8080/comitemantenimiento/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="5" />
                         </p:menuitem>
-                        <p:menuitem value="Normas" url="http://localhost:8080/comitemantenimiento/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
                             <f:param name="index" value="6" />
                         </p:menuitem>
                     </p:tabMenu>
                 </h:panelGrid>
                 <p:panel header="Bitácora de usuarios">
-                    <p:dataTable var="item" 
+                    <p:dataTable value="#{controlaccesoController.items}" var="item" 
                                  rows="5"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15">
+                                 rowsPerPageTemplate="5,10,15"
+                                 id="tbl"
+                                 emptyMessage="No hay control de acceso en el momento">
 
-                        <p:column headerText="Empresa">
-                            <h:outputText value="#{fkidEmpresas.nombreEmpresa}"/>
+                       <p:column headerText="Empresa">
+                            <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                         </p:column>
 
-                        <p:column headerText="Nombre del usuario">
-                            <h:outputText value="#{usuariosController.selected.nombreUsuario}"/>
+                        <p:column headerText="Fecha Ingreso">
+                            <h:outputText value="#{item.fecingControlacceso}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
                         </p:column>
 
-                        <p:column headerText="Apellido del usuario">
-                            <h:outputText value="#{usuariosController.selected.apellidoUsuario}"/>
+                        <p:column headerText="Hora Ingreso">
+                            <h:outputText value="#{item.fecingControlacceso}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
                         </p:column>
 
-                        <p:column headerText="Fecha de ingreso">
-                            <h:outputText value="#{controlaccesoController.selected.fecingControlacceso}"/> 
+                        <p:column headerText="Fecha salida">
+                            <h:outputText value="#{item.fecsalControlacceso}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText> 
                         </p:column>
 
-                        <p:column headerText="Fecha de salida">
-                            <h:outputText value="#{controlaccesoController.selected.fecsalControlacceso}"/>
+                        <p:column headerText="Hora salida">
+                            <h:outputText value="#{item.fecsalControlacceso}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
                         </p:column>
 
-                        <p:column headerText="Modulo">
-                            <h:outputText value="#{controlaccesoController.selected.moduloControlacceso}"/>
+                         <p:column headerText="Modulo">
+                            <h:outputText value="#{item.moduloControlacceso}"/>
                         </p:column>
                     </p:dataTable>
                     
-                    <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
-                        <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
-                    </p:dialog>
-
-                        <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                            <p:fileDownload value="#{fileDownloadView.file}" />
-                        </p:commandButton>
-                    
-                    <script type="text/javascript">
-                        function start() {
-                            PF('statusDialog').show();
-                        }
-
-                        function stop() {
-                            PF('statusDialog').hide();
-                        }
-                    </script>
                     
                 </p:panel>
+                
+                <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                    <h:commandLink>
+                        <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="bitacora" />
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                        <p:dataExporter type="pdf" target="tbl" fileName="bitacora"/>
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="bitacora" />
+                    </h:commandLink>
+
                 <br />
-                <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ListUsuariosCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListUsuariosIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
