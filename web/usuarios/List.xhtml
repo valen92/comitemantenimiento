@@ -45,7 +45,9 @@
                          rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15"
+                         id="tbl"
+                         emptyMessage="No hay miembros de comite">
                        
                         <p:column headerText="Empresa" style="width:200px">
                             <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
