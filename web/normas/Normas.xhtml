@@ -43,7 +43,8 @@
                          rowsPerPageTemplate="5,10,15"
                          emptyMessage="No hay normas para este usuario con ese nombre"
                          widgetVar="normas"
-                         filteredValue="#{normasController.filtro}">
+                         filteredValue="#{normasController.filtro}"
+                         id="tbl">
                        
                         <p:column headerText="Ente emisor" >
                             <h:outputText value="#{item.entidadreguladoraNorma}"/>
@@ -66,12 +67,27 @@
                             <h:outputText value="#{item.descripcionNorma}"/>
                         </p:column>
                                           
-                        <p:column style="width:24px">
+                        <p:column style="width:24px" exportable="false">
                             <h:commandLink action="#{normasController.prepareViewM}" styleClass="ui-icon ui-icon-search"/>
                         </p:column> 
                     </p:dataTable>
                 </p:panel>
                 <br />
+                <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                    <h:commandLink>
+                        <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="normas" />
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                        <p:dataExporter type="pdf" target="tbl" fileName="normas"/>
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="normas" />
+                    </h:commandLink>
             </h:form>
         </ui:define>
     </ui:composition>
