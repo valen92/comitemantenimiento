@@ -45,7 +45,9 @@
                          rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="No hay miembros de comité"
+                         id="tbl">
                        
                         <p:column headerText="Empresa" style="width:200px">
                             <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
@@ -71,15 +73,15 @@
                             <h:outputText value="#{item.emailUsuario}"/>
                         </p:column>
                         
-                        <p:column style="width:24px">
+                        <p:column style="width:24px" exportable="false">
                             <h:commandLink action="#{usuariosController.prepareView(item.fkidEmpresas, item.idUsuarios)}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
                         </p:column>    
-                        <p:column style="width:24px">
+                        <p:column style="width:24px" exportable="false">
                             <h:commandLink action="#{usuariosController.prepareEdit()}" styleClass="ui-icon ui-icon-pencil"/>
                             <h:outputText value=" "/>
                         </p:column>  
-                        <p:column style="width:24px">
+                        <p:column style="width:24px"  exportable="false">
                             <h:commandLink action="#{usuariosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                             <p:confirmDialog message="Esta seguro de que desea eliminar este usuario?"
                                 header="Atención"
@@ -92,7 +94,21 @@
                     </p:dataTable>
                 </p:panel>
                 <br />
-                
+                <h3 style="font-style: italic; color: black" > Descargar tabla </h3> 
+                    <h:commandLink>
+                        <p:graphicImage url="/resources/imagenes/excel.png" width="50"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="DirectorioMiembros" />
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/pdf.png" width="50"/>
+                        <p:dataExporter type="pdf" target="tbl" fileName="DirectorioMiembros"/>
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: 20px;" >
+                        <p:graphicImage url="/resources/imagenes/csv.png" width="50"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="DirectorioMiembros" />
+                    </h:commandLink>
                 <br />
             </h:form>
         </ui:define>
