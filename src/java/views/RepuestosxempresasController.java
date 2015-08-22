@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -16,6 +17,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import org.primefaces.context.RequestContext;
 import views.util.JsfUtil;
 import views.util.PaginationHelper;
 
@@ -134,12 +136,19 @@ public class RepuestosxempresasController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    public String reload() {
+        recreatePagination();
+        recreateModel();
+        return "Repuestos";
+    }
 
     public String create() {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RepuestosxempresasCreated"));
-            return prepareCreate();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "El repuesto ha sido adicionado con éxito");  
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+            return reload();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

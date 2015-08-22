@@ -47,7 +47,8 @@
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay lista de repuestos mecánicos">
 
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoRepuestoempresa}"/>
@@ -62,11 +63,7 @@
                                 </p:column>
 
                                 <p:column headerText="Disponibilidad">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoRepuestoempresa}" />
-                                    </h:panelGrid>
+                                    <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -75,7 +72,8 @@
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay lista de repuestos eléctricos">
 
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoRepuestoempresa}"/>
@@ -89,12 +87,8 @@
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Activo">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoRepuestoempresa}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad">
+                                    <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
@@ -103,7 +97,8 @@
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay lista de repuestos de instrumentación">
 
                                 <p:column headerText="Código">
                                     <h:outputText value="#{item.codigoRepuestoempresa}"/>
@@ -117,12 +112,8 @@
                                     <h:outputText value="#{item.fkidEmpresas.nombreEmpresa}"/>
                                 </p:column>
 
-                                <p:column headerText="Activo">
-                                    <p:growl id="msg" />
-
-                                    <h:panelGrid >
-                                        <p:selectBooleanCheckbox value="#{item.estadoRepuestoempresa}" />
-                                    </h:panelGrid>
+                                <p:column headerText="Disponibilidad">
+                                    <h:outputText value="#{item.estadoRepuestoempresa}" />
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
