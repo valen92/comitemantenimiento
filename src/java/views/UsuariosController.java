@@ -20,6 +20,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 import org.primefaces.event.CloseEvent;
@@ -323,7 +324,7 @@ public class UsuariosController implements Serializable {
         }
     }
 
-    public void destroy() {
+public void destroy() {
         current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
@@ -427,6 +428,7 @@ public class UsuariosController implements Serializable {
                     httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
                     return "proveedor";
                 }
+               
             } else {              
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta",  "Contraseña incorrecta. Intentelo de nuevo");  
                 RequestContext.getCurrentInstance().showMessageInDialog(message);
@@ -439,6 +441,19 @@ public class UsuariosController implements Serializable {
 
         return null;
 
+    }
+    
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+        .getExternalContext().getSession(false);
+        session.invalidate();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "Sesión cerrada con éxito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "login";
+    }
+    
+    public String logout1() {
+        return "login";
     }
 
     private void performDestroy() {

@@ -98,6 +98,10 @@
                     <p:commandButton id="btnGuardarNorma" value="Guardar" update="growl" action="#{herramientasxempcomiteController.create}" styleClass="ui-priority-primary"  />
                 </p:panel>
             </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton value="Cerrar Sesion" action="#{usuariosController.logout()}" process="@this"  disabled="false" />
+            </h:form>
         </ui:define>
     </ui:composition>
 
