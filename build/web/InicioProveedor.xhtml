@@ -61,7 +61,7 @@
                 <p:panel header="Servicios a Prestar">
                     <p:tabView orientation="left">
                         <p:tab title="Trabajos  mecánicos">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(1)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -80,11 +80,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -92,7 +92,7 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Civiles-Locativos">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(2)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -111,11 +111,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -123,7 +123,7 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctricos">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(3)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -142,11 +142,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -154,7 +154,7 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Limpieza y oficios varios">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(4)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(4)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -173,11 +173,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -185,7 +185,7 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Mantenimiento preventivo y predictivo">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(5)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(5)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -204,11 +204,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -216,7 +216,7 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Calibraciones e instrumentación">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(6)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(6)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -235,11 +235,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -247,7 +247,7 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Marcación y planos">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(7)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(7)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -266,11 +266,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -278,7 +278,7 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Servicios especificos">
-                            <p:dataTable value="#{actividadesController.getItemsServicio(8)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsServicio(8)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -297,11 +297,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -315,8 +315,9 @@
                 <br />
                 <p:commandButton value="Agregar actividad" ajax="false" action="#{actividadesController.prepareCreateP}" disabled="false" />
                 <br /> <br/></h:form>
+            
             <h:form>
-                <p:commandButton value="Cerrar Sesión" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

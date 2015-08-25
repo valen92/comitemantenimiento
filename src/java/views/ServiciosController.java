@@ -1,8 +1,10 @@
 package views;
 
 import controller.ServiciosFacade;
+import entities.Actividades;
 import entities.Servicios;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -15,6 +17,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
 import views.util.JsfUtil;
 import views.util.PaginationHelper;
@@ -29,8 +32,35 @@ public class ServiciosController implements Serializable {
     private controller.ServiciosFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
+    private int idU;
+    private List<Actividades> filtro;
 
     public ServiciosController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        try {
+            idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        } catch( NullPointerException e ) {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión ha caducado. "
+                + "Por favor inice sesión nuevamente");  
+             RequestContext.getCurrentInstance().showMessageInDialog(message);
+             logout();
+        }
+    }
+    
+    public String logout (){
+        return "login";
+    }
+    
+    public List<Actividades> getFiltro() {
+        recreateModel();
+        return filtro;
+    }
+
+    public void setFiltro(List<Actividades> filtro) {
+        this.filtro = filtro;
     }
 
     public Servicios getSelected() {
@@ -57,6 +87,63 @@ public class ServiciosController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationServicio(int servicio) {
+        final int idServicio=servicio;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findActividadServicio(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU, idServicio));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationAsociadas(int servicio) {
+        final int idServicio=servicio;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findAsociadas(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU, idServicio));
+                }
+            };
+        }
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationFrecuencia(int servicio) {
+        final int idServicio=servicio;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findFrecuencia(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU, idServicio));
                 }
             };
         }
@@ -177,6 +264,33 @@ public class ServiciosController implements Serializable {
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+    
+    public DataModel getItemsServicio(int servicio) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationServicio(servicio).createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsAsociadas(int servicio) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationAsociadas(servicio).createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsFrecuencia(int servicio) {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationFrecuencia(servicio).createPageDataModel();
         }
         return items;
     }

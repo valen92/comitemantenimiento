@@ -84,14 +84,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(1)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -126,14 +126,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(1)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -168,14 +168,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(2)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas1"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -210,14 +210,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(2)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia1"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa"
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -252,14 +252,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(3)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas2"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -293,14 +293,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(3)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia2"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -335,14 +335,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(4)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(4)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas3"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -375,14 +375,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(4)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(4)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia3"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -417,14 +417,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(5)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(5)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas4"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -459,14 +459,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(5)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(5)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia4"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -501,14 +501,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(6)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(6)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas5"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -543,14 +543,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(6)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(6)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia5"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -585,14 +585,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(7)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(7)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas6"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -626,14 +626,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(7)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(7)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia6"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -668,14 +668,14 @@
                             <h:outputText value="Empresas asociadas actualmente" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsAsociadas(8)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsAsociadas(8)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="asociadas7"
                                          emptyMessage="No hay empresas asociadas actualmente"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -709,14 +709,14 @@
                             <h:outputText value="Empresas contratadas con frecuencia" />
                             <br />
                             <br />
-                            <p:dataTable value="#{actividadesController.getItemsFrecuencia(8)}" var="item"
+                            <p:dataTable value="#{serviciosController.getItemsFrecuencia(8)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15"
                                          widgetVar="frecuencia7"
                                          emptyMessage="No hay empresas contratadas con frecuencia"
-                                         filteredValue="#{actividadesController.filtro}">
+                                         filteredValue="#{serviciosController.filtro}">
 
                                 <p:column headerText="Empresa" 
                                           filterBy="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"
@@ -749,9 +749,11 @@
                      
 
                 </p:panel>
-                <br />
-                
-                <p:commandButton value="Cerrar Sesión" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+
+            </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>
