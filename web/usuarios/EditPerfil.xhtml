@@ -91,6 +91,10 @@
                 <p:commandButton id="btnAceptar" value="Aceptar" update="growl" action="#{usuariosController.updatePerfil}" styleClass="ui-priority-primary"  />
 
             </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
+            </h:form>
         </ui:define>
     </ui:composition>
 

@@ -32,7 +32,7 @@
                         <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="5" />
                         </p:menuitem>
-                        <p:menuitem value="Normas" url="http://localhost:8080/comitemantenimiento/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
                             <f:param name="index" value="6" />
                         </p:menuitem>
                     </p:tabMenu>
@@ -51,6 +51,10 @@
                     <p:growl id="growl" life="2000" />  
                     <p:commandButton  id="aceptar" value="Guardar" update="growl" actionListener="#{normasController.update}"  styleClass="ui-priority-primary" />
                 </p:panel>
+            </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

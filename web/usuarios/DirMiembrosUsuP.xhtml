@@ -67,17 +67,11 @@
                    
                 </p:dataTable>
                 </p:panel>
-                <br />
-                <p:commandButton value="Cerrar sesion" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
-              
-                
-                
-                   
-                 
-
-
- 
            </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
+            </h:form>
         </ui:define>
     </ui:composition>
 

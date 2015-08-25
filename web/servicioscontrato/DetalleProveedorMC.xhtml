@@ -132,6 +132,10 @@
                 <br/>
                 <p:commandButton  id="aceptar" value="Volver al menu principal"  action="#{usuariosController.ProveedoresM}" styleClass="ui-priority-primary" />
             </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>

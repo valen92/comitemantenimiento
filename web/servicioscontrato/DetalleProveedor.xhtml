@@ -85,7 +85,8 @@
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15">
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="No hay observaciones para este proveedor">
 
                                 <p:column headerText="Tipo de servicio">
                                     <h:outputText value="#{item.fkidServicios.nombreServicio}"/>
@@ -131,6 +132,10 @@
                 </p:accordionPanel>
                 <br/>
                 <p:commandButton  id="aceptar" value="Volver al menu principal"  action="#{usuariosController.Proveedores}" styleClass="ui-priority-primary" />
+            </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

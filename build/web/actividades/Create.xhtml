@@ -139,9 +139,12 @@ and open the template in the editor.
             <h:form><br/>
                         <p:commandButton value="Cancelar" id="Cancelar" action="#{actividadesController.reloadP()}" styleClass="ui-priority-primary"/>
                         
-                
-                <br/><br/>
-                <p:commandButton style="float:right" value="Cerrar Sesion" id="Cerrar" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+            
+
+            </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

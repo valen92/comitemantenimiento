@@ -63,9 +63,10 @@
                 <br />
                 
                 <p:commandButton value="Agregar certificación" ajax="false" action="#{usuariosController.updatePerfil}" disabled="false" />
-                <br />
-                <br />
-                <p:commandButton value="Cerrar Sesion" ajax="false" action="#{usuariosController.updatePerfil}" disabled="false" />
+                <br /></h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

@@ -57,6 +57,10 @@
                     <p:commandButton  id="aceptar" value="Guardar" update="growl" actionListener="#{serviciosController.update}" styleClass="ui-priority-primary" />
                 </p:panel>
             </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
+            </h:form>
         </ui:define>
     </ui:composition>
 

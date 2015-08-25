@@ -71,6 +71,10 @@
                      <p:commandButton style="margin-left: 20px" value="Volver" action="#{servicioscontratoController.prepareListS()}" disabled="false" />
                 </h:panelGrid>
             </h:form>
+            <br/>
+            <h:form>
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
+            </h:form>
         </ui:define>
     </ui:composition>
 

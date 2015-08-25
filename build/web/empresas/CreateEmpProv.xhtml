@@ -97,7 +97,7 @@ and open the template in the editor.
             </h:form>
             <br/>
             <h:form>
-                <p:commandButton value="Cerrar Sesion" action="#{usuariosController.logout()}" process="@this"  disabled="false" />
+                <p:commandButton style="float:right" value="Cerrar Sesion" ajax="false" action="#{usuariosController.logout()}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>

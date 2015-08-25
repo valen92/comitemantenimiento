@@ -447,7 +447,7 @@ public void destroy() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
         .getExternalContext().getSession(false);
         session.invalidate();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "Sesión cerrada con éxito");  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión se ha cerrado con éxito");  
         RequestContext.getCurrentInstance().showMessageInDialog(message);
         return "login";
     }
