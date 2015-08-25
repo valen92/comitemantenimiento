@@ -37,9 +37,21 @@ public class HerramientasxempcomiteController implements Serializable {
     private final FacesContext faceContext;
     private int idU;
 
-    public HerramientasxempcomiteController() {faceContext=FacesContext.getCurrentInstance();
+    public HerramientasxempcomiteController() {
+        faceContext=FacesContext.getCurrentInstance();
         httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
-        idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        try {
+            idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        } catch( NullPointerException e ) {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión ha caducado. "
+                + "Por favor inice sesión nuevamente");  
+             RequestContext.getCurrentInstance().showMessageInDialog(message);
+             logout();
+        }
+    }
+    
+    public String logout (){
+        return "login";
     }
     
     public List<Herramientasxempcomite> getFiltro() {

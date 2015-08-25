@@ -16,6 +16,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
 import views.util.JsfUtil;
 import views.util.PaginationHelper;
@@ -32,8 +33,26 @@ public class ObservacionesproveedorController implements Serializable {
     private int selectedItemIndex;
     private int idServiciosContrato;
     private int idUsuario;
+    
+    private int idU;
+    private final FacesContext faceContext;
+    private final HttpServletRequest httpServletRequest;
 
     public ObservacionesproveedorController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        try {
+            idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        } catch( NullPointerException e ) {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión ha caducado. "
+                + "Por favor inice sesión nuevamente");  
+             RequestContext.getCurrentInstance().showMessageInDialog(message);
+             logout();
+        }
+    }
+    
+    public String logout (){
+        return "login";
     }
 
     public Observacionesproveedor getSelected() {

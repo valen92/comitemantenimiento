@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -41,7 +42,18 @@ public class ServicioscontratoController implements Serializable {
     public ServicioscontratoController() {
         faceContext=FacesContext.getCurrentInstance();
         httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
-        idU1 = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        try {
+            idU1 = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        } catch( NullPointerException e ) {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión ha caducado. "
+                + "Por favor inice sesión nuevamente");  
+             RequestContext.getCurrentInstance().showMessageInDialog(message);
+             logout();
+        }
+    }
+    
+    public String logout (){
+        return "login";
     }
 
     public Servicioscontrato getSelected() {

@@ -45,7 +45,18 @@ public class NormasController implements Serializable {
     public NormasController() {
         faceContext=FacesContext.getCurrentInstance();
         httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
-        idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        try {
+            idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        } catch( NullPointerException e ) {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión ha caducado. "
+                + "Por favor inice sesión nuevamente");  
+             RequestContext.getCurrentInstance().showMessageInDialog(message);
+             logout();
+        }
+    }
+    
+    public String logout (){
+        return "login";
     }
 
     public Normas getSelected() {

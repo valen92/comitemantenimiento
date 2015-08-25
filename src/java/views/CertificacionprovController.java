@@ -18,6 +18,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
 
 @Named("certificacionprovController")
@@ -32,7 +33,25 @@ public class CertificacionprovController implements Serializable {
     private int selectedItemIndex;
     private int idEmpresa;
 
+    private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
+    private int idU;
+
     public CertificacionprovController() {
+    faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        try {
+            idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        } catch( NullPointerException e ) {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión ha caducado. "
+                + "Por favor inice sesión nuevamente");  
+             RequestContext.getCurrentInstance().showMessageInDialog(message);
+             logout();
+        }
+    }
+    
+    public String logout (){
+        return "login";
     }
 
     public Certificacionprov getSelected() {

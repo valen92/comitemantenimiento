@@ -1,15 +1,12 @@
 package views;
 
-import entities.Serviciosxempproveedoras;
-import views.util.JsfUtil;
-import views.util.PaginationHelper;
 import controller.ServiciosxempproveedorasFacade;
-
+import entities.Serviciosxempproveedoras;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,6 +14,11 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import org.primefaces.context.RequestContext;
+import views.util.JsfUtil;
+import views.util.PaginationHelper;
 
 @Named("serviciosxempproveedorasController")
 @SessionScoped
@@ -28,8 +30,26 @@ public class ServiciosxempproveedorasController implements Serializable {
     private controller.ServiciosxempproveedorasFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    private int idU;
+    private final FacesContext faceContext;
+    private final HttpServletRequest httpServletRequest;
 
     public ServiciosxempproveedorasController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        try {
+            idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
+        } catch( NullPointerException e ) {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La sesión ha caducado. "
+                + "Por favor inice sesión nuevamente");  
+             RequestContext.getCurrentInstance().showMessageInDialog(message);
+             logout();
+        }
+    }
+    
+    public String logout (){
+        return "login";
     }
 
     public Serviciosxempproveedoras getSelected() {
