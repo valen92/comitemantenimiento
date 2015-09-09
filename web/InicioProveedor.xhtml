@@ -32,24 +32,50 @@
                 </h:panelGrid>
                 <p:panel header="Actividades vigentes">
                     
-                    <p:dataTable value="#{actividadesController.items}" var="item"
+                    <p:dataTable value="#{serviciosController.itemsActividad}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="5,10,15">
                                          
-                         <p:column headerText="Titulo actividad">
+                        <p:column headerText="Numero Actividad" style="vertical-align: middle">
+                                     <h:outputText value="#{item.numeroActividad}"/>
+                        </p:column>
+                        
+                        
+                        <p:column headerText="Titulo actividad">
                                      <h:outputText value="#{item.tituloActividad}"/>
                                     
                           </p:column>
-                         <p:column headerText="Empresa">
+                         <p:column headerText="Empresa" style="vertical-align: middle">
                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidEmpresas.nombreEmpresa}"/>
                                     
                           </p:column>
+                        
+                        <p:column headerText="Fecha Firma" style="vertical-align: middle">
+                                     <h:outputText value="#{item.fecfirmaActividad}">
+                                         <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                        </p:column>
+                        
+                        <p:column headerText="Tipo de Servicio" style="vertical-align: middle">
+                                     <h:outputText value="#{item.fkidServiciosContrato.fkidServiciosxEmpProveedoras.fkidServicios.nombreServicio}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Fecha Inicio" style="vertical-align: middle">
+                                     <h:outputText value="#{item.fecinicioActividad}">
+                                     <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                        </p:column>
+                        <p:column headerText="Fecha Fin" style="vertical-align: middle">
+                                     <h:outputText value="#{item.fecfinActividad}">
+                                         <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                        </p:column>
+                        <p:column headerText="Estado" style="vertical-align: middle">
+                                     <h:outputText value="#{item.estadoActividad}"/>
+                        </p:column>
                                           
-                        <p:column style="width:24px">
-                            <h:commandLink action="#{actividadesController.prepareViewP}" styleClass="ui-icon ui-icon-search"/>
-                        </p:column> 
                                      
                     </p:dataTable> 
                       
@@ -61,12 +87,11 @@
                 <p:panel header="Servicios a Prestar">
                     <p:tabView orientation="left">
                         <p:tab title="Trabajos  mecánicos">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(1)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(1)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -80,11 +105,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -92,12 +117,11 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Civiles-Locativos">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(2)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(2)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -111,11 +135,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -123,12 +147,11 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Eléctricos">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(3)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(3)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -142,11 +165,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -154,12 +177,11 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Limpieza y oficios varios">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(4)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(4)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -173,11 +195,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -185,12 +207,11 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Mantenimiento preventivo y predictivo">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(5)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(5)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -204,11 +225,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -216,12 +237,11 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Calibraciones e instrumentación">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(6)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(6)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -235,11 +255,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -247,12 +267,11 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Marcación y planos">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(7)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(7)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -266,11 +285,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>
@@ -278,12 +297,11 @@
                             </p:dataTable>
                         </p:tab>
                         <p:tab title="Servicios especificos">
-                            <p:dataTable value="#{serviciosController.getItemsServicio(8)}" var="item"
+                            <p:dataTable value="#{actividadesController.getItemsServicio(8)}" var="item"
                                          rows="5"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="5,10,15"
-                                         emptyMessage="No se han encontrado registros para este servicio">
+                                         rowsPerPageTemplate="5,10,15">
 
                                 <p:column headerText="Actividad Específica">
                                     <h:outputText value="#{item.tituloActividad}"/>
@@ -297,11 +315,11 @@
                                     <h:outputText value="#{item.estadoActividad}" />
                                 </p:column>
                                 <p:column style="width:24px">
-                                    <h:commandLink action="#{serviciosController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
+                                    <h:commandLink action="#{actividadesController.destroy()}" styleClass="ui-icon ui-icon-trash"/>
                                     <p:confirmDialog message="Esta seguro de que desea eliminar esta actividad?"
                                         header="Atención"
                                         severity="alert" widgetVar="confirmDialog">
-                                        <p:commandButton value="Si" action="#{serviciosController.destroyFinale}" 
+                                        <p:commandButton value="Si" action="#{actividadesController.destroyFinale}" 
                                        />
                                         <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                                     </p:confirmDialog>

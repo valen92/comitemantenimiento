@@ -78,4 +78,18 @@ public class ServiciosFacade extends AbstractFacade<Servicios> {
         return q.getResultList();
     }
     
+    
+    public List<Actividades> findActividad(int[] range, int idU) {
+        String consulta = "SELECT n FROM Actividades n LEFT JOIN Servicioscontrato s, Usuarios u";
+        consulta = consulta + " where n.fkidServiciosContrato.idServiciosContrato =";
+        consulta = consulta + "s.idServiciosContrato and";
+        consulta = consulta + " s.fkidEmpresas.idEmpresas = u.fkidEmpresas.idEmpresas";
+        consulta = consulta + " and u.idUsuarios = :idUsuario and n.estadoActividad= 'Activo'";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idUsuario", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    
 }

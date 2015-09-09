@@ -1,5 +1,6 @@
 package views;
 
+import controller.ActividadesFacade;
 import controller.ServiciosFacade;
 import entities.Actividades;
 import entities.Servicios;
@@ -27,9 +28,11 @@ import views.util.PaginationHelper;
 public class ServiciosController implements Serializable {
 
     private Servicios current;
+    private Actividades currentA;
     private DataModel items = null;
     @EJB
     private controller.ServiciosFacade ejbFacade;
+    private controller.ActividadesFacade ejbFacadeA;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private final HttpServletRequest httpServletRequest;
@@ -75,6 +78,10 @@ public class ServiciosController implements Serializable {
         return ejbFacade;
     }
 
+    private ActividadesFacade getFacadeA() {
+        return ejbFacadeA;
+    }
+
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -87,6 +94,31 @@ public class ServiciosController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                }
+            };
+        }
+        return pagination;
+    }
+    
+
+    public String prepareViewP() {
+        currentA = (Actividades) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItemsActividad().getRowIndex();
+        return "/actividades/ConsultaActividad";
+    }
+    
+    public PaginationHelper getPaginationActividad() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findActividad(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, idU));
                 }
             };
         }
@@ -201,6 +233,32 @@ public class ServiciosController implements Serializable {
         RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
     }
 
+    public void destroyA() {
+        currentA = (Actividades) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
+    }
+    
+    
+
+    public String destroyFinale() {
+        performDestroyA();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La actividad ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "/InicioProveedor_1";
+    }
+
+    public String destroyFinale1() {
+        performDestroyA();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La actividad ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "/InicioProveedor";
+    }
+
     public String destroyFinal() {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El servicio ha sido eliminado con exito");  
         RequestContext.getCurrentInstance().showMessageInDialog(message);
@@ -246,6 +304,15 @@ public class ServiciosController implements Serializable {
         }
     }
 
+    private void performDestroyA() {
+        try {
+            getFacadeA().remove(currentA);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ServiciosDeleted"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
+    }
+
     private void updateCurrentItem() {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
@@ -264,6 +331,15 @@ public class ServiciosController implements Serializable {
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsActividad() {
+        recreatePagination();
+        recreateModel();
+        if (items == null) {
+            items = getPaginationActividad().createPageDataModel();
         }
         return items;
     }
